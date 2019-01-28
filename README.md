@@ -5,7 +5,7 @@
 InvoiceLion is free and open source invoicing software for entrepreneurs.
 
 Software developers during the Day and Invoice Lions at night... We are twin brothers and freelance software developers with a hobby. 
-We like to build online tools and we like to share. We use InvoiceLion ourselves, and continuesly improve this tool, but we would love to get feedback from you too! Are we doing a good job? What needs to be improved (first) or added? [Let us know](https://gitter.im/Usecue/InvoiceLion)!
+We like to build online tools and we like to share. We use InvoiceLion ourselves, and continuesly improve this tool, but we would love to get feedback from you too! Are we doing a good job? What needs to be improved (first) or added? [Chat with us](https://gitter.im/Usecue/InvoiceLion)!
 
 ## InvoiceLion.com
 
