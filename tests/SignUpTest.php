@@ -8,19 +8,39 @@ class SignUpTest extends TestCase
     {
         $client = new Client();
         $crawler = $client->request('GET', 'http://localhost:8000/');
-        $link = $crawler->selectLink('Register')->link();
-        $crawler = $client->click($link);
-        $form = $crawler->selectButton('Submit')->form();
-        $crawler = $client->submit($form, array('username' => 'test@invoicelion.com'));
-        $nodes = $crawler->filter('.alert');
-        $nodes->each(function ($node) {
-            $this->assertEquals('', $node->text(), 'Validation error occurred');
-        });
-        $this->assertCount(0, $nodes);
+        $crawler = $client->click($crawler->selectLink('Register')->link());
+        $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $form = $crawler->selectButton('Submit')->form();
-        $crawler = $client->submit($form, array('username' => 'test@invoicelion.com','password'=>'test@invoicelion.com','password2'=>'test@invoicelion.com'));
-        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');        
+        $crawler->filter('.alert')->each(function ($node) { $this->assertEquals('', $node->text(), 'Validation error occurred'); });
+        $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com','password'=>'test@invoicelion.com','password2'=>'test@invoicelion.com'));
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler->filter('.alert')->each(function ($node) { $this->assertEquals('', $node->text(), 'Validation error occurred'); });
+        return array('username' => 'test@invoicelion.com','password'=>'test@invoicelion.com');
+    }
+
+    /**
+     * @depends testRegistration
+     */
+    public function testLogin($credentials)
+    {
+        $client = new Client();
+        $crawler = $client->request('GET', 'http://localhost:8000/');
+        $crawler = $client->submit($crawler->selectButton('Submit')->form(), $credentials);
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler->filter('.alert')->each(function ($node) { $this->assertEquals('', $node->text(), 'Validation error occurred'); });
+        return array($client, $crawler);
+    }
+
+    /**
+     * @depends testLogin
+     */
+    public function testAddHours($context)
+    {
+        list($client, $crawler) = $context;
+        $crawler = $client->click($crawler->selectLink('Hours')->link());
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler = $client->click($crawler->selectLink('Add hours')->link());
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
     }
 
 }

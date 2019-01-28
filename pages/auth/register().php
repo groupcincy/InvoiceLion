@@ -15,12 +15,12 @@ if (isset($_POST['username'])) {
             if ($tenantId) {
                 $rowsAffected = DB::update('UPDATE `users` SET `tenant_id`=? WHERE `id` = ?', $tenantId, $userId);
                 if ($rowsAffected) {
+                    $token = NoPassAuth::token($username);
                     if($_SERVER['REMOTE_ADDR']=='127.0.0.1'){
                         Router::redirect("auth/reset/$token");    
                     }
                     if (!Cache::get('AuthForgotten_mailto_' . $username)) {
                         Cache::set('AuthForgotten_mailto_' . $username, '1', NoPassAuth::$tokenValidity);
-                        $token = NoPassAuth::token($username);
                         mail($username, 'Verify email ' . Router::getBaseUrl(), 'Click here: ' . Router::getBaseUrl() . "auth/reset/$token");
                     }
                     Router::redirect("auth/sent");

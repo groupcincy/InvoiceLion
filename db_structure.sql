@@ -224,7 +224,7 @@ CREATE TABLE `subscriptions` (
   `from` date NOT NULL,
   `canceled` date DEFAULT NULL,
   `comment` text,
-  `subscriptiontype_id` int(11) NOT NULL,
+  `subscriptiontype_id` int(11) DEFAULT NULL,
   `customer_id` int(11) NOT NULL,
   `project_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -244,7 +244,7 @@ CREATE TABLE `subscriptiontypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tenant_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `comment` text NOT NULL,
+  `comment` text,
   PRIMARY KEY (`id`),
   KEY `tenant_id` (`tenant_id`),
   CONSTRAINT `subscriptiontypes_ibfk_1` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`)
@@ -296,4 +296,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-01-27 21:41:24
+-- 2019-01-28 13:26:22
