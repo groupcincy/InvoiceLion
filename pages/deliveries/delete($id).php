@@ -1,6 +1,6 @@
 <?php 
 if (!empty($_POST)) {
-	$hour = DB::selectOne('select * from `deliveries` WHERE `id` = ?', $id);
+	$hour = DB::selectOne('select * from `deliveries` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
 	try {
 		$rows = DB::delete('DELETE FROM `deliveries` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
 		

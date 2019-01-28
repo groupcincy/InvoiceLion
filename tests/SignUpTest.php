@@ -8,14 +8,16 @@ class SignUpTest extends TestCase
     {
         $client = new Client();
         $crawler = $client->request('GET', 'http://localhost:8000/');
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->click($crawler->selectLink('Register')->link());
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler->filter('.alert')->each(function ($node) { $this->assertEquals('', $node->text(), 'Validation error occurred'); });
-        $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com','password'=>'test@invoicelion.com','password2'=>'test@invoicelion.com'));
+        $crawler->filter('.alert')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
+        $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com', 'password' => 'test@invoicelion.com', 'password2' => 'test@invoicelion.com'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler->filter('.alert')->each(function ($node) { $this->assertEquals('', $node->text(), 'Validation error occurred'); });
-        return array('username' => 'test@invoicelion.com','password'=>'test@invoicelion.com');
+        $crawler->filter('.alert')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
+        return array('username' => 'test@invoicelion.com', 'password' => 'test@invoicelion.com');
     }
 
     /**
@@ -25,9 +27,10 @@ class SignUpTest extends TestCase
     {
         $client = new Client();
         $crawler = $client->request('GET', 'http://localhost:8000/');
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->submit($crawler->selectButton('Submit')->form(), $credentials);
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler->filter('.alert')->each(function ($node) { $this->assertEquals('', $node->text(), 'Validation error occurred'); });
+        $crawler->filter('.alert')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
         return array($client, $crawler);
     }
 

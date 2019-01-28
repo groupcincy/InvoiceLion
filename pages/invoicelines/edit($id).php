@@ -15,29 +15,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			$subtotal = $data['invoicelines']['subtotal'];
 			if($data['invoicelines']['vat_percentage']) {
-                $total = $subtotal*((100+$data['invoicelines']['vat_percentage'])/100); 
+				$total = $subtotal*((100+$data['invoicelines']['vat_percentage'])/100); 
             }
 			else $total = $subtotal;
             $vat = $total - $subtotal;
 
-			$rowsAffected = DB::update('UPDATE `invoicelines` SET 
-				`customer_id`=?, 
-				`invoice_id`=?, 
-				`name`=?, 
-				`subtotal`=?, 
-				`vat`=?,
-                `vat_percentage`=?,
-				`total`=?
-			WHERE `tenant_id` = ? AND `id` = ? AND invoice_id IS NULL', 
-				$data['invoicelines']['customer_id'], 
-				$data['invoicelines']['invoice_id'], 
-				$data['invoicelines']['name'], 
-                $subtotal, 
-                $vat,
-				$data['invoicelines']['vat_percentage'], 
-				$total,
-			$_SESSION['user']['tenant_id'], $id);
-			
+			$rowsAffected = DB::update('UPDATE `invoicelines` SET `customer_id`=?, `invoice_id`=?, `name`=?, `subtotal`=?, `vat`=?,`vat_percentage`=?,`total`=? WHERE `tenant_id` = ? AND `id` = ? AND invoice_id IS NULL', $data['invoicelines']['customer_id'], $data['invoicelines']['invoice_id'], $data['invoicelines']['name'], $subtotal, $vat, $data['invoicelines']['vat_percentage'], $total, $_SESSION['user']['tenant_id'], $id);
 			if ($rowsAffected!==false) {
 				Flash::set('success','Invoiceline saved');
 				Router::redirect('invoicelines/view/'.$id);
