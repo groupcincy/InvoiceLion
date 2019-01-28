@@ -12,7 +12,7 @@ We promise to never make a profit from this service, but we may ask for a (optio
 
 ## Download
 
-100% free and open souce (MIT licensed), so [grab the latest release](https://github.com/Usecue/InvoiceLion/releases) of this software and install it on your own server.
+[Grab the latest release](https://github.com/Usecue/InvoiceLion/releases) of this software and install it on your own server. It is 100% free and open souce (MIT licensed).
 
 ## Requirements
 
