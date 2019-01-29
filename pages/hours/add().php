@@ -14,11 +14,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		$customer_added = false;
 	}
 
-	if (!isset($data['hours']['project_id']) || !$data['hours']['project_id']) $data['hours']['project_id']=NULL;
-	if (!isset($data['hours']['comment']) || $data['hours']['comment']) $data['hours']['comment']=NULL;
-	if (!isset($data['hours']['type']) || !$data['hours']['type']) $data['hours']['type']=NULL;
-	if (!isset($data['hours']['date']) || !$data['hours']['date']) $errors['hours[date]']='Date not set';	
-	if (!isset($customer_id) || !$customer_id) $errors['hours[customer_id]']='Customer not set';	
+	if (!$data['hours']['project_id']) $data['hours']['project_id']=NULL;
+	if (!$data['hours']['comment']) $data['hours']['comment']=NULL;
+	if (!$data['hours']['type']) $data['hours']['type']=NULL;
+	if (!$data['hours']['date']) $errors['hours[date]']='Date not set';	
+	if (!$data['hours']['hours_worked']) $errors['hours[hours_worked]']='Hours worked not set';	
+	if (!$data['hours']['hourly_fee']) $errors['hours[hourly_fee]']='Hourly fee not set';	
+	if (!$data['hours']['vat_percentage']) $errors['hours[vat_percentage]']='VAT percentage not set';	
+	if (!$customer_id) $errors['hours[customer_id]']='Customer not set';	
 	
 	//set vat_percentage to NULL if the customer has vat_reverse_charge
 	$vat_reverse_charge = DB::selectValue('select `vat_reverse_charge` from `customers` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $customer_id);
