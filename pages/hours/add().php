@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			if($data['hours']['vat_percentage']) $total = $subtotal*((100+$data['hours']['vat_percentage'])/100); 
 			else $total = $subtotal;
 
-			$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `customer_id`, `name`, `subtotal`, `vat`,`vat_percentage`,`total`) VALUES (?, ?, ?, ?, ?, ? ?)', 	 $_SESSION['user']['tenant_id'], $customer_id, $data['hours']['name'], $subtotal, ($total - $subtotal), $data['hours']['vat_percentage'], $total);
+			$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `customer_id`, `name`, `subtotal`, `vat`,`vat_percentage`,`total`) VALUES (?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $customer_id, $data['hours']['name'], $subtotal, ($total - $subtotal), $data['hours']['vat_percentage'], $total);
 
 			$hour_id = DB::insert('INSERT INTO `hours` (`tenant_id`, `customer_id`, `project_id`, `date`, `name`, `hours_worked`, `hourly_fee`, `subtotal`, `vat_percentage`, `type`, `comment`, `invoiceline_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $customer_id, $data['hours']['project_id'], $data['hours']['date'], $data['hours']['name'], $data['hours']['hours_worked'], $data['hours']['hourly_fee'], $subtotal, $data['hours']['vat_percentage'], $data['hours']['type'], $data['hours']['comment'], $invoiceline_id);
 
