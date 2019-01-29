@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		$customer_added = true;
 	} else {
 		$customer_id = $data['hours']['customer_id'];
+		$customer_added = false;
 	}
 
 	if (!isset($data['hours']['project_id']) || !$data['hours']['project_id']) $data['hours']['project_id']=NULL;
