@@ -13,10 +13,10 @@ class SignUpTest extends TestCase
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler->filter('.alert')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
+        $crawler->filter('.alert-danger')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
         $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com', 'password' => 'test@invoicelion.com', 'password2' => 'test@invoicelion.com'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler->filter('.alert')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
+        $crawler->filter('.alert-danger')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
         return array('username' => 'test@invoicelion.com', 'password' => 'test@invoicelion.com');
     }
 
@@ -30,7 +30,7 @@ class SignUpTest extends TestCase
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->submit($crawler->selectButton('Submit')->form(), $credentials);
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler->filter('.alert')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
+        $crawler->filter('.alert-danger')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
         return array($client, $crawler);
     }
 
@@ -44,6 +44,10 @@ class SignUpTest extends TestCase
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->click($crawler->selectLink('Add hours')->link());
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('hours[add_customer]' => 'test customer', 'hours[date]' => date('Y-m-d'), 'hours[hours_worked]' => '2', 'hours[hourly_fee]' => '75', 'hours[vat_percentage]' => '21'));
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler->filter('.alert-danger')->each(function ($node) {$this->assertEquals('', $node->text(), 'Validation error occurred');});
+        $crawler->filter('.has-error')->each(function ($node) {$this->assertEquals('', $node->filter('.help-block')->text(), 'Validation error occurred');});
     }
 
 }
