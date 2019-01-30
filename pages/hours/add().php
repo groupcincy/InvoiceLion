@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	if (!$data['hours']['type']) $data['hours']['type']=NULL;
 	if (!$data['hours']['date']) $errors['hours[date]']='Date not set';	
 	if (!$data['hours']['hours_worked']) $errors['hours[hours_worked]']='Hours worked not set';	
-	if (!$data['hours']['hourly_fee']) $errors['hours[hourly_fee]']='Hourly fee not set';	
+	if (!$data['hours']['hourly_fee']) $data['hours']['hourly_fee']=NULL;
 	if (!$data['hours']['vat_percentage'] && !$vat_reverse_charge) $errors['hours[vat_percentage]']='VAT percentage not set';	
 	if (!$data['hours']['customer_id']) $errors['hours[customer_id]']='Customer not set';	
 	
