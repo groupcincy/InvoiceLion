@@ -3,7 +3,7 @@
 	<h2><a href="/">Home</a> / <a href="customers">Customers</a></h2>
 	<h1>Add customer</h1>
 </div>
-<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div><?php e($error); ?></div></div><?php endif; ?>
+<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div class="message"><?php e($error); ?></div></div><?php endif; ?>
 <form method="post">
   
 	<div class="form-group <?php e(isset($errors['customers[name]'])?'has-error':''); ?>">

@@ -1,16 +1,18 @@
 <?php Buffer::set('title','Login'); ?>
 <h1>Login</h1>
 <p>Got an account? Log in to InvoiceLion below.</p>
-<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div><?php e($error); ?></div></div><?php endif; ?>
+<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div class="message"><?php e($error); ?></div></div><?php endif; ?>
 <form method="post">
-    <div class="form-group">
-        <label class="control-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" />
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="password">Password<a href="auth/forgotten">Forgotten?</a></label>
-        <input class="form-control" id="password" type="password" name="password"/>
-    </div>
+    <div class="form-group <?php e(isset($errors['username'])?'has-error':''); ?>">
+		<label class="control-label" for="username">Username</label>
+		<input class="form-control" name="username" type="text" value="<?php e($data['username']); ?>" id="username" />
+		<span class="help-block"><?php if (isset($errors['username'])) e($errors['username']); ?></span>
+	</div>
+    <div class="form-group <?php e(isset($errors['password'])?'has-error':''); ?>">
+		<label class="control-label" for="password">Password</label>
+		<input class="form-control" name="password" type="password" value="<?php e($data['password']); ?>" id="password" />
+		<span class="help-block"><?php if (isset($errors['password'])) e($errors['password']); ?></span>
+	</div>
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>

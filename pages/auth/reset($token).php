@@ -3,18 +3,17 @@ $parts = explode('.', $token);
 $claims = isset($parts[1]) ? json_decode(base64_decode($parts[1]), true) : false;
 $username = isset($claims['user']) ? $claims['user'] : false;
 
-if (isset($_POST['token'])) {
-  $token = $_POST['token'];
-  $password = $_POST['password'];
-  $password2 = $_POST['password2'];
-  if (!$password) {
-    $error = "Password cannot be empty";
-  } elseif ($password!=$password2) {
-    $error = "Passwords must match"; 
+if ($_SERVER['REQUEST_METHOD']=='POST') {
+  $data = $_POST;
+  if (!$data['password']) {
+    $errors['password'] = "Password cannot be empty";
+  } elseif ($data['password']!=$data['password2']) {
+    $errors['password'] = "Passwords must match"; 
+    $errors['password2'] = "Passwords must match"; 
   } elseif (!NoPassAuth::login($token)) {
     $error = "Token is not valid";
   } elseif ($username) {
-    Auth::update($username, $password);
+    Auth::update($username, $data['password']);
     Router::redirect("subscriptions");
   }
 }

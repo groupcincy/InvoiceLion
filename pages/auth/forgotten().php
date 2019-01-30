@@ -1,8 +1,9 @@
 <?php
-if (isset($_POST['username'])) {
-  $username = $_POST['username'];
+if ($_SERVER['REQUEST_METHOD']=='POST') {
+	$data = $_POST;
+  $username = $data['username'];
   $token = NoPassAuth::token($username);
-  $error = 'Not found';
+  $errors['username'] = 'Email not found';
   if ($token) {
     if (!Cache::get('AuthForgotten_mailto_'.$username)) {
       Cache::set('AuthForgotten_mailto_'.$username,'1',NoPassAuth::$tokenValidity);

@@ -1,22 +1,21 @@
 <?php Buffer::set('title','Reset password'); ?>
 <h1>Reset password</h1>
-<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div><?php e($error); ?></div></div><?php endif; ?>
+<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div class="message"><?php e($error); ?></div></div><?php endif; ?>
 <form method="post">
-
-    <input type="hidden" name="token" value="<?php e($token); ?>"/>
-
     <div class="form-group">
-        <label class="control-label" for="username">Username</label>
-        <input name="username" value="<?php e($username); ?>" disabled="disabled"/><br/>
+		<label class="control-label" for="username">Username</label>
+		<input class="form-control" name="username" type="text" value="<?php e($username); ?>" id="username" disabled="disabled" />
     </div>
-    <div class="form-group">    
-        <label class="control-label" for="password">Password</label>
-        <input class="form-control" id="password" type="password" name="password"/>
+    <div class="form-group <?php e(isset($errors['password'])?'has-error':''); ?>">
+		<label class="control-label" for="password">Password</label>
+		<input class="form-control" name="password" type="password" value="<?php e($data['password']); ?>" id="password" />
+		<span class="help-block"><?php if (isset($errors['password'])) e($errors['password']); ?></span>
     </div>
-    <div class="form-group">
-        <label class="control-label" for="password2">Password (again)</label>
-        <input class="form-control" id="password2" type="password" name="password2"/>
-    </div>
+    <div class="form-group <?php e(isset($errors['password2'])?'has-error':''); ?>">
+		<label class="control-label" for="password2">Password (again)</label>
+		<input class="form-control" name="password2" type="password" value="<?php e($data['password2']); ?>" id="password2" />
+		<span class="help-block"><?php if (isset($errors['password2'])) e($errors['password2']); ?></span>
+	</div>
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>

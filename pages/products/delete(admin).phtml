@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>Delete products</h1>
 </div>
-<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div><?php e($error); ?></div></div><?php endif; ?>
+<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div class="message"><?php e($error); ?></div></div><?php endif; ?>
 <form method="post">
     <p>Are you sure?</p>
 	<button class="btn btn-danger pull-right" type="submit">Yes</button>

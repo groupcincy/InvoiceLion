@@ -1,12 +1,13 @@
 <?php
-if (isset($_POST['username'])) {
-    $username = $_POST['username'];
+if ($_SERVER['REQUEST_METHOD']=='POST') {
+    $data = $_POST;
+    $username = $data['username'];
     if (!$username) {
-        $error = "Username cannot be empty";
+        $errors['username'] = "Username cannot be empty";
     } elseif (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
-        $error = "Username is not a valid email address";
+        $errors['username'] = "Username is not a valid email address";
     } elseif (Auth::exists($username)) {
-        $error = "Username is already taken";
+        $errors['username'] = "Username is already taken";
     } else {
         $error = "User can not be registered";
         $userId = NoPassAuth::register($username);
