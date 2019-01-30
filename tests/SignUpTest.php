@@ -44,7 +44,7 @@ class SignUpTest extends TestCase
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->click($crawler->selectLink('Add hours')->link());
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('hours[add_customer]' => 'test customer', 'hours[date]' => date('Y-m-d'), 'hours[hours_worked]' => '', 'hours[hourly_fee]' => '75', 'hours[vat_percentage]' => '21'));
+        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('hours[add_customer]' => 'test customer', 'hours[date]' => date('Y-m-d'), 'hours[hours_worked]' => '2', 'hours[hourly_fee]' => '75', 'hours[vat_percentage]' => '21'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
     }
