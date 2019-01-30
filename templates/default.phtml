@@ -16,6 +16,15 @@
     <div class="main">
 
       <div class="content">
+        <?php foreach ($flash as $type=>$text): ?> 
+          <div class="alert alert-<?php e($type); ?>">
+            <button type="button" class="close">x</button>
+            <div class="message">
+              <?php e($text); ?>
+            </div>
+          </div>
+        <?php endforeach; ?>
+
         <a href="/" id="branding"><img src="/img/invoicelion_inverted.png" /><span>InvoiceLion</span></a>
         <div class="card">
           <div>

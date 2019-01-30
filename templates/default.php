@@ -1,0 +1,2 @@
+<?php
+$flash = Flash::get();
