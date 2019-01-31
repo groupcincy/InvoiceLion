@@ -32,7 +32,7 @@
 
 	<div class="form-group <?php e(isset($errors['deliveries[add_customer]'])?'has-error':''); ?>" style="display: none;">
 		<label class="control-label" for="deliveries[add_customer]">Customer <a onclick="this.parentNode.nextElementSibling.value = ''; this.parentNode.parentNode.previousElementSibling.style.display = 'block'; this.parentNode.parentNode.style.display = 'none';">cancel</a></label>
-		<input class="form-control" name="deliveries[add_customer]" type="text" value="<?php e($data['deliveries']['add_customer']); ?>" id="deliveries[add_customer]" />
+		<input class="form-control" name="deliveries[add_customer]" type="text" value="<?php if(isset($data['deliveries']['add_customer'])) e($data['deliveries']['add_customer']); ?>" id="deliveries[add_customer]" />
 		<span class="help-block"><?php if (isset($errors['deliveries[add_customer]'])) e($errors['deliveries[add_customer]']); ?></span>
 	</div>
 
