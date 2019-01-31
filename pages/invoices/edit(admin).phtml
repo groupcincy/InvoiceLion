@@ -52,6 +52,7 @@
 
 	<br />
 
+	<div class="form-group <?php e(isset($errors['invoiceline_id'])?'has-error':''); ?>">
 	<table class="table">
 		<thead>
 			<tr>
@@ -61,12 +62,14 @@
 		<tbody>
 			<?php foreach ($invoicelines as $row): ?>
 			<tr>
-				<td class="name"><span><input name="invoiceline_id[]" type="checkbox" value="<?php e($row['invoicelines']['id']);?>" checked /> &nbsp; <?php e($row['invoicelines']['name']);?></span></td>
+				<td class="name"><span><input name="invoiceline_id[]" type="checkbox" value="<?php if(isset($row['invoicelines']['id'])) e($row['invoicelines']['id']);?>" <?php if($row['invoicelines']['selected']) e('checked');?> /> &nbsp; <?php e($row['invoicelines']['name']);?></span></td>
 				<td class="money"><span><?php e($row['invoicelines']['subtotal']);?></span></td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+	<span class="help-block"><?php if (isset($errors['invoiceline_id'])) e($errors['invoiceline_id']); ?></span>
+	</div>
 
 	<br /><br />
   

@@ -7,7 +7,6 @@ else {
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
-
 	if(isset($data['invoices']['customer_id'])) Router::redirect('invoices/add/'.$data['invoices']['customer_id']);
 	
 	if(!isset($data['invoices']['sent']) || !$data['invoices']['sent']) $data['invoices']['sent'] = 0;
@@ -18,10 +17,21 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	if (!isset($errors)) {
 		$error = 'Invoice not saved';
 		try {
-			$invoice_id = DB::insert('INSERT INTO `invoices` (`tenant_id`, `number`, `name`, `date`, `sent`, `paid`, `reminder1`, `reminder2`, `customer_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], ($highest_invoice_number+1), $data['invoices']['name'], $data['invoices']['date'], $data['invoices']['sent'], $data['invoices']['paid'], $data['invoices']['reminder1'], $data['invoices']['reminder2'], $customer_id);
-			
+			//santize selected invoiceline ids from checkboxes
+			foreach ($data['invoiceline_id'] as $key => $value) {
+				$data['invoiceline_id'][$key] = intval($value);
+			}
+
+			//calculate sum of selected invoicelines (subtotal)
+			$sums = DB::selectOne('SELECT SUM(subtotal) as `invoicelines.subtotal`, SUM(vat) as `invoicelines.vat`, SUM(total) as `invoicelines.total` FROM invoicelines WHERE `tenant_id` = ? AND id IN ('.implode(',',$data['invoiceline_id']).')', $_SESSION['user']['tenant_id']);
+			d($sums);
+
+			//insert invoice with calculated subtotal
+			$invoice_id = DB::insert('INSERT INTO `invoices` (`tenant_id`, `number`, `name`, `date`, `sent`, `paid`, `reminder1`, `reminder2`, `customer_id`,`subtotal`,`vat`,`total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], ($highest_invoice_number+1), $data['invoices']['name'], $data['invoices']['date'], $data['invoices']['sent'], $data['invoices']['paid'], $data['invoices']['reminder1'], $data['invoices']['reminder2'], $customer_id,$sums['invoicelines']['subtotal'],$sums['invoicelines']['vat'],$sums['invoicelines']['total']);
+
 			//connect selected invoicelines to this invoice
-			foreach ($data['invoiceline_id'] as $value) $rowsAffected = DB::update('UPDATE `invoicelines` SET `invoice_id`=? WHERE `tenant_id` = ? AND `id` = ?', $invoice_id, $_SESSION['user']['tenant_id'], $value);
+			$rowsAffected = DB::update('UPDATE `invoicelines` SET `invoice_id`=? WHERE `tenant_id` = ? AND id IN ('.implode(',',$data['invoiceline_id']).')', $invoice_id, $_SESSION['user']['tenant_id']);
+
 
 			if ($invoice_id) {
 				Flash::set('success','Invoice saved');
