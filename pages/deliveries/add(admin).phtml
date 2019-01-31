@@ -4,19 +4,23 @@
 <?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div class="message"><?php e($error); ?></div></div><?php endif; ?>
 <form method="post">
 
-	<div class="form-group <?php e(isset($errors['deliveries[project_id]'])?'has-error':''); ?>">
-		<label class="control-label" for="deliveries[project_id]">Project</label>
-		<select class="form-control" name="deliveries[project_id]" id="deliveries[project_id]" onchange="document.getElementById('deliveries[customer_id]').value = this.options[this.selectedIndex].getAttribute('customer-value');">
-			<option value=""<?php e(''==$data['deliveries']['project_id']?' selected="selected"':''); ?>></option>
-			<?php foreach ($projects as $project): ?>
-			<option value="<?php e($project['projects']['id']); ?>" customer-value="<?php e($project['projects']['customer_id']); ?>"<?php e($project['projects']['id']==$data['deliveries']['project_id']?' selected="selected"':''); ?>><?php e($project['projects']['name']); ?></option>
-			<?php endforeach; ?>
-		</select>
-		<span class="help-block"><?php if (isset($errors['deliveries[project_id]'])) e($errors['deliveries[project_id]']); ?></span>
-	</div>
+	<?php if(count($projects)>0): ?>
+		<div class="form-group <?php e(isset($errors['deliveries[project_id]'])?'has-error':''); ?>">
+			<label class="control-label" for="deliveries[project_id]">Project</label>
+			<select class="form-control" name="deliveries[project_id]" id="deliveries[project_id]" onchange="document.getElementById('deliveries[customer_id]').value = this.options[this.selectedIndex].getAttribute('customer-value');">
+				<option value=""<?php e(''==$data['deliveries']['project_id']?' selected="selected"':''); ?>></option>
+				<?php foreach ($projects as $project): ?>
+				<option value="<?php e($project['projects']['id']); ?>" customer-value="<?php e($project['projects']['customer_id']); ?>"<?php e($project['projects']['id']==$data['deliveries']['project_id']?' selected="selected"':''); ?>><?php e($project['projects']['name']); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<span class="help-block"><?php if (isset($errors['deliveries[project_id]'])) e($errors['deliveries[project_id]']); ?></span>
+		</div>
+	<?php else: ?>
+		<input name="deliveries[project_id]" type="hidden" value="" />
+	<?php endif; ?>
 
 	<div class="form-group <?php e(isset($errors['deliveries[customer_id]'])?'has-error':''); ?>">
-		<label class="control-label" for="deliveries[customer_id]">Customer</label>
+		<label class="control-label" for="deliveries[customer_id]">Customer <a onclick="this.parentNode.nextElementSibling.selectedIndex = 0; this.parentNode.parentNode.nextElementSibling.style.display = 'block'; this.parentNode.parentNode.style.display = 'none'; document.getElementById('deliveries[add_customer]').focus();">add</a></label>
 		<select class="form-control" name="deliveries[customer_id]" id="deliveries[customer_id]">
 			<option value=""<?php e(''==$data['deliveries']['customer_id']?' selected="selected"':''); ?>></option>
 			<?php foreach ($customers as $key => $value): ?>
@@ -24,6 +28,12 @@
 			<?php endforeach; ?>
 		</select>
 		<span class="help-block"><?php if (isset($errors['deliveries[customer_id]'])) e($errors['deliveries[customer_id]']); ?></span>
+	</div>
+
+	<div class="form-group <?php e(isset($errors['deliveries[add_customer]'])?'has-error':''); ?>" style="display: none;">
+		<label class="control-label" for="deliveries[add_customer]">Customer <a onclick="this.parentNode.nextElementSibling.value = ''; this.parentNode.parentNode.previousElementSibling.style.display = 'block'; this.parentNode.parentNode.style.display = 'none';">cancel</a></label>
+		<input class="form-control" name="deliveries[add_customer]" type="text" value="<?php e($data['deliveries']['add_customer']); ?>" id="deliveries[add_customer]" />
+		<span class="help-block"><?php if (isset($errors['deliveries[add_customer]'])) e($errors['deliveries[add_customer]']); ?></span>
 	</div>
 
 	<div class="form-group <?php e(isset($errors['deliveries[date]'])?'has-error':''); ?>">

@@ -14,6 +14,13 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$vat_reverse_charge = DB::selectValue('select `vat_reverse_charge` from `customers` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $data['deliveries']['customer_id']);
 	if ($vat_reverse_charge) $data['deliveries']['vat_percentage']=NULL;
 
+	if (!$data['deliveries']['project_id']) $data['deliveries']['project_id']=NULL;
+	if (!$data['deliveries']['comment']) $data['deliveries']['comment']=NULL;
+	if (!$data['deliveries']['date']) $errors['deliveries[date]']='Date not set';	
+	if (!$data['deliveries']['subtotal']) $errors['deliveries[subtotal]']='Subtotal not set';	
+	if (!$data['deliveries']['vat_percentage'] && !$vat_reverse_charge) $errors['deliveries[vat_percentage]']='VAT percentage not set';	
+	if (!$data['deliveries']['customer_id']) $errors['deliveries[customer_id]']='Customer not set';	
+
 	if (!isset($errors)) {
 		try {
 
