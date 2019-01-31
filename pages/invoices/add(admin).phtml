@@ -59,7 +59,7 @@
 		<div class="form-group <?php e(isset($errors['invoices[customer_id]'])?'has-error':''); ?>">
 			<label class="control-label" for="invoices[customer_id]">Customer</label>
 			<select class="form-control" name="invoices[customer_id]" id="invoices[customer_id]">
-				<option value=""<?php e(''==$data['invoices']['customer_id']?' selected="selected"':''); ?>></option>
+				<option value=""></option>
 				<?php foreach ($customers as $customer): ?>
 				<option value="<?php e($customer['customers']['id']); ?>"<?php e($customer['customers']['id']==$data['invoices']['customer_id']?' selected="selected"':''); ?>><?php e($customer['customers']['name']); ?></option>
 				<?php endforeach; ?>
