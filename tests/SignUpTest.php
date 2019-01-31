@@ -59,7 +59,7 @@ class SignUpTest extends TestCase
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->click($crawler->selectLink('Add subscription')->link());
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('subscriptions[add_customer]' => 'test customer 2', 'subscriptions[fee]' => '12', 'subscriptions[vat_percentage]' => '21', 'subscriptions[months]' => '12', 'subscriptions[from]' => date('Y-m-d')));
+        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('subscriptions[add_customer]' => 'test customer 2', 'subscriptions[fee]' => '12', 'subscriptions[vat_percentage]' => '21', 'subscriptions[name]' => 'test subscription', 'subscriptions[months]' => '12', 'subscriptions[from]' => date('Y-m-d')));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
     }
@@ -70,11 +70,11 @@ class SignUpTest extends TestCase
     public function testAddDelivery($context)
     {
         list($client, $crawler) = $context;
-        $crawler = $client->click($crawler->selectLink('Hours')->link());
+        $crawler = $client->click($crawler->selectLink('Deliveries')->link());
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler = $client->click($crawler->selectLink('Add hours')->link());
+        $crawler = $client->click($crawler->selectLink('Add delivery')->link());
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('hours[add_customer]' => 'test customer', 'hours[date]' => date('Y-m-d'), 'hours[hours_worked]' => '2', 'hours[hourly_fee]' => '75', 'hours[vat_percentage]' => '21'));
+        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('deliveries[add_customer]' => 'test customer 3', 'deliveries[date]' => date('Y-m-d'), 'deliveries[hours_worked]' => '2', 'deliveries[hourly_fee]' => '75', 'deliveries[vat_percentage]' => '21'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
     }
