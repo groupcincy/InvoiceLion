@@ -1,6 +1,6 @@
 <?php
 if (!in_array($field,array('logo_image','signature_image'))) {
-    Router::redirect('subscriptions');
+    Router::redirect('');
 }
 $height += 0;
 

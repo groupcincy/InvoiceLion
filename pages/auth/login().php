@@ -5,6 +5,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
   $errors['username'] = "Username/password combination not valid";
   $errors['password'] = "Username/password combination not valid";
   if (Auth::login($data['username'],$data['password'])) {
-    Router::redirect("subscriptions");
+    Router::redirect('');
   }
 }

@@ -14,6 +14,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     $error = "Token is not valid";
   } elseif ($username) {
     Auth::update($username, $data['password']);
-    Router::redirect("subscriptions");
+    Router::redirect('');
   }
 }
