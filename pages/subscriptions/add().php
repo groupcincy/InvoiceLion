@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$data['subscriptions']['from']) $errors['subscriptions[from]'] = 'Date not set';
     if (!$data['subscriptions']['name']) $errors['subscriptions[name]'] = 'Name not set';
     if (!$data['subscriptions']['fee']) $errors['subscriptions[fee]'] = 'Fee not set';
+    if (!$data['subscriptions']['months']) $errors['subscriptions[months]'] = 'Subscription period not set';
     if (!$data['subscriptions']['vat_percentage'] && !$vat_reverse_charge) $errors['subscriptions[vat_percentage]']='VAT percentage not set';	
 	if (!$data['subscriptions']['project_id']) $data['subscriptions']['project_id'] = null;
     if (!$data['subscriptions']['subscriptiontype_id']) $data['subscriptions']['subscriptiontype_id'] = null;
