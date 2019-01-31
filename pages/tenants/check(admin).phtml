@@ -15,7 +15,7 @@
     <?php foreach ($results as $name=>$result): ?>
     <tr>
       <td class="name"><span><?php e($name);?></span></td>  
-      <td class="text"><span><?php e(count($result)?'ok':'failed: #'.explode(',#',$result));?></span></td>  
+      <td class="text"><span><?php e(!count($result)?'ok':'failed: #'.implode(',#',$result));?></span></td>  
     </tr>
     <?php endforeach; ?>
   </tbody>
