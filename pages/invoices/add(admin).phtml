@@ -8,7 +8,7 @@
   
 	<div class="form-group <?php e(isset($errors['invoices[number]'])?'has-error':''); ?>">
 		<label class="control-label" for="invoices[number]">Number</label>
-		<input class="form-control" name="invoices[number]" type="number" value="<?php e($data['invoices']['number']); ?>" id="invoices[number]" />
+		<input class="form-control" name="invoices[number]" type="number" value="<?php e($data['invoices']['number']); ?>" id="invoices[number]" disabled />
 		<span class="help-block"><?php if (isset($errors['invoices[number]'])) e($errors['invoices[number]']); ?></span>
 	</div>
   

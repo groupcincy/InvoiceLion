@@ -3,12 +3,16 @@ $highest_invoice_number = DB::selectValue('SELECT MAX(number) FROM invoices WHER
 $customers = DB::selectPairs('select `id`,`name` from `customers` WHERE `tenant_id` = ? order by name', $_SESSION['user']['tenant_id']);
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
-	if(!isset($data['invoices']['sent'])) $data['invoices']['sent'] = 0;
-	if(!isset($data['invoices']['paid'])) $data['invoices']['paid'] = 0;
+	
+	if(!isset($data['invoices']['sent']) || !$data['invoices']['sent']) $data['invoices']['sent'] = 0;
+	if(!isset($data['invoices']['paid']) || !$data['invoices']['paid']) $data['invoices']['paid'] = 0;
+	if(!isset($data['invoices']['reminder1']) || !$data['invoices']['reminder1']) $data['invoices']['reminder1'] = NULL;
+	if(!isset($data['invoices']['reminder2']) || !$data['invoices']['reminder2']) $data['invoices']['reminder2'] = NULL;
+
 	if (!isset($errors)) {
 		$error = 'Invoice not saved';
 		try {
-			$id = DB::insert('INSERT INTO `invoices` (`tenant_id`, `number`, `name`, `date`, `sent`, `paid`, `reminder1`, `reminder2`, `customer_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['invoices']['number'], $data['invoices']['name'], $data['invoices']['date'], $data['invoices']['sent'], $data['invoices']['paid'], $data['invoices']['reminder1'], $data['invoices']['reminder2'], $data['invoices']['customer_id']);
+			$id = DB::insert('INSERT INTO `invoices` (`tenant_id`, `number`, `name`, `date`, `sent`, `paid`, `reminder1`, `reminder2`, `customer_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], ($highest_invoice_number+1), $data['invoices']['name'], $data['invoices']['date'], $data['invoices']['sent'], $data['invoices']['paid'], $data['invoices']['reminder1'], $data['invoices']['reminder2'], $data['invoices']['customer_id']);
 			if ($id) {
 				Flash::set('success','Invoice saved');
 				Router::redirect('invoices/index');
