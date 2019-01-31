@@ -1,0 +1,22 @@
+<?php Buffer::set('title','Settings'); ?>
+<h2>Home</h2>
+<h1>Integrity check</h1>
+
+<p>Below you will find the executed integrity tests and their results.</p>
+
+<table class="table responsive-minimal">
+  <thead>
+    <tr>
+      <th class="name">Name</th>
+      <th class="text">Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($results as $name=>$result): ?>
+    <tr>
+      <td class="name"><span><?php e($name);?></span></td>  
+      <td class="text"><span><?php e(count($result)?'ok':'failed: #'.explode(',#',$result));?></span></td>  
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
