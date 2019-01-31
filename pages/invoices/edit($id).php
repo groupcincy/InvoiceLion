@@ -9,7 +9,7 @@ foreach($invoicelines as $key=>$invoiceline) {
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
 
-	if(count($data['invoiceline_id'])==0) $errors['invoiceline_id'] = 'No invoice line(s) selected';
+	if(!isset($data['invoiceline_id']) || count($data['invoiceline_id'])==0) $errors['invoiceline_id'] = 'No invoice line(s) selected';
 	if(!isset($data['invoices']['sent']) || !$data['invoices']['sent']) $data['invoices']['sent'] = 0;
 	if(!isset($data['invoices']['paid']) || !$data['invoices']['paid']) $data['invoices']['paid'] = 0;
 	if(!isset($data['invoices']['reminder1']) || !$data['invoices']['reminder1']) $data['invoices']['reminder1'] = NULL;
