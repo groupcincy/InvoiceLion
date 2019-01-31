@@ -73,18 +73,20 @@
 		<span class="help-block"><?php if (isset($errors['subscriptions[comment]'])) e($errors['subscriptions[comment]']); ?></span>
 	</div>
   
-	<?php if($subscriptiontypes) {?>
-	<div class="form-group <?php e(isset($errors['subscriptions[subscriptiontype_id]'])?'has-error':''); ?>">
-		<label class="control-label" for="subscriptions[subscriptiontype_id]">Subscription type</label>
-		<select class="form-control" name="subscriptions[subscriptiontype_id]" id="subscriptions[subscriptiontype_id]">
-			<option value=""<?php e(''==$data['subscriptions']['subscriptiontype_id']?' selected="selected"':''); ?>></option>
-			<?php foreach ($subscriptiontypes as $key => $value): ?>
-			<option value="<?php e($key); ?>"<?php e($key==$data['subscriptions']['subscriptiontype_id']?' selected="selected"':''); ?>><?php e($value); ?></option>
-			<?php endforeach; ?>
-		</select>
-		<span class="help-block"><?php if (isset($errors['subscriptions[subscriptiontype_id]'])) e($errors['subscriptions[subscriptiontype_id]']); ?></span>
-	</div>
-	<?php } ?>
+	<?php if(count($subscriptiontypes)>0): ?>
+		<div class="form-group <?php e(isset($errors['subscriptions[subscriptiontype_id]'])?'has-error':''); ?>">
+			<label class="control-label" for="subscriptions[subscriptiontype_id]">Subscription type</label>
+			<select class="form-control" name="subscriptions[subscriptiontype_id]" id="subscriptions[subscriptiontype_id]">
+				<option value=""<?php e(''==$data['subscriptions']['subscriptiontype_id']?' selected="selected"':''); ?>></option>
+				<?php foreach ($subscriptiontypes as $key => $value): ?>
+				<option value="<?php e($key); ?>"<?php e($key==$data['subscriptions']['subscriptiontype_id']?' selected="selected"':''); ?>><?php e($value); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<span class="help-block"><?php if (isset($errors['subscriptions[subscriptiontype_id]'])) e($errors['subscriptions[subscriptiontype_id]']); ?></span>
+		</div>
+	<?php else: ?>
+		<input name="subscriptions[subscriptiontype_id]" type="hidden" value="" />
+	<?php endif; ?>
 
 	<div class="form-group">
 		<button class="btn btn-primary" type="submit">Save</button>
