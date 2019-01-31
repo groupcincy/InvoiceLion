@@ -4,10 +4,14 @@ $projects = DB::select('select `id`,`name`,`customer_id` from `projects` WHERE `
 $customers = DB::selectPairs('select `id`,`name` from `customers`  WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = $_POST;
-    if (!isset($data['subscriptions']['subscriptiontype_id']) || !$data['subscriptions']['subscriptiontype_id']) $data['subscriptions']['subscriptiontype_id'] = null;
-    if (!isset($customers[$data['subscriptions']['customer_id']])) $errors['subscriptions[customer_id]'] = 'Customer not found';
-    if (!isset($customers[$data['subscriptions']['project_id']])) $data['subscriptions']['project_id'] = null;
-	if (!isset($data['subscriptions']['canceled']) || !$data['subscriptions']['canceled']) $data['subscriptions']['canceled'] = null;
+
+    if (!$data['subscriptions']['from']) $errors['subscriptions[from]'] = 'Date not set';
+    if (!$data['subscriptions']['name']) $errors['subscriptions[name]'] = 'Name not set';
+    if (!$data['subscriptions']['fee']) $errors['subscriptions[fee]'] = 'Fee not set';
+    if (!$data['subscriptions']['project_id']) $data['subscriptions']['project_id'] = null;
+    if (!$data['subscriptions']['subscriptiontype_id']) $data['subscriptions']['subscriptiontype_id'] = null;
+	if (!$data['subscriptions']['customer_id']) $errors['hours[customer_id]']='Customer not set';	
+    if (!$data['subscriptions']['canceled']) $data['subscriptions']['canceled'] = null;
 	
     if (!isset($errors)) {
         try {
