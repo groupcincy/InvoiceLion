@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		try {
 			$invoice_id = DB::insert('INSERT INTO `invoices` (`tenant_id`, `number`, `name`, `date`, `sent`, `paid`, `reminder1`, `reminder2`, `customer_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], ($highest_invoice_number+1), $data['invoices']['name'], $data['invoices']['date'], $data['invoices']['sent'], $data['invoices']['paid'], $data['invoices']['reminder1'], $data['invoices']['reminder2'], $customer_id);
 			
+			//connect selected invoicelines to this invoice
 			foreach ($data['invoiceline_id'] as $value) $rowsAffected = DB::update('UPDATE `invoicelines` SET `invoice_id`=? WHERE `tenant_id` = ? AND `id` = ?', $invoice_id, $_SESSION['user']['tenant_id'], $value);
 
 			if ($invoice_id) {
@@ -31,5 +32,5 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		}
 	}
 } else {
-	$data = array('invoices'=>array('number'=>($highest_invoice_number+1), 'name'=>NULL, 'date'=>Date('Y-m-d'), 'sent'=>NULL, 'paid'=>NULL, 'reminder1'=>NULL, 'reminder2'=>NULL, 'customer_id'=>NULL));
+	if($customer_id) $data = array('invoices'=>array('number'=>($highest_invoice_number+1), 'name'=>NULL, 'date'=>Date('Y-m-d'), 'sent'=>NULL, 'paid'=>NULL, 'reminder1'=>NULL, 'reminder2'=>NULL, 'customer_id'=>NULL));
 }
