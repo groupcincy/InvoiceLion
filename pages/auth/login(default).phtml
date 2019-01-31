@@ -5,12 +5,12 @@
 <form method="post">
     <div class="form-group <?php e(isset($errors['username'])?'has-error':''); ?>">
 		<label class="control-label" for="username">Username</label>
-		<input class="form-control" name="username" type="text" value="<?php e($data['username']); ?>" id="username" />
+		<input class="form-control" name="username" type="text" value="<?php if(isset($data['username'])) e($data['username']); ?>" id="username" />
 		<span class="help-block"><?php if (isset($errors['username'])) e($errors['username']); ?></span>
 	</div>
     <div class="form-group <?php e(isset($errors['password'])?'has-error':''); ?>">
 		<label class="control-label" for="password">Password</label>
-		<input class="form-control" name="password" type="password" value="<?php e($data['password']); ?>" id="password" />
+		<input class="form-control" name="password" type="password" value="<?php if(isset($data['password'])) e($data['password']); ?>" id="password" />
 		<span class="help-block"><?php if (isset($errors['password'])) e($errors['password']); ?></span>
 	</div>
     <div class="form-group">
