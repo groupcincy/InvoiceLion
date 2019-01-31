@@ -1,5 +1,5 @@
 <?php Buffer::set('title','Settings'); ?>
-<h2>Home</h2>
+<h3>Home</h3>
 <h1>Settings</h1>
 
 <p>Below you will find your preferences. You can set here if you want to enable time tracking, and you can enter the values that show up on your invoices.</p>
@@ -7,7 +7,7 @@
 <br />
 
 <div style="overflow: auto;">
-    <div class="card col50"><div>
+    <div class="card col50" style="float: right;"><div>
         <h2>Company settings</h2>
         <dl>
             <dt>Company name</dt>
@@ -62,7 +62,7 @@
             <dd><?php e($data['tenants']['vat_number']?:'-');?></dd>
         </dl>
     </div></div>
-    <div class="card col50"><div>
+    <div class="card col50" style="margin-left: 0;"><div>
         <h2>General settings</h2>
         <dl>
             <dt>Time tracking</dt>
@@ -74,6 +74,14 @@
             <dt>Subscriptions</dt>
             <dd>        
                 <?php if($data['tenants']['subscriptions_active']) e('yes'); else e('no'); ?>
+            </dd>
+        </dl>
+        <dl>
+            <dt>Projects (<a href="projects/index">manage</a>)</dt>
+            <dd>        
+                <?php if ($projects): foreach ($projects as $row): ?>
+                <a href="projects/view/<?php e($row['projects']['id']); ?>" class="tag"><?php e($row['projects']['name']); ?></a>
+                <?php endforeach; else: e('-'); endif; ?>
             </dd>
         </dl>
         <dl>
@@ -93,9 +101,8 @@
             </dd>
         </dl>
     </div></div>
-</div>
-<div style="overflow: auto;">
-    <div class="card col50"><div>
+
+    <div class="card col50" style="margin-left: 0;"><div>
         <h2>Invoice settings</h2>
         <dl>
             <dt>Payment period (in days)</dt>
@@ -107,11 +114,11 @@
         </dl>
         <dl>
             <dt>Logo (<a href="tenants/change/logo_image/2.5">change</a>)</dt>
-            <dd><img style="height: 2.5em;" src="data:image/png;base64,<?php e(base64_encode($data['tenants']['logo_image']));?>" /></dd>
+            <dd><div style="height: 3.5em; width: 50%; background: url('data:image/png;base64,<?php e(base64_encode($data['tenants']['logo_image']));?>') left center / contain no-repeat;"></div></dd>
         </dl>
         <dl>
             <dt>Signature (<a href="tenants/change/signature_image/5.5">change</a>)</dt>
-            <dd><img style="height: 5.5em;" src="data:image/png;base64,<?php e(base64_encode($data['tenants']['signature_image']));?>" /></dd>
+            <dd><div style="height: 3.5em; width: 50%; background: url('data:image/png;base64,<?php e(base64_encode($data['tenants']['signature_image']));?>') left center / contain no-repeat;"></div></dd>
         </dl>
         <dl>
             <dt>Invoice styles</dt>

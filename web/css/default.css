@@ -52,12 +52,14 @@ h1::after {
     background: black;
     margin: 20px 0 10px;
 }
-h2 {font-size: 18.4px; margin-bottom: 10px; line-height: 1.2em; font-weight: 700;}
-* + h2 {margin-top: 30px;}
+h2 {font-size: 30px; margin-bottom: 30px; line-height: 1em; font-weight: 900; letter-spacing: 0.5px; padding-top: 5px;}
+h3 {font-size: 18.4px; margin-bottom: 10px; line-height: 1.2em; font-weight: 700;}
+* + h3 {margin-top: 30px;}
+* + h2 {margin-top: 60px;}
 .btn-primary, .btn-danger, .btn-default {display: inline-block; background: #18b663; color: white!important; padding: 9px 15px 8px; font-weight: 700; font-size: 12px; border: 1px solid #18b663; text-transform: uppercase; border-radius: 3px; transition: all .2s ease-in-out; text-decoration: none;
 }
 .btn-default, .btn-primary:hover, .btn-danger {background: white; color: #18b663!important;}
-h2 a {text-decoration: none;}
+h3 a {text-decoration: none;}
 .nav a:hover, .hover:hover, .hover:hover a {cursor: pointer; color: #18b663;}
 .pull-right {float: right;}
 h1 .btn-primary {font-size: 12px; line-height: 1.5em; margin-top: 5px; float: right; }
@@ -88,7 +90,6 @@ pre {font-family: 'Roboto', sans-serif;}
 .card .status {position: relative; margin: 0px auto; max-width: 200px; padding: 15px; text-align: center;}
 .card .status .img {background: #eee url(/img/invoicelion_inverted.png) center top / auto 102% no-repeat; border-radius: 100%; margin: 10px 0; opacity: 0.07; border-radius: 100%; padding-bottom: 100%;}
 .card > div {padding: 20px 25px 10px;}
-.card > div h2 {font-size: 25px; margin-bottom: 20px; line-height: 1em; font-weight: 900; letter-spacing: 0.5px; padding-top: 5px;}
 .default .card > div {padding: 30px 30px 20px 30px;}
 .default .card {background: white; max-width: 420px; margin: 0 auto; position: relative; z-index: 1;}
 
@@ -109,9 +110,9 @@ div + p {padding-top: 15px;}
 
 
 .col50 {width: calc(47.5% - 2px); float: left; margin-bottom: 40px;}
-.col50:nth-child(even) {margin-left: 5%;}
+.col50 + .col50 {margin-left: 5%;}
 @media (max-width: 1200px) {
-    .col50 {float: none; width: auto;}
+    .col50 {float: none!important; width: auto;}
     .col50 + .col50 {margin-left: 0%;}
     .card {border: 0px solid rgba(0,0,0,0.05); border-radius: 0px; padding: 0px;}
     .card tr th:first-child, .card tr td:first-child span {padding-left: 0px;}
@@ -128,7 +129,7 @@ div + p {padding-top: 15px;}
 .showmenu .nav {display: block;}
 .showmenu .nav a {display: inline-block; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 5px 0; width: 100%; text-decoration: none;}
 .showmenu .nav a:last-of-type {border-bottom: 0;}
-.showmenu .nav h2 {padding-top: 40px;}
+.showmenu .nav h3 {padding-top: 40px;}
 .onlymobile {display: block!important;}
 .onlydesktop, .icons div.bottom {display: none!important;}
 @media (min-width: 1200px) {
@@ -143,7 +144,7 @@ div + p {padding-top: 15px;}
         padding-top: 15px;
         background: #eee;
     }
-    .showmenu .nav h2 {display: none;}
+    .showmenu .nav h3 {display: none;}
     .showmenu .content {margin: 0 auto; width: calc(100% - 300px); max-width: 1200px; position: relative; left: 130px;}
     .showmenu .icons {position: fixed; left: 0; top: 0; bottom: auto; width: 60px; height: 100vh; border-right: 1px solid rgba(0,0,0,0.05); border-top: 0; padding-top: 0;}
     .showmenu .icons > div {display: block;}

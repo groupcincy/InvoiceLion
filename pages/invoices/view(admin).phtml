@@ -1,6 +1,6 @@
 <?php Buffer::set('title','View invoice'); ?>
 <div class="page-header">
-	<h2><a href="/">Home</a> / <a href="invoices">Invoices</a></h2>
+	<h3><a href="/">Home</a> / <a href="invoices">Invoices</a></h3>
   	<h1><?php if(isset(explode(" - ",$data['invoices']['name'])[1])) e(explode(" - ",$data['invoices']['name'])[1]); else e($data['invoices']['name']); ?></h1>
 </div>
 <div>

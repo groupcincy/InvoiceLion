@@ -1,11 +1,12 @@
 <?php Buffer::set('title','Statistics'); ?>
-<h2>Home</h2>
+<h3>Home</h3>
 <h1>Statistics</h1>
 
 <p>You currently receive &euro; <?php e(round($subscriptionIncome)); ?> per month from subscriptions.<br />In total you have received &euro; <?php e(round($incomeThisYear)); ?> this year. You are expected to receive an additional &euro; <?php e(round($incomeThisYearAddon)); ?>.<p>
 
 <p>Last year you received &euro; <?php e(round($incomeLastYear)); ?>. Note that all these amounts are without VAT.</p>
 
+<div>
 <?php if($sumhourspertype_thisyear) { ?>
 <div class="card col50">
 <table>
@@ -39,3 +40,4 @@
 </table>
 </div>
 <?php } ?>
+</div>
