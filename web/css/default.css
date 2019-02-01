@@ -94,7 +94,8 @@ pre {font-family: 'Roboto', sans-serif;}
 
 
 
-.default .content {padding-top: 5px!important;}
+.default .content {padding-top: 5px!important; width:100%; max-width: 100%; left: 0;}
+.default .main > div.content {padding-left: 0; padding-right: 0;}
 .default .content::before {content: ""; position: absolute; z-index: 0; left: 0; width: 100%; top: 0; background: black; height: 200px;}
 .default .content a#branding {color: white; position: relative; width: 100px; display: block; margin: 0 auto; opacity: 0.4; text-align: center; text-decoration: none; font-weight: bold;}
 .default .content a#branding img {width: 100%;}
@@ -146,7 +147,7 @@ div + p {padding-top: 15px;}
         background: #eee;
     }
     .nav h3 {display: none;}
-    .content {margin: 0 auto; width: calc(100% - 300px); max-width: 1200px; position: relative; left: 130px;}
+    .content {margin: 0 auto; width: calc(100% - 500px); max-width: 1200px; position: relative; left: 130px;}
     .icons {position: fixed; left: 0; top: 0; bottom: auto; width: 260px; height: 100vh; border-top: 0; padding-top: 0; text-align: left;}
     .icons > div {display: block;}
     .icons > div a {display: block; margin: 1px auto; padding: 10px 40px;}
