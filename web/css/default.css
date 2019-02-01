@@ -59,7 +59,7 @@ h2 {font-size: 30px; margin-bottom: 30px; line-height: 1em; font-weight: 900; le
 h3 {font-size: 18.4px; margin-bottom: 10px; line-height: 1.2em; font-weight: 700;}
 * + h3 {margin-top: 30px;}
 * + h2 {margin-top: 60px;}
-.btn-primary, .btn-danger, .btn-default {display: inline-block; background: #18b663; color: white!important; padding: 9px 15px 8px; font-weight: 700; font-size: 12px; border: 1px solid #18b663; text-transform: uppercase; border-radius: 3px; transition: all .2s ease-in-out; text-decoration: none;
+.btn-primary, .btn-danger, .btn-default {display: inline-block; background: #18b663; color: white!important; padding: 10px 15px 9px; font-weight: 700; font-size: 12px; border: 1px solid #18b663; text-transform: uppercase; border-radius: 20px; transition: all .2s ease-in-out; text-decoration: none;
 }
 .btn-default, .btn-primary:hover, .btn-danger {background: white; color: #18b663!important;}
 h3 a {text-decoration: none;}
@@ -77,7 +77,7 @@ pre {font-family: 'Roboto', sans-serif;}
 .alert.alert-success button, .alert.alert-danger button {color: white;}
 .alert > div {margin: 13px auto 15px; padding: 0 20px;}
 .alert button {opacity: 0.5; cursor: pointer; font-weight: bold; position: absolute; padding: 10px 20px; background: none; border: 0; font-size: 130%; right: 0; top: 0; z-index: 50;}
-@media (min-width: 1200px) {
+@media (min-width: 800px) {
     .alert > div {width: calc(100% - 300px); position: relative; left: 130px; max-width: 1200px;}
 }
 @keyframes slideOutTop {
@@ -115,7 +115,7 @@ div + p {padding-top: 15px;}
 
 .col50 {width: calc(47.5% - 2px); float: left; margin-bottom: 40px;}
 .col50 + .col50 {margin-left: 5%;}
-@media (max-width: 1200px) {
+@media (max-width: 800px) {
     .col50 {float: none!important; width: auto;}
     .col50 + .col50 {margin-left: 0%;}
     .card {border: 0px solid rgba(0,0,0,0.05); border-radius: 0px; padding: 0px;}
@@ -136,7 +136,7 @@ div + p {padding-top: 15px;}
 .nav h3 {padding-top: 40px;}
 .onlymobile {display: block!important;}
 .onlydesktop, .icons div.bottom {display: none!important;}
-@media (min-width: 1200px) {
+@media (min-width: 800px) {
     .nav {
         position: fixed; 
         left: 0; top: 0; 
@@ -161,7 +161,14 @@ div + p {padding-top: 15px;}
     .icons div.bottom {position: absolute; bottom: 35px; width: 100%;}
     .onlymobile {display: none!important;}
 }
-
+@media (min-width: 800px) and (max-width: 1300px) {
+    .content {width: calc(100% - 200px); left: 27px;}
+    .icons {width: 55px; overflow: hidden;}
+    .icons > div a {padding: 10px 15px;}
+    .icons > div a#branding {margin-bottom: 15px;}
+    .icons > div a#branding > span {background-position: 0px center; height: 75px;}
+    .icons div.bottom {bottom: 25px;}
+}
 
 
 
@@ -215,7 +222,7 @@ td span {
 tr:last-child td {border-bottom: 0px solid rgba(0,0,0,0.05);}
 
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
     table.responsive {position: relative;}
     table.responsive, 
     table.responsive thead, 
@@ -233,7 +240,7 @@ tr:last-child td {border-bottom: 0px solid rgba(0,0,0,0.05);}
     }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
     table.responsive-minimal td, table.responsive-minimal th {display: none;}
     table.responsive-minimal td:first-child, table.responsive-minimal th:first-child,
     table.responsive-minimal td:last-child, table.responsive-minimal th:last-child,

@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 				$data['invoiceline_id'][$key] = intval($value);
 			}
 
-			//calculate sum of selected invoicelines (subtotal)
+			//calculate sum of selected invoicelines
 			$sums = DB::selectOne('SELECT SUM(subtotal) as `invoicelines.subtotal`, SUM(vat) as `invoicelines.vat`, SUM(total) as `invoicelines.total` FROM invoicelines WHERE `tenant_id` = ? AND id IN ('.implode(',',$data['invoiceline_id']).')', $_SESSION['user']['tenant_id']);
 			d($sums);
 
