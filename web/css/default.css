@@ -88,7 +88,8 @@ pre {font-family: 'Roboto', sans-serif;}
 .card {border: 1px solid rgba(0,0,0,0.05); border-radius: 5px; padding: 5px 0px 8px;}
 .status {position: relative; margin: 0px auto; max-width: 200px; padding: 15px; text-align: center;}
 .status .img {background: #eee url(/img/invoicelion_inverted.png) center top / auto 102% no-repeat; border-radius: 100%; margin: 10px 0; opacity: 0.07; border-radius: 100%; padding-bottom: 100%;}
-
+.default .card > div {padding: 30px 30px 20px 30px;}
+.default .card {background: white; max-width: 420px; margin: 0 auto; position: relative; z-index: 1;}
 
 
 
@@ -115,8 +116,6 @@ div + p {padding-top: 15px;}
     .col50 {float: none!important; width: auto;}
     .col50 + .col50 {margin-left: 0%;}
     .card {border: 0px solid rgba(0,0,0,0.05); border-radius: 0px; padding: 0px;}
-    .card tr th:first-child, .card tr td:first-child span {padding-left: 0px;}
-    .card tr th:last-child, .card tr td:last-child span {padding-right: 0px;}
     .card > div {padding: 0 0 10px;}
 }
 
