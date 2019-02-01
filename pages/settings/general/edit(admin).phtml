@@ -1,0 +1,24 @@
+<?php Buffer::set('title','General settings'); ?>
+<h3><a href="/">Home</a> / <a href="settings">Settings</a></h3>
+<h1>Edit general settings</h1>
+
+<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div class="message"><?php e($error); ?></div></div><?php endif; ?>
+<form method="post">
+
+		<div class="form-group <?php e(isset($errors['tenants[hours_active]'])?'has-error':''); ?>">
+		<label class="control-label" for="tenants[hours_active]">Time tracking</label>
+		<input class="form-control" name="tenants[hours_active]" type="checkbox" value="1" id="tenants[hours_active]" <?php if($data['tenants']['hours_active']) e('checked'); ?> />
+		<span class="help-block"><?php if (isset($errors['tenants[hours_active]'])) e($errors['tenants[hours_active]']); ?></span>
+		</div>
+	
+    <div class="form-group <?php e(isset($errors['tenants[subscriptions_active]'])?'has-error':''); ?>">
+		<label class="control-label" for="tenants[subscriptions_active]">Subscriptions</label>
+		<input class="form-control" name="tenants[subscriptions_active]" type="checkbox" value="1" id="tenants[subscriptions_active]" <?php if($data['tenants']['subscriptions_active']) e('checked'); ?> />
+		<span class="help-block"><?php if (isset($errors['tenants[subscriptions_active]'])) e($errors['tenants[subscriptions_active]']); ?></span>
+		</div>
+
+    <div class="form-group">
+		<button class="btn btn-primary" type="submit">Save</button>
+	</div>
+	<?php Session::getCsrfInput(); ?>
+</form>
