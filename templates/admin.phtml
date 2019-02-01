@@ -48,49 +48,46 @@
           <a href="/" id="branding" title="InvoiceLion"><span></span></a>
           <a href="/" title="Dashboard">
             <div class="img" style="background-image: url(/img/icon.svg);"></div>
-            <div class="img" style="background-image: url(/img/icon-green.svg);"></div>
             <div class="img" style="background-image: url(/img/icon-white.svg);"></div>
             <span>Dashboard</span>
           </a>
+          <?php if($tenant['tenants']['hours_active']) {?>
           <a href="hours" <?php if(Buffer::get('title') == 'Hours') e('class="active"'); ?> title="Hours">
             <div class="img" style="background-image: url(/img/clock.svg);"></div>
-            <div class="img" style="background-image: url(/img/clock-green.svg);"></div>
             <div class="img" style="background-image: url(/img/clock-white.svg);"></div>
             <span>Hours</span>
           </a>
+          <?php }?>
           <a href="deliveries" title="Deliveries">
             <div class="img" style="background-image: url(/img/box-alt.svg);"></div>
-            <div class="img" style="background-image: url(/img/box-alt-green.svg);"></div>
             <div class="img" style="background-image: url(/img/box-alt-white.svg);"></div>
             <span>Deliveries</span>
           </a>
+          <?php if($tenant['tenants']['subscriptions_active']) {?>
           <a href="subscriptions" title="Subscriptions">
             <div class="img" style="background-image: url(/img/repeat.svg);"></div>
-            <div class="img" style="background-image: url(/img/repeat-green.svg);"></div>
             <div class="img" style="background-image: url(/img/repeat-white.svg);"></div>
             <span>Subscriptions</span>
           </a>
+          <?php } ?>
           <a href="invoices" title="Invoices">
             <div class="img" style="background-image: url(/img/file-invoice-dollar.svg);"></div>
-            <div class="img" style="background-image: url(/img/file-invoice-dollar-green.svg);"></div>
             <div class="img" style="background-image: url(/img/file-invoice-dollar-white.svg);"></div>
             <span>Invoices</span>
           </a>
           <a href="customers" title="Customers">
             <div class="img" style="background-image: url(/img/address-book.svg);"></div>
-            <div class="img" style="background-image: url(/img/address-book-green.svg);"></div>
             <div class="img" style="background-image: url(/img/address-book-white.svg);"></div>
             <span>Customers</span>
           </a>
           <a href="settings/" class="onlydesktop" title="Settings">
             <div class="img" style="background-image: url(/img/cog.svg);"></div>
-            <div class="img" style="background-image: url(/img/cog-green.svg);"></div>
             <div class="img" style="background-image: url(/img/cog-white.svg);"></div>
             <span>Settings</span>
           </a>
           <a href="menu/" class="onlymobile" title="More">
             <div class="img" style="background-image: url(/img/ellipsis-h.svg);"></div>
-            <div class="img" style="background-image: url(/img/ellipsis-h-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/ellipsis-h-white.svg);"></div>
             <span>Menu</span>
           </a>
 
@@ -98,13 +95,12 @@
             <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
             <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User">
               <div class="img" style="background-image: url(/img/user.svg);"></div>
-              <div class="img" style="background-image: url(/img/user-green.svg);"></div>
               <div class="img" style="background-image: url(/img/user-white.svg);"></div>
               <span><?php e(substr($username,0,12)."...");?></span>
             </a> 
             <a href="auth/logout" title="Logout">
               <div class="img" style="background-image: url(/img/power-off.svg);"></div>
-              <div class="img" style="background-image: url(/img/power-off-green.svg);"></div>
+              <div class="img" style="background-image: url(/img/power-off-white.svg);"></div>
               <span>Logout</span>
             </a>
           </div>

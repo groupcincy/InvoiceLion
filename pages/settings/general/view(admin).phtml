@@ -2,10 +2,6 @@
 <h3>Home / <a href="/settings/">Settings</a></h3>
 <h1>General settings</h1>
 
-<p>Below you will find your preferences. You can set here if you want to enable time tracking, and you can enter the values that show up on your invoices.</p>
-
-<br />
-
 <div>
         <dl>
             <dt>Time tracking</dt>
@@ -18,6 +14,10 @@
             <dd>        
                 <?php if($data['tenants']['subscriptions_active']) e('yes'); else e('no'); ?>
             </dd>
+        </dl>
+        <dl>
+            <dt>Integrity</dt>
+            <dd><a href="settings/general/check">check</a></dd>
         </dl>
         <dl>
             <dt>Projects (<a href="projects/index">manage</a>)</dt>
@@ -42,10 +42,6 @@
                 <a href="subscriptiontypes/view/<?php e($row['subscriptiontypes']['id']); ?>" class="tag"><?php e($row['subscriptiontypes']['name']); ?></a>
                 <?php endforeach; else: e('-'); endif; ?>
             </dd>
-        </dl>
-        <dl>
-            <dt>Integrity</dt>
-            <dd><a href="settings/general/check">check</a></dd>
         </dl>
 </div>
 
