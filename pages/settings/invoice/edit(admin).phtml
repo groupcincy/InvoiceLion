@@ -17,6 +17,12 @@
 		<span class="help-block"><?php if (isset($errors['tenants[reminder_period]'])) e($errors['tenants[reminder_period]']); ?></span>
 		</div>
 
+		<div class="form-group <?php e(isset($errors['tenants[invoice_email]'])?'has-error':''); ?>">
+		<label class="control-label" for="tenants[invoice_email]">Email address (for outgoing invoices)</label>
+		<input class="form-control" name="tenants[invoice_email]" type="text" id="tenants[invoice_email]" value="<?php e($data['tenants']['invoice_email']); ?>" />
+		<span class="help-block"><?php if (isset($errors['tenants[invoice_email]'])) e($errors['tenants[invoice_email]']); ?></span>
+    	</div>
+
 		<div class="form-group <?php e(isset($errors['tenants[invoice_styles]'])?'has-error':''); ?>">
 		<label class="control-label" for="tenants[invoice_styles]">Invoice styles</label>
 		<textarea class="form-control" name="tenants[invoice_styles]" type="text" id="tenants[invoice_styles]"><?php e($data['tenants']['invoice_styles']); ?></textarea>

@@ -13,6 +13,10 @@
         <dd><?php e($data['tenants']['reminder_period']?:'-');?></dd>
     </dl>
     <dl>
+        <dt>Email address (for outgoing invoices)</dt>
+        <dd><?php e($data['tenants']['invoice_email']?:'-');?></dd>
+    </dl>
+    <dl>
         <dt>Logo (<a href="tenants/change/logo_image/2.5">change</a>)</dt>
         <dd><div style="height: 3.5em; width: 50%; background: url('data:image/png;base64,<?php e(base64_encode($data['tenants']['logo_image']));?>') left center / contain no-repeat;"></div></dd>
     </dl>
