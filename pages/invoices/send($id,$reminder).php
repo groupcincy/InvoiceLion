@@ -38,7 +38,7 @@ if($reminder==1) $content .= 'Hierbij sturen we u een herinnering aan onderstaan
 else if($reminder==2) $content .= 'Hierbij sturen we u een tweede herinnering aan onderstaande digitale factuur:';
 else $content .= 'Bijgaand vindt u de digitale factuur met de volgende kenmerken:';
 
-$content .= '<br /><br />Factuurdatum: '.$date.'<br />Factuurnummer: '.$number.'<br />totaalbedrag : € ';
+$content .= '<br /><br />Factuurdatum: '.$date.'<br />Factuurnummer: '.$number.'<br />Totaalbedrag : € ';
 if($kl_vat_reverse_charge==1) $content .= number_format((1*$totaal), 2, ',', '');
 else $content .= number_format((1.21*$totaal), 2, ',', '');
 $content .= '<br /><br />Wilt u deze factuur op een ander e-mailaddress ontvangen, stuur ons dan een reply-mail.<br /><br />';
