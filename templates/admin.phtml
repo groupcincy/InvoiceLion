@@ -28,14 +28,17 @@
 
         <div class="nav">
           <h3>Menu</h3>
-          <a href="/"><span>Dashboard</span></a><br /> 
-          <a href="statistics"><span>Statistics</span></a><br />  
-          <?php if($tenant['tenants']['hours_active']) {?><a href="hours"><span>Hours</span></a><br /><?php }?>
-          <a href="deliveries"><span>Deliveries</span></a><br />
-          <?php if($tenant['tenants']['subscriptions_active']) {?><a href="subscriptions"><span>Subscriptions</span></a><br /><?php }?>
-          <a href="invoices"><span>Invoices</span></a><br />        
-          <a href="customers"><span>Customers</span></a><br />
-          <a href="tenants/view"><span>Settings</span></a>
+          <a href="/"><img src="/img/icon.svg" /><span>Dashboard</span></a><br /> 
+          <a href="statistics"><img src="/img/chart-bar.svg" /><span>Statistics</span></a><br />  
+          <?php if($tenant['tenants']['hours_active']) {?><a href="hours"><img src="/img/clock.svg" /><span>Hours</span></a><br /><?php }?>
+          <a href="deliveries"><img src="/img/box-alt.svg" /><span>Deliveries</span></a><br />
+          <?php if($tenant['tenants']['subscriptions_active']) {?><a href="subscriptions"><img src="/img/repeat.svg" /><span>Subscriptions</span></a><br /><?php }?>
+          <a href="invoices"><img src="/img/file-invoice-dollar.svg" /><span>Invoices</span></a><br />        
+          <a href="customers"><img src="/img/users.svg" /><span>Customers</span></a><br />
+          <a href="tenants/view"><img src="/img/cog.svg" /><span>Settings</span></a><br />
+          <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
+          <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User"><img src="/img/user.svg" /><span><?php e($username);?></span></a> 
+          <a href="auth/logout" title="Logout"><img src="/img/power-off.svg" /><span>Logout</span></a>
         </div>
 
       </div>
@@ -48,12 +51,13 @@
           <a href="deliveries" title="Deliveries"><img src="/img/box-alt.svg" /><span>Hours</span></a>
           <a href="subscriptions" title="Subscriptions"><img src="/img/repeat.svg" /><span>Subscriptions</span></a>
           <a href="invoices" title="Invoices"><img src="/img/file-invoice-dollar.svg" /><span>Invoices</span></a>
+          <a href="customers" title="Customers"><img src="/img/users.svg" /><span>Customers</span></a>
           <a href="tenants/view/<?php e($_SESSION['user']['tenant_id']); ?>" title="Settings"><img src="/img/cog.svg" /><span>Settings</span></a>
 
           <div class="bottom">
           <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
-          <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User"><img src="/img/user.svg" /><span>User</span></a> 
-          <a href="auth/logout" title="Logout"><img src="/img/power-off.svg" /><span>Logout "<?php e($username);?>"</span></a>
+          <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User"><img src="/img/user.svg" /><span><?php e($username);?></span></a> 
+          <a href="auth/logout" title="Logout"><img src="/img/power-off.svg" /><span>Logout</span></a>
           </div>
         </div>
       </div>
