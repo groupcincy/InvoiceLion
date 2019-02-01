@@ -5,10 +5,10 @@
 <p>You currently receive &euro; <?php e(round($subscriptionIncome)); ?> per month from subscriptions.<br />In total you have received &euro; <?php e(round($incomeThisYear)); ?> this year. You are expected to receive an additional &euro; <?php e(round($incomeThisYearAddon)); ?>.<p>
 
 <p>Last year you received &euro; <?php e(round($incomeLastYear)); ?>. Note that all these amounts are without VAT.</p>
-
+<br />
 <div>
 <?php if($sumhourspertype_thisyear) { ?>
-<div class="card col50">
+<div class="col50">
 <table>
     <tr>
         <th class="name" colspan="3">Hours this year (<?php e(round($totalhours_thisyear)); ?>)</th>
@@ -25,7 +25,7 @@
 <?php } ?>
 
 <?php if($sumhourspertype_lastyear) { ?>
-<div class="card col50">
+<div class="col50">
 <table>
     <tr>
         <th class="name" colspan="3">Hours last year (<?php e(round($totalhours_lastyear)); ?>)</th>

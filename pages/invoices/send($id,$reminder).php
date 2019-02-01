@@ -15,6 +15,7 @@ $vervaldate = formatDate(date('j F Y', strtotime("+14 days")));
 $number = $invoice['invoices']['number'];
 $name = $invoice['invoices']['name'];
 $date = $invoice['invoices']['date'];
+$totaal = $invoice['invoices']['totaal'];
 $customer_id = $invoice['invoices']['customer_id'];
 $kl_id = $customer['customers']['id'];
 $kl_name = $customer['customers']['name'];

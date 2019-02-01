@@ -4,7 +4,7 @@
 
 * {padding: 0; margin: 0;}
 body, html {height: 100%;}
-body {overflow: auto; font-size: 18px; line-height: 1.5em; color: #000; font-family: 'Roboto', sans-serif; background: #fff;}
+body {overflow: auto; overflow-y: scroll; font-size: 18px; line-height: 1.5em; color: #000; font-family: 'Roboto', sans-serif; background: #fff;}
 img {display: block;}
 .main {min-height: 100%;}
 .main > div.content {padding: 70px 20px 70px; font-size: 14px; line-height: 1.5em;}
@@ -39,6 +39,7 @@ a {background: transparent;}
     -ms-transform: translateY(-50%); 
     transform: translateY(-50);
 }
+a {cursor: pointer;}
 p, ul, ol, .form {margin-bottom: 1.5em;}
 h1 + p {font-size: 132%; line-height: 1.5em; max-width: 700px;}
 .bold {font-weight: bold;}
@@ -85,13 +86,10 @@ pre {font-family: 'Roboto', sans-serif;}
 
 
 .card {border: 1px solid rgba(0,0,0,0.05); border-radius: 5px; padding: 5px 0px 8px;}
-.card tr th:first-child, .card tr td:first-child span {padding-left: 15px;}
-.card tr th:last-child, .card tr td:last-child span {padding-right: 15px;}
-.card .status {position: relative; margin: 0px auto; max-width: 200px; padding: 15px; text-align: center;}
-.card .status .img {background: #eee url(/img/invoicelion_inverted.png) center top / auto 102% no-repeat; border-radius: 100%; margin: 10px 0; opacity: 0.07; border-radius: 100%; padding-bottom: 100%;}
-.card > div {padding: 20px 25px 10px;}
-.default .card > div {padding: 30px 30px 20px 30px;}
-.default .card {background: white; max-width: 420px; margin: 0 auto; position: relative; z-index: 1;}
+.status {position: relative; margin: 0px auto; max-width: 200px; padding: 15px; text-align: center;}
+.status .img {background: #eee url(/img/invoicelion_inverted.png) center top / auto 102% no-repeat; border-radius: 100%; margin: 10px 0; opacity: 0.07; border-radius: 100%; padding-bottom: 100%;}
+
+
 
 
 .default .content {padding-top: 5px!important;}
@@ -100,6 +98,8 @@ pre {font-family: 'Roboto', sans-serif;}
 .default .content a#branding img {width: 100%;}
 .default .content a#branding span {position: relative; bottom: 20px;}
 body.default {background: #eee;}
+
+
 
 dl {margin-bottom: 15px;}
 dt {font-weight: 700;}

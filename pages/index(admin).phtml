@@ -5,9 +5,9 @@
 <p>This page tells you what to focus on.</p>
 
 <div style="clear: both;">
-    <div class="card col50">  
+    <div class="col50">  
         <?php if(!isset($invoicelines_no_invoices[0])) { ?>
-            <div class="status">
+            <div class="card status">
                 <strong>Invoice line tasks</strong>
                 <div class="img"></div>
                 All done!
@@ -28,9 +28,9 @@
             </table>
         <?php } ?>
     </div>
-    <div class="card col50">  
+    <div class="col50">  
         <?php if(!isset($erronous_subscriptions[0]) && !isset($periods_no_invoices[0])) { ?>
-            <div class="status">
+            <div class="card status">
                 <strong>Subscription tasks</strong>
                 <div class="img"></div>
                 All done!
@@ -76,9 +76,9 @@
 
 
 <div style="clear: both;">
-    <div class="card col50">  
+    <div class="col50">  
         <?php if(!isset($unsent_invoices[0]) && !isset($unsent_reminders[0]) && !isset($unsent_reminders2[0])) { ?>
-            <div class="status">
+            <div class="card status">
                 <strong>Invoice tasks</strong>
                 <div class="img"></div>
                 All done!
@@ -130,9 +130,9 @@
         <?php } ?>
     </div>
 
-    <div class="card col50">    
+    <div class="col50">    
         <?php if(!isset($unpaid_invoices[0])) { ?>
-            <div class="status">
+            <div class="card status">
                 <strong>Unpaid invoices</strong>
                 <div class="img"></div>
                 All paid!

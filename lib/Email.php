@@ -6,7 +6,7 @@ class Email
     public static $sender = 'invoicelion@ams01.usecue.nl';
 
     public static function send($to,$toName,$from,$fromName,$subject,$message,$attachment,$filename) {
-        $mail = new PHPMailer\PHPMailer\PHPMailer(); 
+        $mail = new \PHPMailer\PHPMailer\PHPMailer(); 
         $mail->CharSet = 'UTF-8';
         $mail->From = static::$sender;
         $mail->FromName = $fromName;
