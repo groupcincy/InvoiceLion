@@ -8,12 +8,12 @@ body {overflow: auto; overflow-y: scroll; font-size: 18px; line-height: 1.5em; c
 img {display: block;}
 .main {min-height: 100%;}
 .main > div.content {padding: 70px 20px 70px; font-size: 14px; line-height: 1.5em;}
-.showmenu .main > div.content {padding: 70px 20px 110px;}
+.main > div.content {padding: 70px 20px 110px;}
 .main > div a {color: #000;}
 .main > div.content ul {margin-left: 20px;}
 a {background: transparent;}
 .icons, .header {position: fixed; top: 0; width: 100%; text-align: center; background: white; padding: 10px 0; z-index: 9; color: white;}
-.showmenu .header {display: block; height: 0px; padding: 0; border: 0; overflow: hidden;}
+.header {display: block; height: 0px; padding: 0; border: 0; overflow: hidden;}
 .scrolled .header::after {
     content: ""; 
     width: 100%; 
@@ -23,16 +23,17 @@ a {background: transparent;}
     bottom: 0; 
     left: 0;
 }
-.icons {display: none; bottom: 0; top: auto; border-bottom: 0; border-top: 1px solid #eee;}
+.icons {display: none; bottom: 0; top: auto; box-shadow: 0px 0px 5px rgba(0,0,0,0.3);}
 .icons > div {display: flex; justify-content: space-around;}
 .icons > div a {display: block; flex: 1; padding: 10px 0; margin: -10px 0;}
 .icons > div a#branding {display: none;}
-.icons > div a img {height: 24px; opacity: 1; display: block; width: auto; margin: 0px auto 3px;}
+.icons > div a .img {height: 24px; opacity: 1; display: block; width: auto; margin: 0px auto 3px;  background-repeat: no-repeat; background-position: center center; background-size: contain;}
 .icons > div a span {display: none;}
-.icons > div a img + img {display: none;}
-.icons > div a.active img {display: none;}
-.icons > div a.active img + img {display: block;}
-.showmenu .icons {display: block;}
+.icons > div a:hover {color: #18b663;}
+.icons > div a .img + .img {opacity: 0;}
+.icons > div a.active .img, .icons > div a:hover .img {opacity: 0;}
+.icons > div a.active .img + .img, .icons > div a:hover .img + .img {opacity: 1;}
+.icons {display: block;}
 .overlay {position: fixed; top: 0; width: 100%; height: 100%; text-align: center; background: rgba(0,0,0,0.1); z-index: 10;}
 .overlay > div {position: absolute; top: 50%; padding: 0 20px; width: calc(100% - 40px); 
     -webkit-transform: translateY(-50%); 
@@ -125,35 +126,36 @@ div + p {padding-top: 15px;}
 
 
 /* desktop navigation */
-.showmenu .nav {display: block;}
-.showmenu .nav a {display: inline-block; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 5px 0; width: 100%; text-decoration: none;}
-.showmenu .nav a img {position: absolute; margin-top: 2px; height: 17px; display: block;}
-.showmenu .nav a span {padding-left: 30px;}
-.showmenu .nav a:last-of-type {border-bottom: 0;}
-.showmenu .nav h3 {padding-top: 40px;}
+.nav {display: none;}
+.nav a {display: inline-block; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 5px 0; width: 100%; text-decoration: none;}
+.nav a img {position: absolute; margin-top: 2px; height: 17px; display: block;}
+.nav a span {padding-left: 30px;}
+.nav a:last-of-type {border-bottom: 0;}
+.nav h3 {padding-top: 40px;}
 .onlymobile {display: block!important;}
 .onlydesktop, .icons div.bottom {display: none!important;}
 @media (min-width: 1200px) {
-    .showmenu .nav {
-        display: block;
+    .nav {
         position: fixed; 
         left: 0; top: 0; 
         width: 140px; 
         height: 100vh; 
-        padding: 0 30px 0 90px;
+        padding: 0;
         background: white;
         padding-top: 15px;
         background: #eee;
     }
-    .showmenu .nav h3 {display: none;}
-    .showmenu .content {margin: 0 auto; width: calc(100% - 300px); max-width: 1200px; position: relative; left: 130px;}
-    .showmenu .icons {position: fixed; left: 0; top: 0; bottom: auto; width: 60px; height: 100vh; border-right: 1px solid rgba(0,0,0,0.05); border-top: 0; padding-top: 0;}
-    .showmenu .icons > div {display: block;}
-    .showmenu .icons > div a {display: block; margin: 1px auto;}
-    .showmenu .icons > div a#branding {display: block; background: black; margin: 0 0 5px;}
-    .showmenu .icons > div a#branding > span {display: block; height: 40px; background: black url(/img/invoicelion_inverted.png) center center / cover no-repeat; opacity: 0.4;}
+    .nav h3 {display: none;}
+    .content {margin: 0 auto; width: calc(100% - 300px); max-width: 1200px; position: relative; left: 130px;}
+    .icons {position: fixed; left: 0; top: 0; bottom: auto; width: 260px; height: 100vh; border-top: 0; padding-top: 0; text-align: left;}
+    .icons > div {display: block;}
+    .icons > div a {display: block; margin: 1px auto; padding: 10px 40px;}
+    .icons > div a .img {position: absolute; width: 25px; height: 25px;}
+    .icons > div a span {display: inline-block; padding-left: 50px;}
+    .icons > div a#branding {display: block; background: #fff; margin: 0 0 15px; padding: 0;}
+    .icons > div a#branding > span {display: block; height: 140px; background: #fff url(/img/invoicelion.png) 10px center / contain no-repeat; opacity: 1;}
     .onlydesktop, .icons div.bottom {display: block!important;}
-    .icons div.bottom {position: absolute; bottom: 10px; width: 100%;}
+    .icons div.bottom {position: absolute; bottom: 30px; width: 100%;}
     .onlymobile {display: none!important;}
 }
 

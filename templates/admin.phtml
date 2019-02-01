@@ -34,7 +34,7 @@
           <a href="deliveries"><img src="/img/box-alt.svg" /><span>Deliveries</span></a><br />
           <?php if($tenant['tenants']['subscriptions_active']) {?><a href="subscriptions"><img src="/img/repeat.svg" /><span>Subscriptions</span></a><br /><?php }?>
           <a href="invoices"><img src="/img/file-invoice-dollar.svg" /><span>Invoices</span></a><br />        
-          <a href="customers"><img src="/img/users.svg" /><span>Customers</span></a><br />
+          <a href="customers"><img src="/img/address-book.svg" /><span>Customers</span></a><br />
           <a href="tenants/view"><img src="/img/cog.svg" /><span>Settings</span></a><br />
           <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
           <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User"><img src="/img/user.svg" /><span><?php e($username);?></span></a> 
@@ -46,18 +46,54 @@
       <div class="icons">
         <div>
           <a href="/" id="branding" title="InvoiceLion"><span></span></a>
-          <a href="/" title="Dashboard"><img src="/img/icon.svg" /><span>Dashboard</span></a>
-          <a href="hours" title="Hours"><img src="/img/clock.svg" /><span>Hours</span></a>
-          <a href="deliveries" title="Deliveries"><img src="/img/box-alt.svg" /><span>Hours</span></a>
-          <a href="subscriptions" title="Subscriptions"><img src="/img/repeat.svg" /><span>Subscriptions</span></a>
-          <a href="invoices" title="Invoices"><img src="/img/file-invoice-dollar.svg" /><span>Invoices</span></a>
-          <a href="customers" title="Customers"><img src="/img/users.svg" /><span>Customers</span></a>
-          <a href="tenants/view/<?php e($_SESSION['user']['tenant_id']); ?>" title="Settings"><img src="/img/cog.svg" /><span>Settings</span></a>
+          <a href="/" title="Dashboard">
+            <div class="img" style="background-image: url(/img/icon.svg);"></div>
+            <div class="img" style="background-image: url(/img/icon-green.svg);"></div>
+            <span>Dashboard</span>
+          </a>
+          <a href="hours" title="Hours">
+            <div class="img" style="background-image: url(/img/clock.svg);"></div>
+            <div class="img" style="background-image: url(/img/clock-green.svg);"></div>
+            <span>Hours</span>
+          </a>
+          <a href="deliveries" title="Deliveries">
+            <div class="img" style="background-image: url(/img/box-alt.svg);"></div>
+            <div class="img" style="background-image: url(/img/box-alt-green.svg);"></div>
+            <span>Hours</span>
+          </a>
+          <a href="subscriptions" title="Subscriptions">
+            <div class="img" style="background-image: url(/img/repeat.svg);"></div>
+            <div class="img" style="background-image: url(/img/repeat-green.svg);"></div>
+            <span>Subscriptions</span>
+          </a>
+          <a href="invoices" title="Invoices">
+            <div class="img" style="background-image: url(/img/file-invoice-dollar.svg);"></div>
+            <div class="img" style="background-image: url(/img/file-invoice-dollar-green.svg);"></div>
+            <span>Invoices</span>
+          </a>
+          <a href="customers" title="Customers">
+            <div class="img" style="background-image: url(/img/address-book.svg);"></div>
+            <div class="img" style="background-image: url(/img/address-book-green.svg);"></div>
+            <span>Customers</span>
+          </a>
+          <a href="settings/" title="Settings">
+            <div class="img" style="background-image: url(/img/cog.svg);"></div>
+            <div class="img" style="background-image: url(/img/cog-green.svg);"></div>
+            <span>Settings</span>
+          </a>
 
           <div class="bottom">
-          <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
-          <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User"><img src="/img/user.svg" /><span><?php e($username);?></span></a> 
-          <a href="auth/logout" title="Logout"><img src="/img/power-off.svg" /><span>Logout</span></a>
+            <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
+            <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User">
+              <div class="img" style="background-image: url(/img/user.svg);"></div>
+              <div class="img" style="background-image: url(/img/user-green.svg);"></div>
+              <span><?php e(substr($username,0,8)."...");?></span>
+            </a> 
+            <a href="auth/logout" title="Logout">
+              <div class="img" style="background-image: url(/img/power-off.svg);"></div>
+              <div class="img" style="background-image: url(/img/power-off-green.svg);"></div>
+              <span>Logout</span>
+            </a>
           </div>
         </div>
       </div>
