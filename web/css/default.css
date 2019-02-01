@@ -25,12 +25,12 @@ a {background: transparent;}
 }
 .icons {display: none; bottom: 0; top: auto; box-shadow: 0px 0px 5px rgba(0,0,0,0.3);}
 .icons > div {display: flex; justify-content: space-around;}
-.icons > div a {display: block; flex: 1; padding: 10px 0; margin: -10px 0;}
+.icons > div a {display: block; position: relative; flex: 1; padding: 10px 0; margin: -10px 0;}
 .icons > div a#branding {display: none;}
 .icons > div a .img {height: 24px; opacity: 1; display: block; width: auto; margin: 0px auto 3px;  background-repeat: no-repeat; background-position: center center; background-size: contain;}
 .icons > div a span {display: none;}
 .icons > div a:hover {color: #18b663;}
-.icons > div a .img + .img {opacity: 0;}
+.icons > div a .img + .img {opacity: 0; position: absolute; top: 10px; width: 24px; width: 100%;}
 .icons > div a.active .img, .icons > div a:hover .img {opacity: 0;}
 .icons > div a.active .img + .img, .icons > div a:hover .img + .img {opacity: 1;}
 .icons {display: block;}
