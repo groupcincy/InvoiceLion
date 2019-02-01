@@ -109,10 +109,11 @@ div + p {padding-top: 15px;}
 
 
 
-.row {display: flex;}
-.col50 {width: calc(47.5% - 2px); display: flex; margin-bottom: 40px;}
+.row {display: flex; flex-wrap: wrap; justify-content: space-between; position: relative;}
+.col50 {flex: 1; min-width: 46%; max-width: 46%; margin-bottom: 40px;}
 @media (max-width: 800px) {
-    .col50 {width: auto;}
+    .row {display: block;}
+    .col50 {min-width: 100%; max-width: 100%;}
     .card {border: 0px solid rgba(0,0,0,0.05); padding: 0px;}
     .card > div {padding: 0 0 10px;}
 }
