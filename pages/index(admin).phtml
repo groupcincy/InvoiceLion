@@ -2,18 +2,9 @@
 <h3>Home</h3>
 <h1>Dashboard</h1>
 
-<div style="clear: both;">
-    <div class="col50">  
-        <?php if(!isset($invoicelines_no_invoices[0])) { ?>
-            <div class="card">
-            <div class="status">
-                <strong>Invoice line tasks</strong>
-                <div class="img"></div>
-                All done!
-            </div>
-            </div>
-        <?php } ?>
-        <?php if(isset($invoicelines_no_invoices[0])) { ?>
+<div>
+    <?php if(isset($invoicelines_no_invoices[0])) { ?>
+        <div class="col50">  
             <table>
                 <tr>
                     <th class="name">Invoice lines without invoice</th>
@@ -26,19 +17,12 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
-        <?php } ?>
-    </div>
-    <div class="col50">  
-        <?php if(!isset($erronous_subscriptions[0]) && !isset($periods_no_invoices[0])) { ?>
-            <div class="card">
-            <div class="status">
-                <strong>Subscription tasks</strong>
-                <div class="img"></div>
-                All done!
-            </div>
-            </div>
-        <?php } ?>
-        <?php if(isset($erronous_subscriptions[0])) { ?>
+        </div>
+    <?php } ?>
+
+    <?php if(isset($erronous_subscriptions[0]) || isset($periods_no_invoices[0])) { ?>
+        <div class="col50">  
+            <?php if(isset($erronous_subscriptions[0])) { ?>
             <table>
                 <tr>
                     <th class="name">Subscriptions with missing months</th>
@@ -51,9 +35,9 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
-        <?php } ?>
-        <?php if(isset($periods_no_invoices[0])) { ?>
-        <?php if(isset($erronous_subscriptions[0])) { ?><br /><?php } ?>
+            <?php } ?>
+            <?php if(isset($periods_no_invoices[0])) { ?>
+            <?php if(isset($erronous_subscriptions[0])) { ?><br /><?php } ?>
             <table>
                 <tr>
                     <th class="name">Subscription months without invoice</th>
@@ -66,28 +50,13 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
-        <?php } ?>
-    </div>
-</div>
+            <?php } ?>
+        </div>
+    <?php } ?>
 
-
-
-
-
-
-
-
-<div style="clear: both;">
-    <div class="col50">  
-        <?php if(!isset($unsent_invoices[0]) && !isset($unsent_reminders[0]) && !isset($unsent_reminders2[0])) { ?>
-            <div class="card">
-            <div class="status">
-                <strong>Invoice tasks</strong>
-                <div class="img"></div>
-                All done!
-            </div></div>
-        <?php } ?>
-        <?php if(isset($unsent_invoices[0])) { ?>
+    <?php if(isset($unsent_invoices[0]) || isset($unsent_reminders[0]) || isset($unsent_reminders2[0])) { ?>
+        <div class="col50">  
+            <?php if(isset($unsent_invoices[0])) { ?>
             <table>
                 <tr>
                     <th class="name">Unsent invoices</th>
@@ -100,9 +69,9 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
-        <?php } ?>
-        <?php if(isset($unsent_reminders[0])) { ?>
-        <?php if(isset($unsent_invoices[0])) { ?><br /><?php } ?>
+            <?php } ?>
+            <?php if(isset($unsent_reminders[0])) { ?>
+            <?php if(isset($unsent_invoices[0])) { ?><br /><?php } ?>
             <table>
                 <tr>
                     <th class="name">Unsent first reminders</th>
@@ -115,8 +84,8 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
-        <?php } ?>
-        <?php if(isset($unsent_reminders2[0])) { ?>
+            <?php } ?>
+            <?php if(isset($unsent_reminders2[0])) { ?>
             <br />
             <table>
                 <tr>
@@ -130,19 +99,12 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
-        <?php } ?>
-    </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
 
-    <div class="col50">    
-        <?php if(!isset($unpaid_invoices[0])) { ?>
-            <div class="card">
-            <div class="status">
-                <strong>Unpaid invoices</strong>
-                <div class="img"></div>
-                All paid!
-            </div></div>
-        <?php } ?> 
-        <?php if(isset($unpaid_invoices[0])) { ?>
+    <?php if(isset($unpaid_invoices[0])) { ?>
+        <div class="col50">    
             <table>
                 <tr>
                     <th class="name">Unpaid invoices</th>
@@ -155,6 +117,6 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
-        <?php } ?>
-    </div>
+        </div>
+    <?php } ?>
 </div>
