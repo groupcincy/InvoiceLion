@@ -86,8 +86,7 @@ pre {font-family: 'Roboto', sans-serif;}
 
 
 .card {border: 1px solid rgba(0,0,0,0.05); border-radius: 5px; padding: 5px 0px 8px;}
-.status {position: relative; margin: 0px auto; padding: 15px; text-align: center;}
-.status > * {max-width: 200px;}
+.status {position: relative; max-width: 200px; margin: 0px auto; padding: 15px; text-align: center;}
 .status .img {background: #eee url(/img/invoicelion_inverted.png) center top / auto 102% no-repeat; border-radius: 100%; margin: 10px 0; opacity: 0.07; border-radius: 100%; padding-bottom: 100%;}
 .default .card > div {padding: 30px 30px 20px 30px;}
 .default .card {background: white; max-width: 420px; margin: 0 auto; position: relative; z-index: 1;}
