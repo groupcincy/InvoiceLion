@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $total = $subtotal;
             }
 
-            $name = $data['hours']['name'].' ('.$data['hours']['hours_worked'].'x'.$data['hours']['hourly_fee'].' at '.$data['hours']['date'].')';
+            $name = $data['hours']['name'].' ('.round($data['hours']['hours_worked']).'uur x '.$data['hours']['hourly_fee'].' euro op '.$data['hours']['date'].')';
 
             $rowsAffected = DB::update('UPDATE `hours` SET `customer_id`=?, `project_id`=?, `date`=?, `name`=?, `hours_worked`=?, `hourly_fee`=?, `subtotal`=?, `vat_percentage`=?, `type`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['hours']['customer_id'], $data['hours']['project_id'], $data['hours']['date'], $data['hours']['name'], $data['hours']['hours_worked'], $data['hours']['hourly_fee'], $subtotal, $data['hours']['vat_percentage'], $data['hours']['type'], $data['hours']['comment'], $_SESSION['user']['tenant_id'], $id);
             //only update invoicelines without invoice(_id)
