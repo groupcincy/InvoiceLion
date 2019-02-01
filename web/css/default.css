@@ -155,7 +155,7 @@ div + p {padding-top: 15px;}
     .icons > div a .img {position: absolute; width: 25px; height: 25px;}
     .icons > div a .img + .img {width: 25px;}
     .icons > div a span {display: inline-block; padding-left: 50px;}
-    .icons > div a#branding {display: block; background: #fff; margin: 0 0 15px; padding: 0;}
+    .icons > div a#branding {display: block; background: #fff; margin: 0 0 25px; padding: 0; border-bottom: 1px solid rgba(0,0,0,0.05);}
     .icons > div a#branding > span {display: block; height: 140px; background: #fff url(/img/invoicelion.png) 5px center / contain no-repeat; opacity: 1;}
     .onlydesktop, .icons div.bottom {display: block!important;}
     .icons div.bottom {position: absolute; bottom: 35px; width: 100%;}
