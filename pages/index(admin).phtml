@@ -5,12 +5,14 @@
 <p>This page tells you what to focus on.</p>
 
 <div style="clear: both;">
-    <div class="card col50">  
+    <div class="col50">  
         <?php if(!isset($invoicelines_no_invoices[0])) { ?>
+            <div class="card">
             <div class="status">
                 <strong>Invoice line tasks</strong>
                 <div class="img"></div>
                 All done!
+            </div>
             </div>
         <?php } ?>
         <?php if(isset($invoicelines_no_invoices[0])) { ?>
@@ -28,12 +30,14 @@
             </table>
         <?php } ?>
     </div>
-    <div class="card col50">  
+    <div class="col50">  
         <?php if(!isset($erronous_subscriptions[0]) && !isset($periods_no_invoices[0])) { ?>
+            <div class="card">
             <div class="status">
                 <strong>Subscription tasks</strong>
                 <div class="img"></div>
                 All done!
+            </div>
             </div>
         <?php } ?>
         <?php if(isset($erronous_subscriptions[0])) { ?>
@@ -78,11 +82,12 @@
 <div style="clear: both;">
     <div class="col50">  
         <?php if(!isset($unsent_invoices[0]) && !isset($unsent_reminders[0]) && !isset($unsent_reminders2[0])) { ?>
-            <div class="card status">
+            <div class="card">
+            <div class="status">
                 <strong>Invoice tasks</strong>
                 <div class="img"></div>
                 All done!
-            </div>
+            </div></div>
         <?php } ?>
         <?php if(isset($unsent_invoices[0])) { ?>
             <table>
@@ -132,11 +137,12 @@
 
     <div class="col50">    
         <?php if(!isset($unpaid_invoices[0])) { ?>
-            <div class="card status">
+            <div class="card">
+            <div class="status">
                 <strong>Unpaid invoices</strong>
                 <div class="img"></div>
                 All paid!
-            </div>
+            </div></div>
         <?php } ?> 
         <?php if(isset($unpaid_invoices[0])) { ?>
             <table>
