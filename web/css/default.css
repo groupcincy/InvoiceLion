@@ -26,6 +26,7 @@ a {background: transparent;}
 .icons {display: none; bottom: 0; top: auto; box-shadow: 0px 0px 5px rgba(0,0,0,0.3);}
 .icons > div {display: flex; justify-content: space-around;}
 .icons > div a {display: block; position: relative; flex: 1; padding: 10px 0; margin: -10px 0;}
+.icons > div a.active {background: #18b663!important; color: white!important;}
 .icons > div a#branding {display: none;}
 .icons > div a .img {height: 24px; opacity: 1; display: block; width: auto; margin: 0px auto 3px;  background-repeat: no-repeat; background-position: center center; background-size: contain;}
 .icons > div a span {display: none;}
@@ -59,7 +60,7 @@ h2 {font-size: 30px; margin-bottom: 30px; line-height: 1em; font-weight: 900; le
 h3 {font-size: 18.4px; margin-bottom: 10px; line-height: 1.2em; font-weight: 700;}
 * + h3 {margin-top: 30px;}
 * + h2 {margin-top: 60px;}
-.btn-primary, .btn-danger, .btn-default {display: inline-block; background: #18b663; color: white!important; padding: 10px 15px; font-weight: 700; font-size: 12px; line-height: 1.5em; border: 1px solid #18b663; text-transform: uppercase; border-radius: 20px; text-decoration: none; cursor: pointer;}
+.btn-primary, .btn-danger, .btn-default {display: inline-block; background: #18b663; color: white!important; padding: 10px 15px; font-weight: 700; font-size: 12px; line-height: 1.5em; border: 1px solid #18b663; text-transform: uppercase; border-radius: 3px; text-decoration: none; cursor: pointer;}
 .btn-default, .btn-danger {background: white; color: #18b663!important;}
 h3 a {text-decoration: none;}
 .nav a:hover, .hover:hover, .hover:hover a {cursor: pointer; color: #18b663;}
@@ -86,7 +87,7 @@ pre {font-family: 'Roboto', sans-serif;}
 }
 
 
-.card {border: 1px solid rgba(0,0,0,0.05); border-radius: 5px; padding: 5px 0px 8px;}
+.card {border: 1px solid rgba(0,0,0,0.05); border-radius: 3px; padding: 5px 0px 8px;}
 .status {position: relative; max-width: 145px; margin: 0px auto; padding: 15px; text-align: center;}
 .status .img {background: #fff url(/img/invoicelion.png) center top / auto 102% no-repeat; border-radius: 100%; margin: 10px 0; opacity: 1; border-radius: 100%; border: 1px solid rgba(0,0,0,0.05); padding-bottom: 100%;}
 .default .card > div {padding: 30px 30px 20px 30px;}
@@ -153,9 +154,9 @@ div + p {padding-top: 15px;}
     .icons > div a {display: block; margin: 1px auto; padding: 10px 35px;}
     .icons > div a .img {position: absolute; width: 25px; height: 25px;}
     .icons > div a .img + .img {width: 25px;}
-    .icons > div a span {display: inline-block; padding-left: 50px;}
-    .icons > div a#branding {display: block; background: #fff; margin: 0 0 25px; padding: 0; border-bottom: 1px solid rgba(0,0,0,0.05);}
-    .icons > div a#branding > span {display: block; height: 140px; background: #fff url(/img/invoicelion.png) 5px center / contain no-repeat; opacity: 1;}
+    .icons > div a span {font-size: 14px; display: inline-block; padding-left: 45px;}
+    .icons > div a#branding {display: block; background: #000; margin: 0 0 25px; padding: 0; border-bottom: 1px solid rgba(0,0,0,0.05);}
+    .icons > div a#branding > span {display: block; height: 140px; background: #000 url(/img/invoicelion_inverted.png) 5px center / contain no-repeat; opacity: 0.4;}
     .onlydesktop, .icons div.bottom {display: block!important;}
     .icons div.bottom {position: absolute; bottom: 35px; width: 100%;}
     .onlymobile {display: none!important;}
@@ -194,7 +195,7 @@ textarea {height: 200px; line-height: 1.5em; padding-top: 9px; padding-bottom: 9
 input[type="checkbox"] {height: auto; width: auto; max-width: none;}
 th[order] {cursor: pointer;}
 th.selected {text-decoration: underline;}
-.tag {text-decoration: none; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; display: inline-block; padding: 2px 7px; font-size: 85%; margin-right: 2px;}
+.tag {text-decoration: none; margin-top: 5px; border: 1px solid #ccc; border-radius: 3px; display: inline-block; padding: 2px 7px; font-size: 85%; margin-right: 2px;}
 input[type="file"] { border:0; padding:0;}
 .form-group.has-error, .form-group.has-error a {color: red!important;}
 .form-group.has-error input,
@@ -230,7 +231,7 @@ tr:last-child td {border-bottom: 0px solid rgba(0,0,0,0.05);}
     table.responsive td, 
     table.responsive th {text-align: left!important; border: 0; display: block; width: 100%!important;}
     table.responsive td, table.responsive th {padding: 0;}
-    table.responsive tr {border-radius: 5px; border: 1px solid rgba(0,0,0,0.05); width: calc(100% - 22px)!important; margin-bottom: 10px; padding: 10px;}
+    table.responsive tr {border: 1px solid rgba(0,0,0,0.05); width: calc(100% - 22px)!important; margin-bottom: 10px; padding: 10px;}
     table.responsive th {display: none;}
     table.responsive th[order] {
         display: inline-block !important;

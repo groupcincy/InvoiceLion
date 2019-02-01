@@ -49,36 +49,43 @@
           <a href="/" title="Dashboard">
             <div class="img" style="background-image: url(/img/icon.svg);"></div>
             <div class="img" style="background-image: url(/img/icon-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/icon-white.svg);"></div>
             <span>Dashboard</span>
           </a>
-          <a href="hours" title="Hours">
+          <a href="hours" <?php if(Buffer::get('title') == 'Hours') e('class="active"'); ?> title="Hours">
             <div class="img" style="background-image: url(/img/clock.svg);"></div>
             <div class="img" style="background-image: url(/img/clock-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/clock-white.svg);"></div>
             <span>Hours</span>
           </a>
           <a href="deliveries" title="Deliveries">
             <div class="img" style="background-image: url(/img/box-alt.svg);"></div>
             <div class="img" style="background-image: url(/img/box-alt-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/box-alt-white.svg);"></div>
             <span>Deliveries</span>
           </a>
           <a href="subscriptions" title="Subscriptions">
             <div class="img" style="background-image: url(/img/repeat.svg);"></div>
             <div class="img" style="background-image: url(/img/repeat-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/repeat-white.svg);"></div>
             <span>Subscriptions</span>
           </a>
           <a href="invoices" title="Invoices">
             <div class="img" style="background-image: url(/img/file-invoice-dollar.svg);"></div>
             <div class="img" style="background-image: url(/img/file-invoice-dollar-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/file-invoice-dollar-white.svg);"></div>
             <span>Invoices</span>
           </a>
           <a href="customers" title="Customers">
             <div class="img" style="background-image: url(/img/address-book.svg);"></div>
             <div class="img" style="background-image: url(/img/address-book-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/address-book-white.svg);"></div>
             <span>Customers</span>
           </a>
           <a href="settings/" class="onlydesktop" title="Settings">
             <div class="img" style="background-image: url(/img/cog.svg);"></div>
             <div class="img" style="background-image: url(/img/cog-green.svg);"></div>
+            <div class="img" style="background-image: url(/img/cog-white.svg);"></div>
             <span>Settings</span>
           </a>
           <a href="menu/" class="onlymobile" title="More">
@@ -92,7 +99,8 @@
             <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User">
               <div class="img" style="background-image: url(/img/user.svg);"></div>
               <div class="img" style="background-image: url(/img/user-green.svg);"></div>
-              <span><?php e(substr($username,0,8)."...");?></span>
+              <div class="img" style="background-image: url(/img/user-white.svg);"></div>
+              <span><?php e(substr($username,0,12)."...");?></span>
             </a> 
             <a href="auth/logout" title="Logout">
               <div class="img" style="background-image: url(/img/power-off.svg);"></div>
