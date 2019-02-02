@@ -9,9 +9,13 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	if (!isset($subscription)) $errors['subscriptionperiods[subscription_id]']='subscriptions not found';
 	if (!isset($errors)) {
 		try {
-			$rowsAffected = DB::update('UPDATE `subscriptionperiods` SET `from`=?, `name`=?, `subscription_id`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['from'], $data['subscriptionperiods']['name'], $data['subscriptionperiods']['subscription_id'], $data['subscriptionperiods']['comment'], $_SESSION['user']['tenant_id'], $id);
+			
+			$period = $subscription['subscriptions']['months'];
+			$endDate = date('Y-m-d', strtotime($data['subscriptionperiods']['from'] . ' +'.($period).' months - 1 day'));
 
-			$optional = DB::update('UPDATE `invoicelines` SET `name`=?, `subtotal`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['name'], $subscription['subscriptions']['fee'], $_SESSION['user']['tenant_id'], $data['subscriptionperiods']['invoiceline_id']);
+			$rowsAffected = DB::update('UPDATE `subscriptionperiods` SET `from`=?, `until`=?, `name`=?, `subscription_id`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['from'],$endDate, $data['subscriptionperiods']['name'], $data['subscriptionperiods']['subscription_id'], $data['subscriptionperiods']['comment'], $_SESSION['user']['tenant_id'], $id);
+
+			$optional = DB::update('UPDATE `invoicelines` SET `name`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['name'], $_SESSION['user']['tenant_id'], $data['subscriptionperiods']['invoiceline_id']);
 
 			if ($rowsAffected!==false) {
 				Flash::set('success','Subscription period saved');
