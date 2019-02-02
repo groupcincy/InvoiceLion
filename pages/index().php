@@ -1,7 +1,7 @@
 <?php
 $invoicelines_no_invoices = DB::select('SELECT * FROM `invoicelines` WHERE `tenant_id` = ? AND (invoice_id IS NULL or invoice_id=0) AND `total` <> 0.00', $_SESSION['user']['tenant_id']);
 
-$unpaid_invoices = DB::select('SELECT *, SUM(subtotal) as sum_subtotal FROM invoices WHERE `tenant_id` = ? AND (sent and (paid IS NULL or paid=0)) ORDER BY `number` DESC', $_SESSION['user']['tenant_id']);
+$unpaid_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (sent and (paid IS NULL or paid=0)) ORDER BY `number` DESC', $_SESSION['user']['tenant_id']);
 
 $unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (invoices.sent IS NULL or invoices.sent=0) ORDER BY invoices.name', $_SESSION['user']['tenant_id']);
 
