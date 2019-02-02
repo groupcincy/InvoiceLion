@@ -26,21 +26,6 @@
    
         <?php Buffer::get('html');?>
 
-        <div class="nav">
-          <h3>Menu</h3>
-          <a href="/"><img src="/img/icon.svg" /><span>Dashboard</span></a><br /> 
-          <a href="statistics"><img src="/img/chart-bar.svg" /><span>Statistics</span></a><br />  
-          <?php if($tenant['tenants']['hours_active']) {?><a href="hours"><img src="/img/clock.svg" /><span>Hours</span></a><br /><?php }?>
-          <a href="deliveries"><img src="/img/box-alt.svg" /><span>Deliveries</span></a><br />
-          <?php if($tenant['tenants']['subscriptions_active']) {?><a href="subscriptions"><img src="/img/repeat.svg" /><span>Subscriptions</span></a><br /><?php }?>
-          <a href="invoices"><img src="/img/file-invoice-dollar.svg" /><span>Invoices</span></a><br />        
-          <a href="customers"><img src="/img/address-book.svg" /><span>Customers</span></a><br />
-          <a href="tenants/view"><img src="/img/cog.svg" /><span>Settings</span></a><br />
-          <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
-          <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User"><img src="/img/user.svg" /><span><?php e($username);?></span></a> 
-          <a href="auth/logout" title="Logout"><img src="/img/power-off.svg" /><span>Logout</span></a>
-        </div>
-
       </div>
 
       <div class="icons">
