@@ -80,7 +80,7 @@
 		<a class="btn btn-primary" href="invoices/send/<?php e($id); ?>">Send</a>
 	<?php } ?>
 	<?php if(!$data['invoices']['paid']) { ?>
-		<a class="btn btn-default" href="invoices/pay/<?php e($id); ?>">Set paid date</a>
+		<a class="btn btn-default" href="invoices/edit/<?php e($id); ?>">Edit</a>
 	<?php } ?>
 	<a class="btn btn-<?php $data['invoices']['sent'] ? e('primary') : e('default'); ?>" href="invoices/download/<?php e($id); ?>">Download</a>
 	<?php if($data['invoices']['sent'] && (!$data['invoices']['paid'] || $data['invoices']['reminder1'] || $data['invoices']['reminder2'])) { ?>
