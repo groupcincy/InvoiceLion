@@ -33,22 +33,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($hours as $row): ?>
+			<?php foreach ($invoicelines as $key=>$invoiceline): ?>
 			<tr>
-				<td class="name"><span><input name="hours[]" type="checkbox" value="<?php e($row['hours']['id']);?>" checked /> &nbsp; <?php e($row['hours']['name']);?></span></td>
-				<td class="money"><span><?php e($row['hours']['subtotal']);?></span></td>
-			</tr>
-			<?php endforeach; ?>
-			<?php foreach ($deliveries as $row): ?>
-			<tr>
-				<td class="name"><span><input name="deliveries[]" type="checkbox" value="<?php e($row['deliveries']['id']);?>" checked /> &nbsp; <?php e($row['deliveries']['name']);?></span></td>
-				<td class="money"><span><?php e($row['deliveries']['subtotal']);?></span></td>
-			</tr>
-			<?php endforeach; ?>
-			<?php foreach ($subscriptionperiods as $row): ?>
-			<tr>
-				<td class="name"><span><input name="subscriptionperiods[]" type="checkbox" value="<?php e($row['subscriptionperiods']['id']);?>" checked /> &nbsp; <?php e($row['invoicelines']['name']);?></span></td>
-				<td class="money"><span><?php e($row['hours']['subtotal']);?></span></td>
+				<td class="name"><span><input name="invoicelines[]" type="checkbox" value="<?php e($key);?>" checked /> &nbsp; <?php e($invoiceline['name']);?></span></td>
+				<td class="money"><span><?php e($invoiceline['subtotal']);?></span></td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>

@@ -3,79 +3,62 @@ $highest_invoice_number = DB::selectValue('SELECT MAX(number) FROM invoices WHER
 $hours = DB::select('select * FROM `hours` WHERE invoiceline_id IS NULL AND `customer_id` = ? AND `tenant_id` = ?', $customer_id, $_SESSION['user']['tenant_id']);
 $deliveries = DB::select('select * FROM `deliveries` WHERE invoiceline_id IS NULL AND `customer_id` = ? AND `tenant_id` = ?', $customer_id, $_SESSION['user']['tenant_id']);
 $subscriptionperiods = DB::select('select * FROM subscriptions s, subscriptionperiods p WHERE p.subscription_id = s.id AND p.invoiceline_id IS NULL AND s.customer_id = ? AND s.tenant_id = ?', $customer_id, $_SESSION['user']['tenant_id']);
+$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
 
-$hours_ids = array();
-foreach ($hours as $index=>$row) {
-	$hours_ids[$row['hours']['id']] = $index;
+$invoicelines = array();
+foreach ($hours as $row) {
+	$subtotal = $row['hours']['hours_worked']*$row['hours']['hourly_fee'];
+	$vat_percentage = $row['hours']['vat_percentage'];
+	if($vat_percentage) $total = $subtotal*((100+$vat_percentage)/100); 
+	else $total = $subtotal;
+	$name = InvoiceTemplate::render($template, array('type'=>'hours', 'hours'=>$row['hours']));
+	$invoicelines['hours_'.$row['hours']['id']] = array(
+		'type'=>'hours',
+		'name'=>$name,
+		'subtotal'=>$subtotal,
+		'vat'=>($total - $subtotal),
+		'vat_percentage'=>$vat_percentage,
+		'total'=>$total,
+	);
 }
-$deliveries_ids = array();
-foreach ($deliveries as $index=>$row) {
-	$deliveries_ids[$row['deliveries']['id']] = $index;
+foreach ($deliveries as $row) {
+	$subtotal = $row['deliveries']['subtotal'];
+	$vat_percentage = $row['deliveries']['vat_percentage'];
+	if($vat_percentage) $total = $subtotal*((100+$vat_percentage)/100); 
+	else $total = $subtotal;
+	$name = InvoiceTemplate::render($template, array('type'=>'delivery', 'delivery'=>$row['deliveries']));
+	$invoicelines['deliveries_'.$row['deliveries']['id']] = array(
+		'type'=>'delivery',
+		'name'=>$name,
+		'subtotal'=>$subtotal,
+		'vat'=>($total - $subtotal),
+		'vat_percentage'=>$vat_percentage,
+		'total'=>$total,
+	);
 }
-$subscriptionperiods_ids = array();
-foreach ($subscriptionperiods as $index=>$row) {
-	$subscriptionperiods_ids[$row['subscriptionperiods']['id']] = $index;
+foreach ($subscriptionperiods as $row) {
+	$subtotal = $subscriptionperiods[$i]['deliveries']['subtotal'];
+	$vat_percentage = $subscriptionperiods[$i]['deliveries']['vat_percentage'];
+	if($vat_percentage) $total = $subtotal*((100+$vat_percentage)/100); 
+	else $total = $subtotal;
+	$name = InvoiceTemplate::render($template, array('type'=>'subscription', 'subscription'=>$subscriptionperiods[$i]['subscriptions'], 'subscriptionperiod'=>$subscriptionperiods[$i]['subscriptionperiods']));
+	$invoicelines['subscriptionperiods_'.$row['subscriptionperiods']['id']] = array(
+		'type'=>'subscription',
+		'name'=>$name,
+		'subtotal'=>$subtotal,
+		'vat'=>($total - $subtotal),
+		'vat_percentage'=>$vat_percentage,
+		'total'=>$total,
+	);
 }
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
-
+	// set error when no invoicelines are selected
 	if (!isset($errors)) {
 		$error = 'Invoice not saved';
 		try {
-			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
-			$invoicelines = array();
-			foreach ($data['hours'] as $hours_id) {
-				if (!isset($hours_ids[$hours_id])) continue;
-				$i = $hours_ids[$hours_id];
-				$subtotal = $hours[$i]['hours']['hours_worked']*$hours[$i]['hours']['hourly_fee'];
-				$vat_percentage = $hours[$i]['hours']['vat_percentage'];
-				if($vat_percentage) $total = $subtotal*((100+$vat_percentage)/100); 
-				else $total = $subtotal;
-				$name = InvoiceTemplate::render($template, array('type'=>'hours', 'hours'=>$hours[$i]['hours']));
-				$invoicelines[] = array(
-					'type'=>'hours',
-					'name'=>$name,
-					'subtotal'=>$subtotal,
-					'vat'=>($total - $subtotal),
-					'vat_percentage'=>$vat_percentage,
-					'total'=>$total,
-				);
-			}
-			foreach ($data['deliveries'] as $delivery_id) {
-				if (!isset($deliveries_ids[$delivery_id])) continue;
-				$i = $deliveries_ids[$delivery_id];
-				$subtotal = $deliveries[$i]['deliveries']['subtotal'];
-				$vat_percentage = $deliveries[$i]['deliveries']['vat_percentage'];
-				if($vat_percentage) $total = $subtotal*((100+$vat_percentage)/100); 
-				else $total = $subtotal;
-				$name = InvoiceTemplate::render($template, array('type'=>'delivery', 'delivery'=>$deliveries[$i]['hours']));
-				$invoicelines[] = array(
-					'type'=>'delivery',
-					'name'=>$name,
-					'subtotal'=>$subtotal,
-					'vat'=>($total - $subtotal),
-					'vat_percentage'=>$vat_percentage,
-					'total'=>$total,
-				);
-			}
-			foreach ($data['subscriptionperiods'] as $subscriptionperiod_id) {
-				if (!isset($subscriptionperiods_ids[$subscriptionperiod_id])) continue;
-				$i = $subscriptionperiods_ids[$subscriptionperiod_id];
-				$subtotal = $subscriptionperiods[$i]['deliveries']['subtotal'];
-				$vat_percentage = $subscriptionperiods[$i]['deliveries']['vat_percentage'];
-				if($vat_percentage) $total = $subtotal*((100+$vat_percentage)/100); 
-				else $total = $subtotal;
-				$name = InvoiceTemplate::render($template, array('type'=>'subscription', 'subscription'=>$subscriptionperiods[$i]['subscriptions'], 'subscriptionperiod'=>$subscriptionperiods[$i]['subscriptionperiods']));
-				$invoicelines[] = array(
-					'type'=>'subscription',
-					'name'=>$name,
-					'subtotal'=>$subtotal,
-					'vat'=>($total - $subtotal),
-					'vat_percentage'=>$vat_percentage,
-					'total'=>$total,
-				);
-			}
+			$invoicelines = array_filter($invoicelines, function($key) use ($data){ return in_array($key,$data['invoicelines']); }, ARRAY_FILTER_USE_KEY);
 
 			$sums = array('subtotal'=>0,'vat'=>0,'total'=>0);
 			foreach ($invoicelines as $invoiceline) {
