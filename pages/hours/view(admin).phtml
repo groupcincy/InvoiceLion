@@ -64,6 +64,8 @@
 	<?php } ?>
 </div>
 <p>
-	<a class="btn btn-danger pull-right" href="hours/delete/<?php e($id); ?>">Delete</a>
-	<a class="btn btn-primary" href="hours/edit/<?php e($id); ?>">Edit</a>
+	<?php if(!$data['hours']['invoiceline_id']): ?>
+		<a class="btn btn-danger pull-right" href="hours/delete/<?php e($id); ?>">Delete</a>
+		<a class="btn btn-primary" href="hours/edit/<?php e($id); ?>">Edit</a>
+	<?php endif; ?>
 </p>

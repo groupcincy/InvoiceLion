@@ -73,8 +73,20 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			//DB::begin();
 			$invoice_id = DB::insert('INSERT INTO `invoices` (`tenant_id`, `number`, `name`, `date`, `customer_id`, `subtotal`, `vat`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], ($highest_invoice_number+1), $data['invoices']['name'], date('Y-m-d'), $customer_id, $sums['subtotal'], $sums['vat'], $sums['total']);
-			foreach ($invoicelines as $invoiceline) {
-				DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `invoice_id`, `type`, `name`, `subtotal`, `vat`, `vat_percentage`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $invoice_id, $invoiceline['type'], $invoiceline['name'], $invoiceline['subtotal'], $invoiceline['vat'], $invoiceline['vat_percentage'], $invoiceline['total']);
+			foreach ($invoicelines as $key => $invoiceline) {
+				$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `invoice_id`, `type`, `name`, `subtotal`, `vat`, `vat_percentage`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $invoice_id, $invoiceline['type'], $invoiceline['name'], $invoiceline['subtotal'], $invoiceline['vat'], $invoiceline['vat_percentage'], $invoiceline['total']);
+				list($table, $id) = explode('_', $key);
+				switch ($table) {
+					case 'hours':
+						DB::update('UPDATE `hours` SET `invoiceline_id` = ? WHERE `tenant_id` = ? AND `id` = ?', $invoiceline_id, $_SESSION['user']['tenant_id'], $id);
+						break;
+					case 'deliveries':
+						DB::update('UPDATE `deliveries` SET `invoiceline_id` = ? WHERE `tenant_id` = ? AND `id` = ?', $invoiceline_id, $_SESSION['user']['tenant_id'], $id);
+						break;
+					case 'subscriptionperiods':
+						DB::update('UPDATE `subscriptionperiods` SET `invoiceline_id` = ? WHERE `tenant_id` = ? AND `id` = ?', $invoiceline_id, $_SESSION['user']['tenant_id'], $id);
+						break;
+				}
 			}
 			//DB::commit();
 
