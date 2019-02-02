@@ -2,17 +2,11 @@
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
-	$subscription = DB::selectOne('select * from `subscriptions` WHERE `tenant_id` = ? and `id` = ?', $_SESSION['user']['tenant_id'], $data['subscriptionperiods']['subscription_id']);
-	if (!isset($subscription)) $errors['subscriptionperiods[subscription_id]']='subscriptions not found';
+
 	if (!isset($errors)) {
 		try {
 
-			$rowsAffected = DB::update('UPDATE `subscriptionperiods` SET `name`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['name'], $data['subscriptionperiods']['comment'], $_SESSION['user']['tenant_id'], $id);
-
-			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
-			$subscriptionperiod = DB::selectOne('select * from `subscriptionperiods` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
-			$name = InvoiceTemplate::render($template, array('type'=>'subscription', 'subscription'=>$subscription['subscriptions'],'subscriptionperiod'=>$subscriptionperiod['subscriptionperiods']));
-			DB::update('UPDATE `invoicelines` SET `name`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['name'], $_SESSION['user']['tenant_id'], $subscriptionperiod['subscriptionperiods']['invoiceline_id']);
+			$rowsAffected = DB::update('UPDATE `subscriptionperiods` SET `name`=?, `comment`=? WHERE `invoiceline_id` IS NULL AND `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['name'], $data['subscriptionperiods']['comment'], $_SESSION['user']['tenant_id'], $id);
 
 			if ($rowsAffected!==false) {
 				Flash::set('success','Subscription period saved');

@@ -28,10 +28,10 @@
  	</dl><?php } ?>
 </div>
 <p>
-	<div class="pull-right">
-		<a class="btn btn-danger" href="subscriptionperiods/delete/<?php e($id); ?>">Delete</a>
-	<?php if(!$newer_period_exists) {?><a class="btn btn-default" href="subscriptionperiods/addnextperiod/<?php e($id); ?>">Add next period</a><?php } ?>
-	</div>
-	<a class="btn btn-primary" href="subscriptionperiods/edit/<?php e($id); ?>">Edit</a>
-	
+	<?php if(!$data['subscriptionperiods']['invoiceline_id']): ?>
+		<div class="pull-right">
+			<a class="btn btn-danger" href="subscriptionperiods/delete/<?php e($id); ?>">Delete</a>
+		</div>
+		<a class="btn btn-primary" href="subscriptionperiods/edit/<?php e($id); ?>">Edit</a>
+	<?php endif; ?>
 </p>

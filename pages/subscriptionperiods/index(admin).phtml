@@ -4,7 +4,6 @@
     <tr>
       <th class="date">From</th>
       <th class="name">Name</th>
-      <th>Invoice</th>
       <th>Subscription</th>
     </tr>
   </thead>
@@ -13,7 +12,6 @@
     <tr class="hover" onclick="window.location.href='subscriptionperiods/view/<?php e($row['subscriptionperiods']['id']);?>';">
       <td class="date"><span><?php e($row['subscriptionperiods']['from']);?></span></td>
       <td class="name"><span><?php e($row['subscriptionperiods']['name']);?></span></td>
-      <td><span><?php if(isset($row['subscriptionperiods']['invoice_id'])) { ?><a href="invoices/view/<?php e($row['subscriptionperiods']['invoice_id']);?>"><?php e($invoices[$row['subscriptionperiods']['invoice_id']]);?></a><?php } ?></span></td>
       <td><span><a href="subscriptions/view/<?php e($row['subscriptionperiods']['subscription_id']);?>"><?php e($subscriptions[$row['subscriptionperiods']['subscription_id']]);?></a></span></td>
     </tr>
     <?php endforeach; ?>

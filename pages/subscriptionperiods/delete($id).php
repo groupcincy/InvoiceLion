@@ -1,7 +1,7 @@
 <?php 
 if (!empty($_POST)) {
 	try {
-		$rows = DB::delete('DELETE FROM `subscriptionperiods` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
+		$rows = DB::delete('DELETE FROM `subscriptionperiods` WHERE `invoiceline_id` IS NULL AND `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
 		if ($rows) {
 			Flash::set('success','Subscription period deleted');
 			Router::redirect('subscriptionperiods/index');
