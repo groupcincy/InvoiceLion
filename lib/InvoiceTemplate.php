@@ -40,7 +40,7 @@ class InvoiceTemplate
         );
     }
 
-    private static function render($template, $data) {
+    public static function render($template, $data) {
         $result = Template::render($template, $data, static::functions());
         return preg_replace('/<script[^>]*>(.*?)<\/script>/is', "", $result);
     }
