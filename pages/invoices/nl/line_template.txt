@@ -1,5 +1,5 @@
 {{if:type|eq(hours)}}
-    {{hours.hours_worked}} uren (a &euro;{{hours.hourly_fee}}) voor {{hours.name}}
+    {{hours.hours_worked}} uren (€ {{hours.hourly_fee}} / uur) voor {{hours.name}}
 {{endif}}
 {{if:type|eq(delivery)}}
     {{delivery.name}}
