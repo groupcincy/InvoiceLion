@@ -3,7 +3,6 @@ $projects = DB::select('select `id`,`name`,`customer_id` from `projects` WHERE `
 $customers = DB::selectPairs('select `id`,`name` from `customers` WHERE `tenant_id` = ? ORDER BY name', $_SESSION['user']['tenant_id']);
 $hourtypes = DB::selectPairs('select `id`,`name` from `hourtypes` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $hour = DB::selectOne('select * from `hours` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
     $data = $_POST;
 
 	//set vat_percentage to NULL if the customer has vat_reverse_charge
@@ -32,8 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $data['hours']['name'].' ('.round($data['hours']['hours_worked']).' uur x '.$data['hours']['hourly_fee'].' euro op '.$data['hours']['date'].')';
 
             $rowsAffected = DB::update('UPDATE `hours` SET `customer_id`=?, `project_id`=?, `date`=?, `name`=?, `hours_worked`=?, `hourly_fee`=?, `subtotal`=?, `vat_percentage`=?, `type`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['hours']['customer_id'], $data['hours']['project_id'], $data['hours']['date'], $data['hours']['name'], $data['hours']['hours_worked'], $data['hours']['hourly_fee'], $subtotal, $data['hours']['vat_percentage'], $data['hours']['type'], $data['hours']['comment'], $_SESSION['user']['tenant_id'], $id);
+
+            $template = DB::selectValue('select `invoiceline_template` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+			$hours = DB::selectOne('select * from `hours` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
+			$name = InvoiceTemplate::render($template, array('type'=>'hours', 'hours'=>$hours['hours']));
             //only update invoicelines without invoice(_id)
-            $optional = DB::update('UPDATE `invoicelines` SET `customer_id`=?, `name`=?, `subtotal`=?, `vat`=?, `vat_percentage`=?, `total`=? WHERE `tenant_id` = ? AND `id` = ? AND `invoice_id` IS NULL', $data['hours']['customer_id'], $name, $subtotal, ($total - $subtotal), $data['hours']['vat_percentage'], $total, $_SESSION['user']['tenant_id'], $hour['hours']['invoiceline_id']);
+            DB::update('UPDATE `invoicelines` SET `customer_id`=?, `name`=?, `subtotal`=?, `vat`=?, `vat_percentage`=?, `total`=? WHERE `tenant_id` = ? AND `id` = ? AND `invoice_id` IS NULL', $data['hours']['customer_id'], $name, $subtotal, ($total - $subtotal), $data['hours']['vat_percentage'], $total, $_SESSION['user']['tenant_id'], $hours['hours']['invoiceline_id']);
             if ($rowsAffected !== false) {
                 Flash::set('success', 'Hours saved');
                 Router::redirect('hours/view/' . $id);

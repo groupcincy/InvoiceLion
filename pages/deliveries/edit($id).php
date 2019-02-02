@@ -3,7 +3,6 @@ $projects = DB::select('select `id`,`name`,`customer_id` from `projects` WHERE `
 $customers = DB::selectPairs('select `id`,`name` from `customers` WHERE `tenant_id` = ? ORDER BY name', $_SESSION['user']['tenant_id']);
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
-	$delivery = DB::selectOne('select * from `deliveries` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
 	$data = $_POST;
 
 	if (!$data['deliveries']['project_id']) $data['deliveries']['project_id']=NULL;
@@ -29,8 +28,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			$rowsAffected = DB::update('UPDATE `deliveries` SET `customer_id`=?, `project_id`=?, `date`=?, `name`=?, `subtotal`=?, `vat_percentage`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['deliveries']['customer_id'], $data['deliveries']['project_id'], $data['deliveries']['date'], $data['deliveries']['name'], $data['deliveries']['subtotal'], $data['deliveries']['vat_percentage'], $data['deliveries']['comment'], $_SESSION['user']['tenant_id'], $id);			
 
+			$template = DB::selectValue('select `invoiceline_template` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+			$delivery = DB::selectOne('select * from `deliveries` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
+			$name = InvoiceTemplate::render($template, array('type'=>'delivery', 'delivery'=>$delivery['deliveries']));
 			//only update invoicelines without invoice(_id)
-			$optional = DB::update('UPDATE `invoicelines` SET `customer_id`=?, `name`=?, `subtotal`=?, `vat`=?, `vat_percentage`=?, `total`=? WHERE `tenant_id` = ? AND `id` = ? AND `invoice_id` IS NULL', $data['deliveries']['customer_id'], $data['deliveries']['name'], $data['deliveries']['subtotal'], ($total - $data['deliveries']['subtotal']), $data['deliveries']['vat_percentage'], $total, $_SESSION['user']['tenant_id'], $delivery['deliveries']['invoiceline_id']);
+			DB::update('UPDATE `invoicelines` SET `customer_id`=?, `name`=?, `subtotal`=?, `vat`=?, `vat_percentage`=?, `total`=? WHERE `tenant_id` = ? AND `id` = ? AND `invoice_id` IS NULL', $data['deliveries']['customer_id'], $data['deliveries']['name'], $data['deliveries']['subtotal'], ($total - $data['deliveries']['subtotal']), $data['deliveries']['vat_percentage'], $total, $_SESSION['user']['tenant_id'], $delivery['deliveries']['invoiceline_id']);
 
 			if ($rowsAffected!==false) {
 				Flash::set('success','deliveries saved');
