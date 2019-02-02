@@ -76,16 +76,8 @@
 <br /><br />
 
 <p>
-	<p class="pull-right">
-		<a class="btn btn-danger" href="invoices/delete/<?php e($id); ?>">Delete</a>
-		<?php if($data['invoices']['sent']) { ?>
-			<a class="btn btn-default" href="invoices/edit/<?php e($id); ?>">Edit</a>
-		<?php } else { ?>
-			<a class="btn btn-default" href="invoices/send/<?php e($id); ?>">Send</a>
-		<?php } ?>
-	</p>
 	<?php if(!$data['invoices']['sent']) { ?>
-		<a class="btn btn-primary" href="invoices/edit/<?php e($id); ?>">Edit</a>
+		<a class="btn btn-primary" href="invoices/send/<?php e($id); ?>">Send</a>
 	<?php } ?>
 	<a class="btn btn-<?php $data['invoices']['sent'] ? e('primary') : e('default'); ?>" href="invoices/download/<?php e($id); ?>">Download</a>
 	<?php if($data['invoices']['sent'] && (!$data['invoices']['paid'] || $data['invoices']['reminder1'] || $data['invoices']['reminder2'])) { ?>
