@@ -7,4 +7,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
   if (Auth::login($data['username'],$data['password'])) {
     Router::redirect($url);
   }
+} else {
+  $data = array('username' => '', 'password' => '');
 }
