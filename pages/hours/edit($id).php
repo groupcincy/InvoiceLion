@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $rowsAffected = DB::update('UPDATE `hours` SET `customer_id`=?, `project_id`=?, `date`=?, `name`=?, `hours_worked`=?, `hourly_fee`=?, `subtotal`=?, `vat_percentage`=?, `type`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['hours']['customer_id'], $data['hours']['project_id'], $data['hours']['date'], $data['hours']['name'], $data['hours']['hours_worked'], $data['hours']['hourly_fee'], $subtotal, $data['hours']['vat_percentage'], $data['hours']['type'], $data['hours']['comment'], $_SESSION['user']['tenant_id'], $id);
 
-            $template = DB::selectValue('select `invoiceline_template` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+            $template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 			$hours = DB::selectOne('select * from `hours` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
-			$name = InvoiceTemplate::render($template, array('type'=>'hours', 'hours'=>$hours['hours']));
+            $name = InvoiceTemplate::render($template, array('type'=>'hours', 'hours'=>$hours['hours']));
             //only update invoicelines without invoice(_id)
             DB::update('UPDATE `invoicelines` SET `customer_id`=?, `name`=?, `subtotal`=?, `vat`=?, `vat_percentage`=?, `total`=? WHERE `tenant_id` = ? AND `id` = ? AND `invoice_id` IS NULL', $data['hours']['customer_id'], $name, $subtotal, ($total - $subtotal), $data['hours']['vat_percentage'], $total, $_SESSION['user']['tenant_id'], $hours['hours']['invoiceline_id']);
             if ($rowsAffected !== false) {

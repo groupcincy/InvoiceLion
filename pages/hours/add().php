@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			if($data['hours']['vat_percentage']) $total = $subtotal*((100+$data['hours']['vat_percentage'])/100); 
 			else $total = $subtotal;
 
-			$template = DB::selectValue('select `invoiceline_template` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 			$name = InvoiceTemplate::render($template, array('type'=>'hours', 'hours'=>$data['hours']));
 			$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `customer_id`, `type`, `name`, `subtotal`, `vat`,`vat_percentage`,`total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['hours']['customer_id'], 'hours', $name, $subtotal, ($total - $subtotal), $data['hours']['vat_percentage'], $total);
 
