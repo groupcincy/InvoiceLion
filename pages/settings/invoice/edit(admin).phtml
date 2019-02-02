@@ -35,6 +35,12 @@
 		<span class="help-block"><?php if (isset($errors['tenants[invoice_template]'])) e($errors['tenants[invoice_template]']); ?></span>
 		</div>
 
+		<div class="form-group <?php e(isset($errors['tenants[invoiceline_template]'])?'has-error':''); ?>">
+		<label class="control-label" for="tenants[invoiceline_template]">Invoice line template</label>
+		<textarea class="form-control" name="tenants[invoiceline_template]" type="text" id="tenants[invoiceline_template]"><?php e($data['tenants']['invoiceline_template']); ?></textarea>
+		<span class="help-block"><?php if (isset($errors['tenants[invoiceline_template]'])) e($errors['tenants[invoiceline_template]']); ?></span>
+		</div>
+
 		<div class="form-group <?php e(isset($errors['tenants[invoice_page_number]'])?'has-error':''); ?>">
 		<label class="control-label" for="tenants[invoice_page_number]">Invoice page number</label>
 		<textarea class="form-control" name="tenants[invoice_page_number]" type="text" id="tenants[invoice_page_number]"><?php e($data['tenants']['invoice_page_number']); ?></textarea>
