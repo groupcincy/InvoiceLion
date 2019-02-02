@@ -16,4 +16,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     Auth::update($username, $data['password']);
     Router::redirect('');
   }
+} else {
+  $data = array('username' => $username, 'password' => '', 'password2' => '');
 }
