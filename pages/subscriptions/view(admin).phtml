@@ -32,7 +32,7 @@
 
 	<dl>
 		<dt>VAT percentage</dt>
- 		<dd><?php e($data['subscriptions']['vat_percentage']);?></dd>
+ 		<dd><?php if(isset($data['subscriptions']['vat_percentage'])) e($data['subscriptions']['vat_percentage']); else e('VAT reverse charge'); ?></dd>
   </dl>
 
 	<dl>

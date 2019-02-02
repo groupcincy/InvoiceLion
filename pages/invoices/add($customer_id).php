@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			//insert invoice with calculated subtotal
 			$invoice_id = DB::insert('INSERT INTO `invoices` (`tenant_id`, `number`, `name`, `date`, `sent`, `paid`, `reminder1`, `reminder2`, `customer_id`,`subtotal`,`vat`,`total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], ($highest_invoice_number+1), $data['invoices']['name'], $data['invoices']['date'], $data['invoices']['sent'], $data['invoices']['paid'], $data['invoices']['reminder1'], $data['invoices']['reminder2'], $customer_id,$sums['invoicelines']['subtotal'],$sums['invoicelines']['vat'],$sums['invoicelines']['total']);
 
-			//connect selected invoicelines to this invoice
+			//connect selected invoicelines to this invoice (this should be 'create')
 			$rowsAffected = DB::update('UPDATE `invoicelines` SET `invoice_id`=? WHERE `tenant_id` = ? AND id IN ('.implode(',',$data['invoiceline_id']).')', $invoice_id, $_SESSION['user']['tenant_id']);
 
 

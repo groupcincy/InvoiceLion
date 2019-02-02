@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($errors)) {
         try {
             $subscription_id = DB::insert('INSERT INTO `subscriptions` (`tenant_id`, `fee`, `vat_percentage`, `months`, `name`, `from`, `comment`, `subscriptiontype_id`, `customer_id`, `project_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptions']['fee'], $data['subscriptions']['vat_percentage'], $data['subscriptions']['months'], $data['subscriptions']['name'], $data['subscriptions']['from'], $data['subscriptions']['comment'], $data['subscriptions']['subscriptiontype_id'], $data['subscriptions']['customer_id'], $data['subscriptions']['project_id']);
-            
+
             //get the until date
             $until = date('Y-m-d', strtotime($data['subscriptions']['from'] . ' +'.$data['subscriptions']['months'].' months - 1 day'));
             //add first subscriptionperiod
