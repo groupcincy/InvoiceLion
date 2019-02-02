@@ -22,25 +22,15 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 	if (!isset($errors)) {
 		try {
-
-			if($data['deliveries']['vat_percentage']) $total = $data['deliveries']['subtotal']*((100+$data['deliveries']['vat_percentage'])/100); 
-			else $total = $data['deliveries']['subtotal'];
-
 			$rowsAffected = DB::update('UPDATE `deliveries` SET `customer_id`=?, `project_id`=?, `date`=?, `name`=?, `subtotal`=?, `vat_percentage`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['deliveries']['customer_id'], $data['deliveries']['project_id'], $data['deliveries']['date'], $data['deliveries']['name'], $data['deliveries']['subtotal'], $data['deliveries']['vat_percentage'], $data['deliveries']['comment'], $_SESSION['user']['tenant_id'], $id);			
 
-			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
-			$delivery = DB::selectOne('select * from `deliveries` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
-			$name = InvoiceTemplate::render($template, array('type'=>'delivery', 'delivery'=>$delivery['deliveries']));
-			//only update invoicelines without invoice(_id)
-			DB::update('UPDATE `invoicelines` SET `customer_id`=?, `name`=?, `subtotal`=?, `vat`=?, `vat_percentage`=?, `total`=? WHERE `tenant_id` = ? AND `id` = ? AND `invoice_id` IS NULL', $data['deliveries']['customer_id'], $data['deliveries']['name'], $data['deliveries']['subtotal'], ($total - $data['deliveries']['subtotal']), $data['deliveries']['vat_percentage'], $total, $_SESSION['user']['tenant_id'], $delivery['deliveries']['invoiceline_id']);
-
 			if ($rowsAffected!==false) {
-				Flash::set('success','deliveries saved');
+				Flash::set('success','Delivery saved');
 				Router::redirect('deliveries/view/'.$id);
 			}
-			$error = 'deliveries not saved';
+			$error = 'Delivery not saved';
 		} catch (DBError $e) {
-			$error = 'deliveries not saved: '.$e->getMessage();
+			$error = 'Delivery not saved: '.$e->getMessage();
 		}
 	}	
 } else {

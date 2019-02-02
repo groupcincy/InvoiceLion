@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		try {
 			$hour_id = DB::insert('INSERT INTO `hours` (`tenant_id`, `customer_id`, `project_id`, `date`, `name`, `hours_worked`, `hourly_fee`, `subtotal`, `vat_percentage`, `type`, `comment`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['hours']['customer_id'], $data['hours']['project_id'], $data['hours']['date'], $data['hours']['name'], $data['hours']['hours_worked'], $data['hours']['hourly_fee'], $subtotal, $data['hours']['vat_percentage'], $data['hours']['type'], $data['hours']['comment']);
 
-			if ($invoiceline_id && $hour_id) {
+			if ($hour_id) {
  				Flash::set('success','Hours saved');
  				Router::redirect('hours/index');
 			}
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		'customer_id'=>NULL, 
 		'add_customer'=>NULL, 
 		'project_id'=>NULL, 
-		'date'=>Date("Y-m-d"), 
+		'date'=>date("Y-m-d"), 
 		'name'=>NULL, 
 		'hours_worked'=>NULL, 
 		'hourly_fee'=>$tenant['tenants']['default_hourly_fee'], 

@@ -47,6 +47,8 @@
 	<?php } ?>
 </div>
 <p>
-	<a class="btn btn-danger pull-right" href="deliveries/delete/<?php e($id); ?>">Delete</a>
-	<a class="btn btn-primary" href="deliveries/edit/<?php e($id); ?>">Edit</a>
+	<?php if(!$data['deliveries']['invoiceline_id']): ?>
+		<a class="btn btn-danger pull-right" href="deliveries/delete/<?php e($id); ?>">Delete</a>
+		<a class="btn btn-primary" href="deliveries/edit/<?php e($id); ?>">Edit</a>
+	<?php endif; ?>
 </p>
