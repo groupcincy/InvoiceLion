@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 	if (!isset($errors)) {
 		try {
-			$delivery_id = DB::insert('INSERT INTO `deliveries` (`tenant_id`, `customer_id`, `project_id`, `date`, `name`, `subtotal`, `vat_percentage`, `comment`, `invoiceline_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['deliveries']['customer_id'], $data['deliveries']['project_id'], $data['deliveries']['date'], $data['deliveries']['name'], $data['deliveries']['subtotal'], $data['deliveries']['vat_percentage'], $data['deliveries']['comment'], $invoiceline_id);
+			$delivery_id = DB::insert('INSERT INTO `deliveries` (`tenant_id`, `customer_id`, `project_id`, `date`, `name`, `subtotal`, `vat_percentage`, `comment`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['deliveries']['customer_id'], $data['deliveries']['project_id'], $data['deliveries']['date'], $data['deliveries']['name'], $data['deliveries']['subtotal'], $data['deliveries']['vat_percentage'], $data['deliveries']['comment']);
 
 			if ($delivery_id) {
 				Flash::set('success','deliveries saved');
