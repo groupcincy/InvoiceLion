@@ -8,5 +8,5 @@ else $customers = array();
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
-	Router::redirect('invoices/invoice/'.$data['invoices']['customer_id']);
+	Router::redirect('invoices/add/'.$data['invoices']['customer_id']);
 }
