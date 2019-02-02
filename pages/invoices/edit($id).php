@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 	if (!isset($errors)) {
 		try {
-			$rowsAffected = DB::update('UPDATE `invoices` SET `paid` = ? WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $invoice['invoices']['id']);
+			$rowsAffected = DB::update('UPDATE `invoices` SET `paid` = ? WHERE `tenant_id` = ? AND `id` = ?', $data['invoices']['paid'], $_SESSION['user']['tenant_id'], $invoice['invoices']['id']);
 
 			if ($rowsAffected!==false) {
 				Flash::set('success','Invoice saved');
