@@ -10,7 +10,7 @@ $subtotal = $subscription['subscriptions']['fee'];
 if($data['subscriptionperiods']['vat_percentage']) $total = $subtotal*((100+$data['subscriptionperiods']['vat_percentage'])/100); 
 else $total = $subtotal;
 
-$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `customer_id`, `name`, `subtotal`, `vat`, `vat_percentage`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $subscription['subscriptions']['customer_id'], $data['subscriptionperiods']['name'], $subtotal, ($total - $subtotal), $data['subscriptionperiods']['vat_percentage'], $total);
+$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `customer_id`, `type`, `name`, `subtotal`, `vat`, `vat_percentage`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $subscription['subscriptions']['customer_id'], 'subscription', $data['subscriptionperiods']['name'], $subtotal, ($total - $subtotal), $data['subscriptionperiods']['vat_percentage'], $total);
 
 $subscriptionperiod_id = DB::insert('INSERT INTO `subscriptionperiods` (`tenant_id`, `from`,`until`, `name`, `subscription_id`, `comment`,`invoiceline_id`) VALUES (?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $renewalDate, $endDate, $data['subscriptionperiods']['name'], $data['subscriptionperiods']['subscription_id'], NULL, $invoiceline_id);
 
