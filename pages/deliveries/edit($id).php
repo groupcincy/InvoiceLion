@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			$rowsAffected = DB::update('UPDATE `deliveries` SET `customer_id`=?, `project_id`=?, `date`=?, `name`=?, `subtotal`=?, `vat_percentage`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['deliveries']['customer_id'], $data['deliveries']['project_id'], $data['deliveries']['date'], $data['deliveries']['name'], $data['deliveries']['subtotal'], $data['deliveries']['vat_percentage'], $data['deliveries']['comment'], $_SESSION['user']['tenant_id'], $id);			
 
-			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
 			$delivery = DB::selectOne('select * from `deliveries` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
 			$name = InvoiceTemplate::render($template, array('type'=>'delivery', 'delivery'=>$delivery['deliveries']));
 			//only update invoicelines without invoice(_id)

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			if($data['subscriptionperiods']['vat_percentage']) $total = $subtotal*((100+$data['subscriptionperiods']['vat_percentage'])/100); 
 			else $total = $subtotal;
 
-			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
 			$name = InvoiceTemplate::render($template, array('type'=>'subscription', 'subscription'=>$subscription['subscriptions'],'subscriptionperiod'=>$data['subscriptionperiods']));
 			$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `customer_id`, `type`, `name`, `subtotal`, `vat`, `vat_percentage`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $subscription['subscriptions']['customer_id'], 'subscription', $name, $subtotal, ($total - $subtotal), $data['subscriptionperiods']['vat_percentage'], $total);
 			$subscriptionperiod_id = DB::insert('INSERT INTO `subscriptionperiods` (`tenant_id`, `from`, `name`, `subscription_id`, `comment`,`invoiceline_id`) VALUES (?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptionperiods']['from'], $data['subscriptionperiods']['name'], $data['subscriptionperiods']['subscription_id'], $data['subscriptionperiods']['comment'],$invoiceline_id);

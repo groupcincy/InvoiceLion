@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			if($data['deliveries']['vat_percentage']) $total = $data['deliveries']['subtotal']*((100+$data['deliveries']['vat_percentage'])/100); 
 			else $total = $data['deliveries']['subtotal'];
 
-			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
 			$name = InvoiceTemplate::render($template, array('type'=>'delivery', 'delivery'=>$data['deliveries']));
 			$invoiceline_id = DB::insert('INSERT INTO `invoicelines` (`tenant_id`, `customer_id`, `type`, `name`, `subtotal`, `vat`, `vat_percentage`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['deliveries']['customer_id'], 'delivery', $name, $data['deliveries']['subtotal'], ($total - $data['deliveries']['subtotal']), $data['deliveries']['vat_percentage'], $total);
 			$delivery_id = DB::insert('INSERT INTO `deliveries` (`tenant_id`, `customer_id`, `project_id`, `date`, `name`,`subtotal`, `vat_percentage`, `comment`, `invoiceline_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['deliveries']['customer_id'], $data['deliveries']['project_id'], $data['deliveries']['date'], $data['deliveries']['name'], $data['deliveries']['subtotal'], $data['deliveries']['vat_percentage'], $data['deliveries']['comment'], $invoiceline_id);

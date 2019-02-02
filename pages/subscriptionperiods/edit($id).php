@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			$rowsAffected = DB::update('UPDATE `subscriptionperiods` SET `from`=?, `until`=?, `name`=?, `subscription_id`=?, `comment`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['from'],$endDate, $data['subscriptionperiods']['name'], $data['subscriptionperiods']['subscription_id'], $data['subscriptionperiods']['comment'], $_SESSION['user']['tenant_id'], $id);
 
-			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+			$template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
 			$subscriptionperiod = DB::selectOne('select * from `subscriptionperiods` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
 			$name = InvoiceTemplate::render($template, array('type'=>'subscription', 'subscription'=>$subscription['subscriptions'],'subscriptionperiod'=>$subscriptionperiod['subscriptionperiods']));
 			DB::update('UPDATE `invoicelines` SET `name`=? WHERE `tenant_id` = ? AND `id` = ?', $data['subscriptionperiods']['name'], $_SESSION['user']['tenant_id'], $subscriptionperiod['subscriptionperiods']['invoiceline_id']);
