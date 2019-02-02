@@ -3,7 +3,7 @@ $invoicelines_no_invoices = DB::select('SELECT * FROM `invoicelines` WHERE `tena
 
 $unpaid_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (sent and (paid IS NULL or paid=0)) ORDER BY `number` DESC', $_SESSION['user']['tenant_id']);
 
-$unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (invoices.sent IS NULL or invoices.sent=0) ORDER BY invoices.name', $_SESSION['user']['tenant_id']);
+$unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (invoices.sent IS NULL or invoices.sent=0) ORDER BY invoices.number DESC', $_SESSION['user']['tenant_id']);
 
 $unsent_reminders = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (sent and (paid IS NULL or paid=0)) and date < NOW() - INTERVAL 1 MONTH and reminder1 IS NULL ORDER BY name', $_SESSION['user']['tenant_id']);
 
