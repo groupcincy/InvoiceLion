@@ -13,7 +13,7 @@ CREATE TABLE `customers` (
   `email` varchar(255) DEFAULT NULL,
   `contact` varchar(255) DEFAULT NULL,
   `address` text,
-  `vat_reverse_charge` tinyint(1) DEFAULT NULL,
+  `vat_reverse_charge` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `tenant_id` (`tenant_id`),
   CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`)
@@ -93,6 +93,7 @@ CREATE TABLE `invoicelines` (
   `tenant_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `invoice_id` int(11) DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL,
   `vat` decimal(10,2) DEFAULT NULL,
@@ -275,6 +276,7 @@ CREATE TABLE `tenants` (
   `signature_image` mediumblob,
   `invoice_styles` text,
   `invoice_template` text,
+  `invoiceline_template` text,
   `invoice_page_number` varchar(255) DEFAULT NULL,
   `hours_active` tinyint(1) NOT NULL DEFAULT '1',
   `subscriptions_active` tinyint(1) NOT NULL DEFAULT '1',
@@ -296,4 +298,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-01-28 13:26:22
+-- 2019-02-02 08:39:26
