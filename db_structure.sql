@@ -91,8 +91,7 @@ DROP TABLE IF EXISTS `invoicelines`;
 CREATE TABLE `invoicelines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tenant_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `invoice_id` int(11) DEFAULT NULL,
+  `invoice_id` int(11) NOT NULL,
   `type` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL,
@@ -102,10 +101,8 @@ CREATE TABLE `invoicelines` (
   PRIMARY KEY (`id`),
   KEY `tenant_id` (`tenant_id`),
   KEY `invoice_id` (`invoice_id`),
-  KEY `customer_id` (`customer_id`),
   CONSTRAINT `invoicelines_ibfk_1` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`),
-  CONSTRAINT `invoicelines_ibfk_3` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`),
-  CONSTRAINT `invoicelines_ibfk_4` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
+  CONSTRAINT `invoicelines_ibfk_5` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -116,8 +113,8 @@ CREATE TABLE `invoices` (
   `number` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `date` date DEFAULT NULL,
-  `sent` tinyint(1) NOT NULL,
-  `paid` tinyint(1) NOT NULL,
+  `sent` date DEFAULT NULL,
+  `paid` date DEFAULT NULL,
   `reminder1` date DEFAULT NULL,
   `reminder2` date DEFAULT NULL,
   `customer_id` int(11) NOT NULL,
@@ -298,4 +295,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-02-02 08:39:26
+-- 2019-02-02 23:42:59

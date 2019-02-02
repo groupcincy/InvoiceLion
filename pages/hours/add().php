@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	
 	if (!isset($errors)) {
 		try {
+			$subtotal = $data['hours']['hours_worked'] * $data['hours']['hourly_fee'];
+
 			$hour_id = DB::insert('INSERT INTO `hours` (`tenant_id`, `customer_id`, `project_id`, `date`, `name`, `hours_worked`, `hourly_fee`, `subtotal`, `vat_percentage`, `type`, `comment`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['hours']['customer_id'], $data['hours']['project_id'], $data['hours']['date'], $data['hours']['name'], $data['hours']['hours_worked'], $data['hours']['hourly_fee'], $subtotal, $data['hours']['vat_percentage'], $data['hours']['type'], $data['hours']['comment']);
 
 			if ($hour_id) {
