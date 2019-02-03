@@ -27,7 +27,7 @@
                     <th class="name">Subscriptions without invoice</th>
                     <th class="money"></th>
                 </tr>
-                <?php foreach ($uninvoiced_hours as $row): ?>
+                <?php foreach ($uninvoiced_subscriptions as $row): ?>
                     <tr class="hover" onclick="window.location.href='subscriptions/view/<?php e($row['subscriptions']['id']);?>';">
                         <td class="name"><span><?php e($row['subscriptions']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['subscriptions']['fee']); ?></span></td>
@@ -37,14 +37,14 @@
         </div>
     <?php } ?>
 
-    <?php if(isset($uninvoiced_hours[0])) { ?>
+    <?php if(isset($uninvoiced_deliveries[0])) { ?>
         <div class="col50">  
             <table>
                 <tr>
                     <th class="name">Deliveries without invoice</th>
                     <th class="money"></th>
                 </tr>
-                <?php foreach ($uninvoiced_hours as $row): ?>
+                <?php foreach ($uninvoiced_deliveries as $row): ?>
                     <tr class="hover" onclick="window.location.href='deliveries/view/<?php e($row['deliveries']['id']);?>';">
                         <td class="name"><span><?php e($row['deliveries']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['deliveries']['subtotal']); ?></span></td>
