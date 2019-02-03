@@ -54,10 +54,10 @@ if (Debugger::$enabled) {
 	$error = Email::send($kl_email,$kl_name,$from,$fromName,$subject,$content,$attachmentcontent,$attachmentfilename);
 }
 
-if (!$error) {
+if (!$error || Debugger::$enabled)  {
 	if($reminder==1) DB::update('update invoices set reminder1=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
 	else if($reminder==2) DB::update('update invoices set reminder2=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
-	else DB::update('update invoices set sent=1 WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
+	else DB::update('update invoices set sent=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
 	Flash::set('success','Factuur sent');
 	Router::redirect('invoices/index');
 }

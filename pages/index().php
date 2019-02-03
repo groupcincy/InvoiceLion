@@ -3,13 +3,13 @@ $uninvoiced_hours = DB::select('SELECT * FROM `hours` WHERE `tenant_id` = ? AND 
 $uninvoiced_subscriptions = DB::select('SELECT * FROM subscriptionperiods, subscriptions WHERE subscriptionperiods.tenant_id = ? AND subscriptionperiods.invoiceline_id IS NULL AND subscriptions.id = subscriptionperiods.subscription_id', $_SESSION['user']['tenant_id']);
 $uninvoiced_deliveries = DB::select('SELECT * FROM `deliveries` WHERE `tenant_id` = ? AND invoiceline_id IS NULL', $_SESSION['user']['tenant_id']);
 
-$unpaid_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (sent and (paid IS NULL or paid=0)) ORDER BY `number` DESC', $_SESSION['user']['tenant_id']);
+$unpaid_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` and `paid` IS NULL ORDER BY `number` DESC', $_SESSION['user']['tenant_id']);
 
-$unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (invoices.sent IS NULL or invoices.sent=0) ORDER BY invoices.number DESC', $_SESSION['user']['tenant_id']);
+$unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` IS NULL ORDER BY invoices.number DESC', $_SESSION['user']['tenant_id']);
 
-$unsent_reminders = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (sent and (paid IS NULL or paid=0)) and date < NOW() - INTERVAL 1 MONTH and reminder1 IS NULL ORDER BY name', $_SESSION['user']['tenant_id']);
+$unsent_reminders = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` and `paid` IS NULL AND date < NOW() - INTERVAL 1 MONTH AND reminder1 IS NULL ORDER BY name', $_SESSION['user']['tenant_id']);
 
-$unsent_reminders2 = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (paid IS NULL or paid=0) and reminder1 < NOW() - INTERVAL 2 WEEK and reminder2 IS NULL ORDER BY name', $_SESSION['user']['tenant_id']);
+$unsent_reminders2 = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `paid` IS NULL AND reminder1 < NOW() - INTERVAL 2 WEEK AND reminder2 IS NULL ORDER BY name', $_SESSION['user']['tenant_id']);
 
 $missing_period_ids = DB::selectValues('SELECT `subscriptions`.id, ceil(timestampdiff(DAY,`subscriptions`.`from`, if(`subscriptions`.`canceled` is null,now(),`subscriptions`.`canceled`))/((365.25/12)*`subscriptions`.`months`)) as `expected_days`, count(`subscriptionperiods`.id) as `actual_days` from `subscriptions`, `subscriptionperiods` where `subscriptionperiods`.`tenant_id` = ? AND `subscriptionperiods`.`subscription_id` = `subscriptions`.`id` group by `subscriptions`.id having `actual_days` < `expected_days`', $_SESSION['user']['tenant_id']);
 
