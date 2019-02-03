@@ -41,8 +41,8 @@ foreach ($deliveries as $row) {
 	);
 }
 foreach ($subscriptionperiods as $row) {
-	$subtotal = $row['deliveries']['subtotal'];
-	$vat_percentage = $row['deliveries']['vat_percentage'];
+	$subtotal = $row['subscriptions']['fee'];
+	$vat_percentage = $row['subscriptions']['vat_percentage'];
 	if($vat_percentage) $total = $subtotal*((100+$vat_percentage)/100); 
 	else $total = $subtotal;
 	$name = InvoiceTemplate::render($template, array('type'=>'subscription', 'subscription'=>$row['subscriptions'], 'subscriptionperiod'=>$row['subscriptionperiods']));
