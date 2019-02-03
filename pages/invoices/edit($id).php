@@ -1,12 +1,12 @@
 <?php 
-$invoice = DB::selectOne('select * from `invoices` WHERE `tenant_id` = ? AND id = ?', $_SESSION['user']['tenant_id'], $id);
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
 
 	if (!isset($errors)) {
 		try {
-			$rowsAffected = DB::update('UPDATE `invoices` SET `paid` = ? WHERE `tenant_id` = ? AND `id` = ?', $data['invoices']['paid'], $_SESSION['user']['tenant_id'], $invoice['invoices']['id']);
+			$rowsAffected = DB::update('UPDATE `invoices` SET `date` = ? WHERE `sent` IS NULL AND `tenant_id` = ? AND `id` = ?', $data['invoices']['date'], $_SESSION['user']['tenant_id'], $id);
+			$rowsAffected = DB::update('UPDATE `invoices` SET `paid` = ? WHERE `tenant_id` = ? AND `id` = ?', $data['invoices']['paid'], $_SESSION['user']['tenant_id'], $id);
 
 			if ($rowsAffected!==false) {
 				Flash::set('success','Invoice saved');
