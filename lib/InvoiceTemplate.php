@@ -21,7 +21,7 @@ class InvoiceTemplate
         };
         
         $formatDate = function($date,$format) {
-            return date($format, $date);
+            return date($format, strtotime($date));
         };
         
         $eq = function($a,$b) {
