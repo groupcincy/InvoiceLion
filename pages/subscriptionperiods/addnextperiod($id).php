@@ -9,6 +9,6 @@ $data['subscriptionperiods']['until'] = date('Y-m-d', strtotime($data['subscript
 $subscriptionperiod_id = DB::insert('INSERT INTO `subscriptionperiods` (`tenant_id`, `from`, `until`, `name`, `subscription_id`, `comment`) VALUES (?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptionperiods']['from'], $data['subscriptionperiods']['until'], $data['subscriptionperiods']['name'], $data['subscriptionperiods']['subscription_id'], NULL);
 
 if ($subscriptionperiod_id) {
-	Flash::set('success','Abonnementperiode saved');
-	Router::redirect('subscriptionperiods/index');
+	Flash::set('success','Subscription period saved');
+	Router::redirect('subscriptions/view/'.$id);
 }
