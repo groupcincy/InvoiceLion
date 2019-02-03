@@ -12,6 +12,12 @@
 		<span class="help-block"><?php if (isset($errors['invoices[number]'])) e($errors['invoices[number]']); ?></span>
 	</div>
 
+	<div class="form-group <?php e(isset($errors['invoices[date]'])?'has-error':''); ?>">
+		<label class="control-label" for="invoices[date]">Date</label>
+		<input class="form-control" name="invoices[date]" type="date" value="<?php e($data['invoices']['date']); ?>" id="invoices[date]" />
+		<span class="help-block"><?php if (isset($errors['invoices[date]'])) e($errors['invoices[date]']); ?></span>
+	</div>
+
 	<div class="form-group <?php e(isset($errors['invoices[paid]'])?'has-error':''); ?>">
         <label class="control-label" for="invoices[paid]">Paid</label>
         <input class="form-control" name="invoices[paid]" type="date" value="<?php e($data['invoices']['paid']); ?>" id="invoices[paid]" />
