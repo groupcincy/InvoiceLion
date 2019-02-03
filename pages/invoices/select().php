@@ -1,5 +1,5 @@
 <?php 
-$hours_customer_ids = DB::selectValues('select distinct customer_id from hours where invoiceline_id IS NULL AND `tenant_id` = ?', $_SESSION['user']['tenant_id']);
+$hours_customer_ids = DB::selectValues('select distinct customer_id from hours where invoiceline_id IS NULL AND customer_id IS NOT NULL AND `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 $deliveries_customer_ids = DB::selectValues('select distinct customer_id from deliveries where invoiceline_id IS NULL AND `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 $subscriptionperiods_customer_ids = DB::selectValues('select distinct s.customer_id FROM subscriptions s, subscriptionperiods p WHERE p.subscription_id = s.id AND p.invoiceline_id IS NULL AND s.tenant_id = ?', $_SESSION['user']['tenant_id']);
 $customer_ids = array_unique(array_merge($hours_customer_ids, $deliveries_customer_ids, $subscriptionperiods_customer_ids));
