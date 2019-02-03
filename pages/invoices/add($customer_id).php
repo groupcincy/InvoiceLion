@@ -18,7 +18,7 @@ foreach ($hours as $row) {
 	$name = InvoiceTemplate::render($template, array('type'=>'hours', 'hours'=>$row['hours']));
 	$invoicelines['hours_'.$row['hours']['id']] = array(
 		'type'=>'hours',
-		'name'=>$name,
+		'name'=>trim(str_replace("\n"," ",$name)),
 		'subtotal'=>$subtotal,
 		'vat'=>($total - $subtotal),
 		'vat_percentage'=>$vat_percentage,
@@ -33,7 +33,7 @@ foreach ($deliveries as $row) {
 	$name = InvoiceTemplate::render($template, array('type'=>'delivery', 'delivery'=>$row['deliveries']));
 	$invoicelines['deliveries_'.$row['deliveries']['id']] = array(
 		'type'=>'delivery',
-		'name'=>$name,
+		'name'=>trim(str_replace("\n"," ",$name)),
 		'subtotal'=>$subtotal,
 		'vat'=>($total - $subtotal),
 		'vat_percentage'=>$vat_percentage,
@@ -48,7 +48,7 @@ foreach ($subscriptionperiods as $row) {
 	$name = InvoiceTemplate::render($template, array('type'=>'subscription', 'subscription'=>$row['subscriptions'], 'subscriptionperiod'=>$row['subscriptionperiods']));
 	$invoicelines['subscriptionperiods_'.$row['subscriptionperiods']['id']] = array(
 		'type'=>'subscription',
-		'name'=>$name,
+		'name'=>trim(str_replace("\n"," ",$name)),
 		'subtotal'=>$subtotal,
 		'vat'=>($total - $subtotal),
 		'vat_percentage'=>$vat_percentage,
