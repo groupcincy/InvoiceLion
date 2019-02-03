@@ -1,5 +1,5 @@
 <?php
-$uninvoiced_hours = DB::select('SELECT * FROM `hours` WHERE `tenant_id` = ? AND invoiceline_id IS NULL AND `total` <> 0.00', $_SESSION['user']['tenant_id']);
+$uninvoiced_hours = DB::select('SELECT * FROM `hours` WHERE `tenant_id` = ? AND invoiceline_id IS NULL AND `subtotal` <> 0.00', $_SESSION['user']['tenant_id']);
 $uninvoiced_subscriptions = DB::select('SELECT * FROM `subscriptionperiods, subscriptions` WHERE `tenant_id` = ? AND invoiceline_id IS NULL AND subscriptions.id = subscriptionperiods.subscription_id', $_SESSION['user']['tenant_id']);
 $uninvoiced_deliveries = DB::select('SELECT * FROM `deliveries` WHERE `tenant_id` = ? AND invoiceline_id IS NULL', $_SESSION['user']['tenant_id']);
 
