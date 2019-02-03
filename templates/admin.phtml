@@ -78,7 +78,7 @@
 
           <div class="bottom">
             <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
-            <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User">
+            <a href="users/view/<?php e($_SESSION['user']['id']); ?>" <?php if(substr(Router::getRequest(),0,6)==='/users') e('class=active'); ?> title="User">
               <div class="img" style="background-image: url(/img/user.svg);"></div>
               <div class="img" style="background-image: url(/img/user-white.svg);"></div>
               <span><?php e(substr($username,0,12)."...");?></span>
