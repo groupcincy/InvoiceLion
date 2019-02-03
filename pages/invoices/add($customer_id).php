@@ -6,7 +6,7 @@ if (!$customer_id) {
 $highest_invoice_number = DB::selectValue('SELECT MAX(number) FROM invoices WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 $hours = DB::select('select * FROM `hours` WHERE invoiceline_id IS NULL AND `customer_id` = ? AND `tenant_id` = ?', $customer_id, $_SESSION['user']['tenant_id']);
 $deliveries = DB::select('select * FROM `deliveries` WHERE invoiceline_id IS NULL AND `customer_id` = ? AND `tenant_id` = ?', $customer_id, $_SESSION['user']['tenant_id']);
-$subscriptionperiods = DB::select('select * FROM subscriptions s, subscriptionperiods p WHERE p.subscription_id = s.id AND p.invoiceline_id IS NULL AND s.customer_id = ? AND s.tenant_id = ?', $customer_id, $_SESSION['user']['tenant_id']);
+$subscriptionperiods = DB::select('select * FROM subscriptions, subscriptionperiods WHERE subscriptionperiods.subscription_id = subscriptions.id AND subscriptionperiods.invoiceline_id IS NULL AND subscriptions.customer_id = ? AND subscriptions.tenant_id = ?', $customer_id, $_SESSION['user']['tenant_id']);
 $template = DB::selectValue('select `invoiceline_template` from `tenants` WHERE `id` = ?', $_SESSION['user']['tenant_id']);
 
 $invoicelines = array();
