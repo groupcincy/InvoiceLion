@@ -3,24 +3,24 @@
 <h1>Dashboard</h1>
 
 <div class="row">
-    <?php if(isset($invoicelines_no_invoices[0])) { ?>
+    <?php if(isset($uninvoiced_hours[0])) { ?>
         <div class="col50">  
             <table>
                 <tr>
-                    <th class="name">Invoice lines without invoice</th>
+                    <th class="name">Hours without invoice</th>
                     <th class="money"></th>
                 </tr>
-                <?php foreach ($invoicelines_no_invoices as $row): ?>
-                    <tr class="hover" onclick="window.location.href='invoicelines/view/<?php e($row['invoicelines']['id']);?>';">
-                        <td class="name"><span><?php e($row['invoicelines']['name']); ?></span></td>
-                        <td class="money"><span><?php e($row['invoicelines']['subtotal']); ?></span></td>
+                <?php foreach ($uninvoiced_hours as $row): ?>
+                    <tr class="hover" onclick="window.location.href='hours/view/<?php e($row['hours']['id']);?>';">
+                        <td class="name"><span><?php e($row['hours']['name']); ?></span></td>
+                        <td class="money"><span><?php e($row['hours']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
             </table>
         </div>
     <?php } ?>
 
-    <?php if(isset($erronous_subscriptions[0]) || isset($periods_no_invoices[0])) { ?>
+    <?php if(isset($erronous_subscriptions[0])) { ?>
         <div class="col50">  
             <?php if(isset($erronous_subscriptions[0])) { ?>
             <table>
