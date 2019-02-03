@@ -1,4 +1,4 @@
--- Adminer 4.7.1 MySQL dump
+-- Adminer 4.7.0 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -288,6 +288,8 @@ CREATE TABLE `users` (
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `created` datetime NOT NULL,
+  `superadmin` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `tenant_id` (`tenant_id`),
@@ -295,4 +297,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-02-03 00:08:59
+-- 2019-02-03 18:20:13

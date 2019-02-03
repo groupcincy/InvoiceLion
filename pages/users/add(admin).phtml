@@ -10,18 +10,12 @@
 		<span class="help-block"><?php if (isset($errors['users[username]'])) e($errors['users[username]']); ?></span>
 	</div>
   
-	<div class="form-group <?php e(isset($errors['users[password]'])?'has-error':''); ?>">
-		<label class="control-label" for="users[password]">Password</label>
-		<input class="form-control" name="users[password]" type="text" value="<?php e($data['users']['password']); ?>" id="users[password]" />
-		<span class="help-block"><?php if (isset($errors['users[password]'])) e($errors['users[password]']); ?></span>
+	<div class="form-group <?php e(isset($errors['users[name]'])?'has-error':''); ?>">
+		<label class="control-label" for="users[name]">Name</label>
+		<input class="form-control" name="users[name]" type="text" value="<?php e($data['users']['name']); ?>" id="users[name]" />
+		<span class="help-block"><?php if (isset($errors['users[name]'])) e($errors['users[name]']); ?></span>
 	</div>
   
-	<div class="form-group <?php e(isset($errors['users[created]'])?'has-error':''); ?>">
-		<label class="control-label" for="users[created]">Created</label>
-		<input class="form-control" name="users[created]" type="text" value="<?php e($data['users']['created']); ?>" id="users[created]" />
-		<span class="help-block"><?php if (isset($errors['users[created]'])) e($errors['users[created]']); ?></span>
-	</div>
-
 	<div class="form-group">
 		<button class="btn btn-primary" type="submit">Save</button>
 	</div>

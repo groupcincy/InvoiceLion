@@ -3,15 +3,15 @@
   <thead>
     <tr>
       <th>Username</th>
-      <th>Password</th>
+      <th>Name</th>
       <th>Created</th>
     </tr>
   </thead>
   <tbody>
     <?php foreach ($data as $row): ?>
-    <tr>
+    <tr class="hover" onclick="window.location.href='users/view/<?php e($row['users']['id']);?>';">
       <td><span><?php e($row['users']['username']);?></span></td>
-      <td><span><?php e($row['users']['password']);?></span></td>
+      <td><span><?php e($row['users']['name']);?></span></td>
       <td><span><?php e($row['users']['created']);?></span></td>
     </tr>
     <?php endforeach; ?>
