@@ -1,6 +1,6 @@
 <?php
 $subscription = DB::selectOne('select * from `subscriptions` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'],$id);
-$data = DB::selectOne('select * from `subscriptionperiods` WHERE `tenant_id` = ? AND `subscription_id` = ? ORDER BY from DESC LIMIT 1', $_SESSION['user']['tenant_id'], $id);
+$data = DB::selectOne('select * from `subscriptionperiods` WHERE `tenant_id` = ? AND `subscription_id` = ? ORDER BY `from` DESC LIMIT 1', $_SESSION['user']['tenant_id'], $id);
 
 $period = $subscription['subscriptions']['months'];
 $data['subscriptionperiods']['from'] = date('Y-m-d', strtotime($data['subscriptionperiods']['from'] . ' +'.$period.' months'));
