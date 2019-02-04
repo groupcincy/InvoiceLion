@@ -276,8 +276,9 @@ body {color: gray;}
 .default .content::before {background: #333;}
 th, .main > div h3, .main > div h3 a, dt {font-style: italic; color: silver; font-weight: normal;}
 h1 {font-weight: normal; color: #444; font-weight: 700}
+input, select, textarea {color: #444;}
 h1:after {background: transparent;}
-input, select, textarea, label, .main > div a, .icons > div a , td span, dd {color: gray;}
+.main > div a, .icons > div a , td span, dd {color: gray;}
 .main > div a {text-decoration: none;}
 .icons > div a .img:first-child {opacity: 0.5;}
 th.selected {font-style: normal;}
