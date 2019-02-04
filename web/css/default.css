@@ -89,9 +89,9 @@ pre {font-family: 'Roboto', sans-serif;}
 .default .content {padding-top: 5px!important; width:100%; max-width: 100%; left: 0;}
 .default .main > div.content {padding-left: 0; padding-right: 0;}
 .default .content::before {content: ""; position: absolute; z-index: 0; left: 0; width: 100%; top: 0; background: black; height: 200px;}
-.default .content a#branding {color: white; position: relative; width: 100px; display: block; margin: 0 auto; opacity: 0.4; text-align: center; text-decoration: none; font-weight: bold;}
+.default .content a#branding {color: white; position: relative; width: 80px; display: block; margin: 10px auto 15px; opacity: 0.4; text-align: center; text-decoration: none; font-weight: bold;}
 .default .content a#branding img {width: 100%;}
-.default .content a#branding span {position: relative; bottom: 20px;}
+.default .content a#branding span {}
 body.default {background: #eee;}
 
 
@@ -272,6 +272,8 @@ body.iOS .icons {
 
 
 /* set colors */
+body {color: gray;}
+.default .content::before {background: #333;}
 th, .main > div h3, .main > div h3 a, dt {font-style: italic; color: silver; font-weight: normal;}
 h1 {font-weight: normal; color: #444; font-weight: 700}
 h1:after {background: transparent;}
