@@ -32,8 +32,8 @@ a {background: transparent;}
 .icons > div a span {display: none;}
 .icons > div a:hover {background: #eee;}
 .icons > div a .img + .img {opacity: 0; position: absolute; top: 10px; width: 24px; width: 100%;}
-.icons > div a.active .img {opacity: 0;}
-.icons > div a.active .img + .img {opacity: 1;}
+.icons > div a.active .img {opacity: 0!important;}
+.icons > div a.active .img + .img {opacity: 1!important;}
 .icons {display: block;}
 a {cursor: pointer;}
 p, ul, ol, .form {margin-bottom: 1.5em;}
@@ -51,7 +51,7 @@ h1::after {
     margin: 20px 0 10px;
 }
 h2 {font-size: 30px; margin-bottom: 30px; line-height: 1em; font-weight: 900; letter-spacing: 0.5px; padding-top: 5px;}
-h3 {font-size: 18.4px; margin-bottom: 10px; line-height: 1.2em; font-weight: 700;}
+h3 {font-size: 14px; margin-bottom: 5px; line-height: 1.2em; font-weight: 700;}
 * + h3 {margin-top: 30px;}
 * + h2 {margin-top: 60px;}
 .btn-primary, .btn-danger, .btn-default {display: inline-block; background: #18b663; color: white!important; padding: 10px 15px; font-weight: 700; font-size: 12px; line-height: 1.5em; border: 1px solid #18b663; text-transform: uppercase; border-radius: 3px; text-decoration: none; cursor: pointer;}
@@ -128,12 +128,12 @@ div + p {padding-top: 15px;}
     .content {margin: 0 auto; width: calc(100% - 500px); max-width: 1200px; position: relative; left: 130px;}
     .icons {position: fixed; left: 0; top: 0; bottom: auto; width: 260px; height: 100vh; border-top: 0; padding-top: 0; text-align: left;}
     .icons > div {display: block;}
-    .icons > div a {display: block; margin: 1px auto; padding: 10px 35px;}
+    .icons > div a {display: block; margin: 0px auto; padding: 10px 35px;}
     .icons > div a .img {position: absolute; width: 25px; height: 25px;}
     .icons > div a .img + .img {width: 25px;}
     .icons > div a span {font-size: 14px; display: inline-block; padding-left: 45px;}
-    .icons > div a#branding {display: block; background: #000; margin: 0 0 25px; padding: 0; border-bottom: 1px solid rgba(0,0,0,0.05);}
-    .icons > div a#branding > span {display: block; height: 140px; background: #000 url(/img/invoicelion_inverted.png) 5px center / contain no-repeat; opacity: 0.4;}
+    .icons > div a#branding {display: block; background: #333; margin: 0 0 25px; padding: 0; border-bottom: 1px solid rgba(0,0,0,0.05);}
+    .icons > div a#branding > span {display: block; height: 140px; background: transparent url(/img/invoicelion_reversed.svg) 40px center / auto 70% no-repeat; opacity: 0.4;}
     .onlydesktop, .icons div.bottom {display: block!important;}
     .icons div.bottom {position: absolute; bottom: 35px; width: 100%;}
     .onlymobile {display: none!important;}
@@ -171,7 +171,6 @@ select {padding: 0 10px; height: 42px; width: calc(100% - 2px);}
 textarea {height: 200px; line-height: 1.5em; padding-top: 9px; padding-bottom: 9px;}
 input[type="checkbox"] {height: auto; width: auto; max-width: none;}
 th[order] {cursor: pointer;}
-th.selected {text-decoration: underline;}
 .tag {text-decoration: none; margin-top: 5px; border: 1px solid #ccc; border-radius: 3px; display: inline-block; padding: 2px 7px; font-size: 85%; margin-right: 2px;}
 input[type="file"] { border:0; padding:0;}
 .form-group.has-error, .form-group.has-error a {color: red!important;}
@@ -265,4 +264,18 @@ body.iOS .icons {
     right: 0!important; 
     width: 200px!important; 
     border-left: 1px solid silver;
+    color: gray;
 }
+
+
+
+
+
+/* set colors */
+th, .main > div h3, .main > div h3 a, dt {font-style: italic; color: silver; font-weight: normal;}
+h1 {font-weight: normal; color: #333; font-weight: 700}
+h1:after {background: transparent;}
+.main > div a, .icons > div a , td span, dd {color: gray;}
+.main > div a {text-decoration: none;}
+.icons > div a .img:first-child {opacity: 0.5;}
+th.selected {font-style: normal;}
