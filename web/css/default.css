@@ -89,9 +89,8 @@ pre {font-family: 'Roboto', sans-serif;}
 .default .content {padding-top: 5px!important; width:100%; max-width: 100%; left: 0;}
 .default .main > div.content {padding-left: 0; padding-right: 0;}
 .default .content::before {content: ""; position: absolute; z-index: 0; left: 0; width: 100%; top: 0; background: black; height: 200px;}
-.default .content a#branding {color: white; position: relative; width: 80px; display: block; margin: 10px auto 15px; opacity: 0.4; text-align: center; text-decoration: none; font-weight: bold;}
+.default .content a#branding {color: white; position: relative; width: 80px; display: block; margin: 10px auto 20px; opacity: 0.4; text-align: center; text-decoration: none; font-weight: bold;}
 .default .content a#branding img {width: 100%;}
-.default .content a#branding span {}
 body.default {background: #eee;}
 
 
@@ -133,7 +132,7 @@ div + p {padding-top: 15px;}
     .icons > div a .img + .img {width: 25px;}
     .icons > div a span {font-size: 14px; display: inline-block; padding-left: 45px;}
     .icons > div a#branding {display: block; background: #333; margin: 0 0 25px; padding: 0; border-bottom: 1px solid rgba(0,0,0,0.05);}
-    .icons > div a#branding > span {display: block; height: 140px; background: transparent url(/img/invoicelion_reversed.svg) 40px center / auto 68% no-repeat; opacity: 0.4;}
+    .icons > div a#branding > span {display: block; height: 140px; background: transparent url(/img/invoicelion_reversed.svg) 40px center / auto 60% no-repeat; opacity: 0.4;}
     .onlydesktop, .icons div.bottom {display: block!important;}
     .icons div.bottom {position: absolute; bottom: 35px; width: 100%;}
     .onlymobile {display: none!important;}
