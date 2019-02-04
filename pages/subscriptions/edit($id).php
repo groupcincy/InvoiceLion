@@ -5,6 +5,10 @@ $customers = DB::selectPairs('select `id`,`name` from `customers`  WHERE `tenant
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = $_POST;
 
+    //set vat_percentage to NULL if the customer has vat_reverse_charge
+	$vat_reverse_charge = DB::selectValue('select `vat_reverse_charge` from `customers` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $data['subscriptions']['customer_id']);
+    if ($vat_reverse_charge) $data['subscriptions']['vat_percentage']=NULL;
+
     if (!$data['subscriptions']['from']) $errors['subscriptions[from]'] = 'Date not set';
     if (!$data['subscriptions']['name']) $errors['subscriptions[name]'] = 'Name not set';
     if (!$data['subscriptions']['fee']) $errors['subscriptions[fee]'] = 'Fee not set';
