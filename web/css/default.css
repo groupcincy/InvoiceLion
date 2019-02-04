@@ -277,8 +277,8 @@ body.iOS .icons {
 body {color: #555;}
 .default .content::before {background: #333;}
 th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: italic; color: #999; font-weight: normal;}
-h1 {font-weight: normal; color: #555; font-weight: 700}
-input, select, textarea {color: #555;}
+h1 {font-weight: normal; color: #444; font-weight: 700}
+input, select, textarea {color: #444;}
 h1:after {background: transparent;}
 .main > div a, .icons > div a , td span, dd {color: #555;}
 .main > div a {text-decoration: none;}
