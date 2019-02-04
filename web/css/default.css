@@ -284,4 +284,4 @@ h1:after {background: transparent;}
 .main > div a {text-decoration: none;}
 .icons > div a .img:first-child {opacity: 0.5;}
 th.selected {font-style: normal;}
-label {font-weight: normal; font-style: italic; color: silver;}
+label, label a {font-weight: normal; font-style: italic; color: silver;}
