@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         $userId = NoPassAuth::register($username);
         if ($userId) {
             $tenantId = DB::insert('INSERT INTO `tenants` (`name`, `email`, `invoice_email`, `country`) VALUES (?, ?, ?, ?)', $username, $username, $username, $country); // does not need tenant_id check
-            foreach(array('invoice_styles', 'invoice_template', 'invoiceline_template', 'invoice_page_number') as $field) {
-                DB::update('UPDATE `tenants` SET `'.$field.'` = ? WHERE `id` = ?', file_get_contents("translations/$country/$field.txt"), $tenantId);
+            foreach(array('invoice_styles', 'invoice_template', 'invoiceline_template', 'invoice_page_number', 'default_vat_percentage') as $field) {
+                DB::update('UPDATE `tenants` SET `'.$field.'` = ? WHERE `id` = ?', file_get_contents("translations/$country/$field.txt"), $tenantId); // does not need tenant_id check
             }
             if ($tenantId) {
                 $rowsAffected = DB::update('UPDATE `users` SET `tenant_id`=? WHERE `id` = ?', $tenantId, $userId);

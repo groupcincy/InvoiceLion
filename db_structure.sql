@@ -1,4 +1,4 @@
--- Adminer 4.7.0 MySQL dump
+-- Adminer 4.7.1 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -277,6 +277,7 @@ CREATE TABLE `tenants` (
   `invoice_page_number` varchar(255) DEFAULT NULL,
   `hours_active` tinyint(1) NOT NULL DEFAULT '1',
   `subscriptions_active` tinyint(1) NOT NULL DEFAULT '1',
+  `country` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -297,4 +298,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-02-03 18:20:13
+-- 2019-02-04 22:16:01
