@@ -8,6 +8,14 @@
 		<input class="form-control" name="username" type="email" value="<?php e($data['username']); ?>" id="username" />
 		<span class="help-block"><?php if (isset($errors['username'])) e($errors['username']); ?></span>
 	</div>
+
+    <div class="form-group <?php e(isset($errors['username'])?'has-error':''); ?>">
+		<label class="control-label" for="username">Country</label>
+		<select class="form-control" name="country">
+            <option>Netherlands</option>
+        </select>
+		<span class="help-block"><?php if (isset($errors['username'])) e($errors['username']); ?></span>
+	</div>
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>
