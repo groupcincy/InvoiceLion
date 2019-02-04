@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/Usecue/InvoiceLion](https://badges.gitter.im/Usecue/InvoiceLion.svg)](https://gitter.im/Usecue/InvoiceLion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Software developers during the day and "Invoice Lions" at night... We are twin brothers and freelance software developers with a hobby: We like to build online tools and we like to share. 
-We needed an Invoicing system and decided to build our own. We use InvoiceLion ourselves, and continuously improve this tool. We aspire to be the WordPress of Invoicing, so we would love to get feedback from you to build this tool together! Are we doing a good job? What needs to be improved (first) or added? [Let us know](https://gitter.im/Usecue/InvoiceLion)!
+We needed an Invoicing system and decided to build our own. Invoicing should be open and free. We use InvoiceLion ourselves, and continuously improve this tool. We aspire to be the WordPress of Invoicing, so we would love to get feedback from you. Let's build this tool together! Are we doing a good job? What needs to be improved (first) or added? [Let us know](https://gitter.im/Usecue/InvoiceLion)!
 
 ## InvoiceLion.com
 
