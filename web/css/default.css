@@ -273,9 +273,10 @@ body.iOS .icons {
 
 /* set colors */
 th, .main > div h3, .main > div h3 a, dt {font-style: italic; color: silver; font-weight: normal;}
-h1 {font-weight: normal; color: #333; font-weight: 700}
+h1 {font-weight: normal; color: #444; font-weight: 700}
 h1:after {background: transparent;}
-.main > div a, .icons > div a , td span, dd {color: gray;}
+input, select, textarea, label, .main > div a, .icons > div a , td span, dd {color: gray;}
 .main > div a {text-decoration: none;}
 .icons > div a .img:first-child {opacity: 0.5;}
 th.selected {font-style: normal;}
+label {font-weight: normal;}
