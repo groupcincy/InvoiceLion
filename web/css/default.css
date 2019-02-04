@@ -58,6 +58,9 @@ h3 {font-size: 14px; margin-bottom: 5px; line-height: 1.2em; font-weight: 700;}
 .btn-default, .btn-danger {background: white; color: #18b663!important;}
 h3 a {text-decoration: none;}
 .pull-right {float: right;}
+.pull-right .btn-primary, .pull-right .btn-danger, .pull-right .btn-default,
+.btn-primary.pull-right, .btn-danger.pull-right, .btn-default.pull-right {margin-right: 0px; margin-left: 10px;}
+
 h1 .btn-primary {font-size: 12px; line-height: 1.5em; margin-top: 5px; float: right; }
 @media (max-width: 800px) {
     h1 .btn-primary {position: absolute; right: 20px; top: 15px;}
