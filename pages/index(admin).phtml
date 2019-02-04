@@ -4,7 +4,10 @@
 
 <div class="row">
 
-    <?php if(isset($unsent_invoices[0]) || isset($unsent_reminders[0]) || isset($unsent_reminders2[0])) { ?>
+    <?php 
+    $i = 0;
+    if(isset($unsent_invoices[0]) || isset($unsent_reminders[0]) || isset($unsent_reminders2[0])) { 
+        $i++; ?>
         <div class="col50">  
             <?php if(isset($unsent_invoices[0])) { ?>
             <table>
@@ -53,7 +56,8 @@
         </div>
     <?php } ?>
 
-    <?php if(isset($uninvoiced_hours[0])) { ?>
+    <?php if(isset($uninvoiced_hours[0])) { 
+        $i++; ?>
         <div class="col50">  
             <table>
                 <tr>
@@ -70,7 +74,8 @@
         </div>
     <?php } ?>
 
-    <?php if(isset($uninvoiced_subscriptions[0])) { ?>
+    <?php if(isset($uninvoiced_subscriptions[0])) { 
+        $i++; ?>
         <div class="col50">  
             <table>
                 <tr>
@@ -87,7 +92,8 @@
         </div>
     <?php } ?>
 
-    <?php if(isset($uninvoiced_deliveries[0])) { ?>
+    <?php if(isset($uninvoiced_deliveries[0])) { 
+        $i++; ?>
         <div class="col50">  
             <table>
                 <tr>
@@ -104,7 +110,8 @@
         </div>
     <?php } ?>
 
-    <?php if(isset($erronous_subscriptions[0])) { ?>
+    <?php if(isset($erronous_subscriptions[0])) { 
+        $i++; ?>
         <div class="col50">  
             <?php if(isset($erronous_subscriptions[0])) { ?>
             <table>
@@ -123,7 +130,8 @@
         </div>
     <?php } ?>
 
-    <?php if(isset($unpaid_invoices[0])) { ?>
+    <?php if(isset($unpaid_invoices[0])) { 
+        $i++; ?>
         <div class="col50">    
             <table>
                 <tr>
@@ -138,5 +146,9 @@
                 <?php endforeach; ?>
             </table>
         </div>
+    <?php } ?>
+
+    <?php if(!$i) {?>
+        Well done! You have no items that require your attention.
     <?php } ?>
 </div>
