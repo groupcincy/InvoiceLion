@@ -12,7 +12,7 @@
     <div class="form-group <?php e(isset($errors['country'])?'has-error':''); ?>">
 		<label class="control-label" for="country">Country</label>
 		<select class="form-control" name="country">
-            <option>Netherlands</option>
+            <option value="nl">Netherlands</option>
         </select>
 		<span class="help-block"><?php if (isset($errors['country'])) e($errors['country']); ?></span>
         <div style="padding-top: 5px;"><a href="https://github.com/Usecue/InvoiceLion/wiki/Country-support">Why is my country not listed?</a></div>
