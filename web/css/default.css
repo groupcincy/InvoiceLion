@@ -143,7 +143,7 @@ div + p {padding-top: 15px;}
     .icons {width: 55px; overflow: hidden;}
     .icons > div a {padding: 10px 15px;}
     .icons > div a#branding {margin-bottom: 15px;}
-    .icons > div a#branding > span {background-position: 0px center; height: 75px;}
+    .icons > div a#branding > span {background-position: center center; height: 75px; background-size: 70% auto;}
     .icons div.bottom {bottom: 25px;}
 }
 
@@ -279,4 +279,4 @@ input, select, textarea, label, .main > div a, .icons > div a , td span, dd {col
 .main > div a {text-decoration: none;}
 .icons > div a .img:first-child {opacity: 0.5;}
 th.selected {font-style: normal;}
-label {font-weight: normal;}
+label {font-weight: normal; font-style: italic; color: silver;}
