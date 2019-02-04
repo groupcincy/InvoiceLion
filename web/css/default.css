@@ -274,14 +274,14 @@ body.iOS .icons {
 
 
 /* set colors */
-body {color: gray;}
+body {color: #666;}
 .default .content::before {background: #333;}
-th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: italic; color: silver; font-weight: normal;}
+th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: italic; color: #aaa; font-weight: normal;}
 h1 {font-weight: normal; color: #444; font-weight: 700}
 input, select, textarea {color: #444;}
 h1:after {background: transparent;}
-.main > div a, .icons > div a , td span, dd {color: gray;}
+.main > div a, .icons > div a , td span, dd {color: #666;}
 .main > div a {text-decoration: none;}
 .icons > div a .img:first-child {opacity: 0.5;}
 th.selected {font-style: normal;}
-label, label a {font-weight: normal; font-style: italic; color: silver!important;}
+label, label a {font-weight: normal; font-style: italic; color: #aaa!important;}
