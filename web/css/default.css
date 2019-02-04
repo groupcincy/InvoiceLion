@@ -282,6 +282,6 @@ input, select, textarea {color: #444;}
 h1:after {background: transparent;}
 .main > div a, .icons > div a , td span, dd {color: #555;}
 .main > div a {text-decoration: none;}
-.icons > div a .img:first-child {opacity: 0.5;}
+.icons > div a .img:first-child {opacity: 0.65;}
 th.selected {font-style: normal;}
 label, label a {font-weight: normal; font-style: italic; color: #999!important;}
