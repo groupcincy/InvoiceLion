@@ -1,21 +1,52 @@
-<a href="/"><img src="/img/icon.svg" /><span>Dashboard</span></a><br /> 
-        
-<a href="statistics"><img src="/img/chart-bar.svg" /><span>Statistics</span></a><br />  
+<div>
+    <a href="/" <?php if(strlen(Router::getRequest())<3) e('class=active'); ?> title="Dashboard">
+        <div class="img" style="background-image: url(/img/icon-white.svg);"></div>
+        <span>Dashboard</span>
+    </a>
+    <?php if($tenant['tenants']['hours_active']) {?>
+    <a href="hours" <?php if(substr(Router::getRequest(),0,6)==='/hours') e('class=active'); ?> title="Hours">
+        <div class="img" style="background-image: url(/img/clock-white.svg);"></div>
+        <span>Hours</span>
+    </a>
+    <?php }?>
+    <a href="deliveries" <?php if(substr(Router::getRequest(),0,11)==='/deliveries') e('class=active'); ?> title="Deliveries">
+        <div class="img" style="background-image: url(/img/box-alt-white.svg);"></div>
+        <span>Deliveries</span>
+    </a>
+    <?php if($tenant['tenants']['subscriptions_active']) {?>
+    <a href="subscriptions" <?php if(substr(Router::getRequest(),0,14)==='/subscriptions') e('class=active'); ?> title="Subscriptions">
+        <div class="img" style="background-image: url(/img/repeat-white.svg);"></div>
+        <span>Subscriptions</span>
+    </a>
+    <?php } ?>
+    <a href="invoices" <?php if(substr(Router::getRequest(),0,9)==='/invoices') e('class=active'); ?> title="Invoices">
+        <div class="img" style="background-image: url(/img/file-invoice-dollar-white.svg);"></div>
+        <span>Invoices</span>
+    </a>
+    <a href="customers" <?php if(substr(Router::getRequest(),0,10)==='/customers') e('class=active'); ?> title="Customers">
+        <div class="img" style="background-image: url(/img/address-book.svg);"></div>
+        <div class="img" style="background-image: url(/img/address-book-white.svg);"></div>
+        <span>Customers</span>
+    </a>
+    <a href="settings" <?php if(substr(Router::getRequest(),0,9)==='/settings') e('class=active'); ?> title="Settings">
+        <div class="img" style="background-image: url(/img/cog-white.svg);"></div>
+        <span>Settings</span>
+    </a>
 
-<?php if($tenant['tenants']['hours_active']) {?><a href="hours"><img src="/img/clock.svg" /><span>Hours</span></a><br /><?php }?>
-    
-<a href="deliveries"><img src="/img/box-alt.svg" /><span>Deliveries</span></a><br />
 
-<?php if($tenant['tenants']['subscriptions_active']) {?><a href="subscriptions"><img src="/img/repeat.svg" /><span>Subscriptions</span></a><br /><?php }?>
 
-<a href="invoices"><img src="/img/file-invoice-dollar.svg" /><span>Invoices</span></a><br />        
-
-<a href="customers"><img src="/img/address-book.svg" /><span>Customers</span></a><br />
-
-<a href="tenants/view"><img src="/img/cog.svg" /><span>Settings</span></a><br />
-
-<?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
-
-<a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User"><img src="/img/user.svg" /><span><?php e($username);?></span></a> 
-
-<a href="auth/logout" title="Logout"><img src="/img/power-off.svg" /><span>Logout</span></a>
+    <?php if ($_SESSION['user']['superadmin']) { ?>
+        <a href="users/" <?php if(substr(Router::getRequest(),0,6)==='/users' && $_SESSION['user']['superadmin']) e('class=active'); ?> title="Users">
+        <div class="img" style="background-image: url(/img/user-friends-white.svg);"></div>
+        <span>Users</span>
+        </a> 
+    <?php } ?>
+    <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
+    <a href="users/view/<?php e($_SESSION['user']['id']); ?>" <?php if(substr(Router::getRequest(),0,6)==='/users' && !$_SESSION['user']['superadmin']) e('class=active'); ?> title="User">
+        <div class="img" style="background-image: url(/img/user-white.svg);"></div>
+        <span><?php e(substr($username,0,12)."...");?></span>
+    </a> 
+    <a href="auth/logout" title="Logout">
+        <div class="img" style="background-image: url(/img/power-off-white.svg);"></div>
+        <span>Logout</span>
+    </a>
