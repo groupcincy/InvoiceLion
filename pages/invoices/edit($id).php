@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	if (!isset($errors)) {
 		try {
 			//update date if not sent
-			$rowsAffected = DB::update('UPDATE `invoices` SET `date` = ? WHERE `sent` IS NULL AND `tenant_id` = ? AND `id` = ?', $data['invoices']['date'], $_SESSION['user']['tenant_id'], $id);
+			$rowsAffected = DB::update('UPDATE `invoices` SET `date` = ?, `sent` = ? WHERE `sent` IS NULL AND `tenant_id` = ? AND `id` = ?', $data['invoices']['date'], $data['invoices']['sent'], $_SESSION['user']['tenant_id'], $id);
 			//update paid if adjusted (also from sent invoices)
 			$rowsAffected = DB::update('UPDATE `invoices` SET `paid` = ? WHERE `tenant_id` = ? AND `id` = ?', $data['invoices']['paid'], $_SESSION['user']['tenant_id'], $id);
 
