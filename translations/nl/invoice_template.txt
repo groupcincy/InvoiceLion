@@ -22,7 +22,7 @@
 <br>
 <br>
 {{if:invoice.reminder|eq(0)}}
-    <b>Datum:</b> {{invoice.date}}<br>
+    <b>Datum:</b> {{invoice.date|formatDate(j F Y)|translateMonth(nl)}}<br>
     <b>Factuurnummer:</b> {{invoice.number}}<br>
     <b>Betreft:</b> {{invoice.name}}<br>
 {{endif}}
@@ -31,7 +31,7 @@
     <br>
     <table id="warning"><tr><td><b>HERINNERING</b></td></tr></table>
     <br>
-    <b>Factuurdatum:</b> {{invoice.date}}<br>
+    <b>Factuurdatum:</b> {{invoice.date|formatDate(j F Y)|translateMonth(nl)}}<br>
     <b>Factuurnummer:</b> {{invoice.number}}<br>
     <b>Betreft:</b> {{invoice.name}}<br>
 {{endif}}
@@ -40,7 +40,7 @@
     <br>
     <table id="warning"><tr><td><b>TWEEDE EN LAATSTE HERINNERING</b></td></tr></table>
     <br>
-    <b>Factuurdatum:</b> {{invoice.date}}<br>
+    <b>Factuurdatum:</b> {{invoice.date|formatDate(j F Y)|translateMonth(nl)}}<br>
     <b>Factuurnummer:</b> {{invoice.number}}<br>
     <b>Betreft:</b> {{invoice.name}}<br>
 {{endif}}
