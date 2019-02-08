@@ -3,8 +3,8 @@ $subscriptionIncome = DB::selectValue('SELECT SUM((fee*(12/months))/12) FROM sub
 
 $incomeThisYear = DB::selectValue('SELECT sum(subtotal) FROM invoices WHERE `tenant_id` = ? AND `sent` and YEAR(`date`) = YEAR(NOW())', $_SESSION['user']['tenant_id']);
 
-$hoursAddon = DB::selectValue('SELECT sum(subtotal) FROM `hours` WHERE `tenant_id` = ? AND `invoice_id` IS NULL', $_SESSION['user']['tenant_id']);
-$deliveryAddon = DB::selectValue('SELECT sum(subtotal) FROM `deliveries` WHERE `tenant_id` = ? AND `invoice_id` IS NULL', $_SESSION['user']['tenant_id']);
+$hoursAddon = DB::selectValue('SELECT sum(subtotal) FROM `hours` WHERE `tenant_id` = ? AND `invoiceline_id` IS NULL', $_SESSION['user']['tenant_id']);
+$deliveryAddon = DB::selectValue('SELECT sum(subtotal) FROM `deliveries` WHERE `tenant_id` = ? AND `invoiceline_id` IS NULL', $_SESSION['user']['tenant_id']);
 $incomeThisYearAddon = $hoursAddon + $deliveryAddon;
 
 $incomeLastYear = DB::selectValue('SELECT sum(subtotal) FROM invoices WHERE `tenant_id` = ? AND `sent` and YEAR(`date`) = YEAR(NOW())-1', $_SESSION['user']['tenant_id']);
