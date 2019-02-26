@@ -5,7 +5,7 @@ $uninvoiced_deliveries = DB::select('SELECT * FROM `deliveries` WHERE `tenant_id
 
 $unpaid_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` and `paid` IS NULL ORDER BY `number` DESC', $_SESSION['user']['tenant_id']);
 
-$unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` IS NULL ORDER BY invoices.number DESC', $_SESSION['user']['tenant_id']);
+$unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` = "0000-00-00" ORDER BY invoices.number DESC', $_SESSION['user']['tenant_id']);
 
 $unsent_reminders = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` and `paid` IS NULL AND date < NOW() - INTERVAL 1 MONTH AND reminder1 IS NULL ORDER BY name', $_SESSION['user']['tenant_id']);
 
