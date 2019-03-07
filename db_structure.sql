@@ -182,7 +182,7 @@ CREATE TABLE `projects` (
   `tenant_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `active` tinyint(1) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
   KEY `tenant_id` (`tenant_id`),
