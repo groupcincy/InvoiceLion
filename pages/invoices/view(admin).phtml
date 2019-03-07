@@ -106,7 +106,7 @@
 <br /><br />
 
 <p>
-	<?php if ($data['invoices']['sent'] != "0000-00-00") {?>
+	<?php if ($data['invoices']['sent'] == "0000-00-00" || !$data['invoices']['sent']) {?>
 		<a class="btn btn-primary pull-right" href="invoices/send/<?php e($id);?>">Send</a>
 	<?php }?>
 	<a class="btn btn-default" href="invoices/edit/<?php e($id);?>">Edit</a>
