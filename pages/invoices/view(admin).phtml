@@ -106,12 +106,12 @@
 <br /><br />
 
 <p>
-	<?php if ($data['invoices']['sent'] == "0000-00-00" || !$data['invoices']['sent']) {?>
+	<?php if (!$data['invoices']['sent']) {?>
 		<a class="btn btn-primary pull-right" href="invoices/send/<?php e($id);?>">Send</a>
 	<?php }?>
 	<a class="btn btn-default" href="invoices/edit/<?php e($id);?>">Edit</a>
 	<a class="btn btn-<?php $data['invoices']['sent'] ? e('primary') : e('default');?>" href="invoices/download/<?php e($id);?>">Download</a>
-	<?php if (($data['invoices']['sent'] != "0000-00-00" || !$data['invoices']['sent']) && (!$data['invoices']['paid'] || $data['invoices']['reminder1'] || $data['invoices']['reminder2'])) {?>
+	<?php if (!$data['invoices']['sent'] && (!$data['invoices']['paid'] || $data['invoices']['reminder1'] || $data['invoices']['reminder2'])) {?>
 		<a class="btn btn-default" href="invoices/download/<?php e($id);?>/1">Download 1st Reminder</a>
 		<?php if (!$data['invoices']['reminder1']) {?>
 			<a class="btn btn-primary" href="invoices/send/<?php e($id);?>/1">Send 1st Reminder</a>
