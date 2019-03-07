@@ -122,7 +122,7 @@ CREATE TABLE `invoices` (
   `vat` decimal(10,2) DEFAULT NULL,
   `total` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `nummer` (`number`),
+  UNIQUE KEY `tenant_id_number` (`tenant_id`, `number`),
   KEY `customer_id` (`customer_id`),
   KEY `tenant_id` (`tenant_id`),
   CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
