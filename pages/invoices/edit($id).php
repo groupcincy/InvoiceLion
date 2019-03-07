@@ -3,6 +3,7 @@
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
 	if(isset($data['invoices']['paid']) && ($data['invoices']['paid'] == '0000-00-00' || $data['invoices']['paid'] == '')) $data['invoices']['paid'] = NULL; 
+	if(isset($data['invoices']['sent']) && ($data['invoices']['sent'] == '0000-00-00' || $data['invoices']['sent'] == '')) $data['invoices']['sent'] = NULL; 
 
 	if (!isset($errors)) {
 		try {
