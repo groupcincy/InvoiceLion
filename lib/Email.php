@@ -3,10 +3,11 @@ namespace MintyPHP;
 
 class Email
 {
-    public static $sender = 'invoicelion@ams01.usecue.nl';
+    public static $sender = 'noreply@invoicelion.com';
 
-    public static function send($to,$toName,$from,$fromName,$subject,$message,$attachment,$filename) {
-        $mail = new \PHPMailer\PHPMailer\PHPMailer(); 
+    public static function send($to, $toName, $from, $fromName, $subject, $message, $attachment, $filename)
+    {
+        $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
         $mail->From = static::$sender;
         $mail->FromName = $fromName;
@@ -23,12 +24,15 @@ class Email
         $text = preg_replace('/<br(\s+)?\/?>/i', "\n", $text);
         //set the alternative display (plain text)
         $mail->AltBody = $text; //Text Body
-        if($attachment) $mail->addStringAttachment($attachment, $filename);
+        if ($attachment) {
+            $mail->addStringAttachment($attachment, $filename);
+        }
+
         //handle errors
-        if(!$mail->Send()) {
+        if (!$mail->Send()) {
             return "Mailer Error: " . $mail->ErrorInfo;
         }
         return false;
     }
-    
+
 }
