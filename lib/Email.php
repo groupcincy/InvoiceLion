@@ -3,7 +3,7 @@ namespace MintyPHP;
 
 class Email
 {
-    public static $sender = 'noreply@invoicelion.com';
+    public static $sender = 'invoicelion@ams01.usecue.nl';
 
     public static function send($to, $toName, $from, $fromName, $subject, $message, $attachment, $filename)
     {
