@@ -1,4 +1,4 @@
-<?php Buffer::set('title','Settings'); ?>
+<?php Buffer::set('title', 'Settings');?>
 <h3>Home / <a href="/settings/">Settings</a></h3>
 <h1>Invoice settings</h1>
 
@@ -6,39 +6,39 @@
 
     <dl>
         <dt>Payment period (in days)</dt>
-        <dd><?php e($data['tenants']['payment_period']?:'-');?></dd>
+        <dd><?php e($data['tenants']['payment_period'] ?: '-');?></dd>
     </dl>
     <dl>
         <dt>Reminder period (in days)</dt>
-        <dd><?php e($data['tenants']['reminder_period']?:'-');?></dd>
+        <dd><?php e($data['tenants']['reminder_period'] ?: '-');?></dd>
     </dl>
     <dl>
         <dt>Email address (for outgoing invoices)</dt>
-        <dd><?php e($data['tenants']['invoice_email']?:'-');?></dd>
+        <dd><?php e($data['tenants']['invoice_email'] ?: '-');?></dd>
     </dl>
     <dl>
-        <dt>Logo (<a href="tenants/change/logo_image/2.5">change</a>)</dt>
+        <dt>Logo (<a href="settings/invoice/change/logo_image/2.5">change</a>)</dt>
         <dd><div style="height: 3.5em; width: 50%; background: url('data:image/png;base64,<?php e(base64_encode($data['tenants']['logo_image']));?>') left center / contain no-repeat;"></div></dd>
     </dl>
     <dl>
-        <dt>Signature (<a href="tenants/change/signature_image/5.5">change</a>)</dt>
+        <dt>Signature (<a href="settings/invoice/change/signature_image/5.5">change</a>)</dt>
         <dd><div style="height: 3.5em; width: 50%; background: url('data:image/png;base64,<?php e(base64_encode($data['tenants']['signature_image']));?>') left center / contain no-repeat;"></div></dd>
     </dl>
     <dl>
         <dt>Invoice styles</dt>
-        <dd><?php e(substr($data['tenants']['invoice_styles']?:'-',0,100));?>...</dd>
+        <dd><?php e(substr($data['tenants']['invoice_styles'] ?: '-', 0, 100));?>...</dd>
     </dl>
     <dl>
         <dt>Invoice template</dt>
-        <dd><?php e(substr($data['tenants']['invoice_template']?:'-',0,100));?>...</dd>
+        <dd><?php e(substr($data['tenants']['invoice_template'] ?: '-', 0, 100));?>...</dd>
     </dl>
     <dl>
         <dt>Invoice line template</dt>
-        <dd><?php e(substr($data['tenants']['invoiceline_template']?:'-',0,100));?>...</dd>
+        <dd><?php e(substr($data['tenants']['invoiceline_template'] ?: '-', 0, 100));?>...</dd>
     </dl>
     <dl>
         <dt>Invoice page number</dt>
-        <dd><?php e(substr($data['tenants']['invoice_page_number']?:'-',0,100));?>...</dd>
+        <dd><?php e(substr($data['tenants']['invoice_page_number'] ?: '-', 0, 100));?>...</dd>
     </dl>
 
 </div>

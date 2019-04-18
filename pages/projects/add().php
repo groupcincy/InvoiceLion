@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	}
 
 	if (!isset($customers[$customer_id])) $errors['projects[customer_id]']='Customer not found';
-	if (!isset($data['projects']['active']) || !$data['projects']['active']) $data['projects']['active'] = NULL;
+	if (!isset($data['projects']['active']) || !$data['projects']['active']) $data['projects']['active'] = 0;
 
 	if (!isset($errors)) {
 		try {
@@ -26,5 +26,5 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		}
 	}
 } else {
-	$data = array('projects'=>array('name'=>NULL, 'customer_id'=>NULL, 'add_customer'=>NULL, 'active'=>NULL));
+	$data = array('projects'=>array('name'=>NULL, 'customer_id'=>NULL, 'add_customer'=>NULL, 'active'=>1));
 }
