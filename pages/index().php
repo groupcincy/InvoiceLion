@@ -3,7 +3,8 @@ $uninvoiced_hours = DB::select('SELECT * FROM `hours` WHERE `tenant_id` = ? AND 
 $uninvoiced_subscriptions = DB::select('SELECT * FROM subscriptionperiods, subscriptions WHERE subscriptionperiods.tenant_id = ? AND subscriptionperiods.invoiceline_id IS NULL AND subscriptions.id = subscriptionperiods.subscription_id', $_SESSION['user']['tenant_id']);
 $uninvoiced_deliveries = DB::select('SELECT * FROM `deliveries` WHERE `tenant_id` = ? AND invoiceline_id IS NULL', $_SESSION['user']['tenant_id']);
 
-$unpaid_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` and `paid` IS NULL ORDER BY `number` DESC', $_SESSION['user']['tenant_id']);
+$unpaid_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND `sent` and `paid` IS NULL ORDER BY reminder2,reminder1,`sent` ASC', $_SESSION['user']['tenant_id']);
+krsort($unpaid_invoices);
 
 $unsent_invoices = DB::select('SELECT * FROM invoices WHERE `tenant_id` = ? AND (`sent` = "0000-00-00" OR `sent` IS NULL) ORDER BY invoices.number DESC', $_SESSION['user']['tenant_id']);
 

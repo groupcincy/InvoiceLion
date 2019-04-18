@@ -50,11 +50,13 @@ h1::after {
     background: black;
     margin: 20px 0 10px;
 }
-h2 {font-size: 30px; margin-bottom: 30px; line-height: 1em; font-weight: 900; letter-spacing: 0.5px; padding-top: 5px;}
+h2 {font-size: 30px; margin-bottom: 30px; line-height: 1em; font-weight: 700; letter-spacing: 0.5px; padding-top: 5px; color: #444;}
 h3 {font-size: 14px; margin-bottom: 5px; line-height: 1.2em; font-weight: 700;}
 * + h3 {margin-top: 30px;}
 * + h2 {margin-top: 60px;}
 .btn-primary, .btn-danger, .btn-default {margin-right: 10px; display: inline-block; background: #18b663; color: white!important; padding: 10px 15px; font-weight: 700; font-size: 12px; line-height: 1.5em; border: 1px solid #18b663; text-transform: uppercase; border-radius: 3px; text-decoration: none; cursor: pointer;}
+
+
 .btn-default, .btn-danger {background: white; color: #18b663!important;}
 h3 a {text-decoration: none;}
 .pull-right {float: right;}
@@ -77,6 +79,8 @@ pre {font-family: 'Roboto', sans-serif;}
 .alert {position: fixed; left: 0; width: 100%; background: #eee; font-weight: bold; z-index: 999;animation-name: slideOutTop; animation-duration: 3s; bottom: 100vh;}
 .alert.alert-success {background: #18b663; color: white;}
 .alert.alert-danger {background: #E53935; color: white!important;}
+.dot.orange {background: orange; border-color: orange;}
+.dot.red {background: #E53935; border-color: #E53935;}
 .alert.alert-success button, .alert.alert-danger button {color: white;}
 .alert > div {margin: 13px auto 15px; padding: 0 20px;}
 .alert button {opacity: 0.5; cursor: pointer; font-weight: bold; position: absolute; padding: 10px 20px; background: none; border: 0; font-size: 130%; right: 0; top: 0; z-index: 50;}
@@ -198,7 +202,7 @@ td:before {
     content: '&nbsp;';
     visibility: hidden;
 }
-td span {
+td > span {
     position: absolute;
     left: 0;
     right: 0;
@@ -246,10 +250,9 @@ thead tr:last-child {border-bottom: 1px solid rgba(0,0,0,0.05);}
 .text_medium {width: 200px;}
 .text_long {width: 300px;}
 .precentage {width: 55px;}
-
-
-
-
+.status {width: 10px; text-align: right;}
+.dot {border-radius: 100%; width: 0px; height: 0px; background: #18b663; display: inline-block; margin-right: 10px; position: relative; bottom: 1px; overflow: hidden; padding: 8px 0 0 8px; font-size: 11px;}
+.money span.dot:before {content: none;}
 
 
 
