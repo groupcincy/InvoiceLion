@@ -40,7 +40,7 @@ p, ul, ol, .form {margin-bottom: 1.5em;}
 h1 + p, p.lead {font-size: 132%; line-height: 1.5em; max-width: 700px; padding-top: 0;}
 .bold {font-weight: bold;}
 .text-center {text-align: center;}
-h1 {font-size: 45px; margin-bottom: 20px; line-height: 1em; font-weight: 900; letter-spacing: 0.5px;}
+h1 {font-size: 45px; margin-bottom: 20px; line-height: 1em; font-weight: 900;}
 h1:first-letter {text-transform: uppercase;}
 h1::after {
     display: block;
@@ -50,7 +50,7 @@ h1::after {
     background: black;
     margin: 20px 0 10px;
 }
-h2 {font-size: 30px; margin-bottom: 30px; line-height: 1em; font-weight: 700; letter-spacing: 0.5px; padding-top: 5px; color: #444;}
+h2 {font-size: 27px; margin-bottom: 30px; line-height: 1em; font-weight: 700; padding-top: 5px; color: #444;}
 h3 {font-size: 14px; margin-bottom: 5px; line-height: 1.2em; font-weight: 700;}
 * + h3 {margin-top: 30px;}
 * + h2 {margin-top: 60px;}
@@ -253,7 +253,6 @@ thead tr:last-child {border-bottom: 1px solid rgba(0,0,0,0.05);}
 .status {width: 10px; text-align: right;}
 .dot {border-radius: 100%; width: 0px; height: 0px; background: #18b663; display: inline-block; margin-right: 10px; position: relative; bottom: 1px; overflow: hidden; padding: 8px 0 0 8px; font-size: 11px;}
 .money span.dot:before {content: none;}
-
 .main div p a {color: #18b663; text-decoration: underline;}
 
 
@@ -293,12 +292,12 @@ body.iOS .icons {
 /* set colors */
 body {color: #555;}
 .default .content::before {background: #333;}
-th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: italic; color: #999; font-weight: normal;}
+th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: normal; color: #999; font-weight: normal;}
 h1 {font-weight: normal; color: #444; font-weight: 700}
 input, select, textarea {color: #444;}
 h1:after {background: transparent;}
 .main > div a, .icons > div a , td span, dd {color: #555;}
 .main > div a {text-decoration: none;}
 .icons > div a .img:first-child {opacity: 0.65;}
-th.selected {font-style: normal;}
-label, label a {font-weight: normal; font-style: italic; color: #999!important;}
+th.selected {font-style: italic;}
+label, label a {font-weight: normal; font-style: normal; color: #999!important;}
