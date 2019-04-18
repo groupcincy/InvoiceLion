@@ -2,56 +2,58 @@
 <h3>Home</h3>
 <h1>Dashboard</h1>
 
+<p>Your <?php e(date('Y')); ?> invoice total is <?php e(round($incomeThisYear/1000,1)); ?>k euro.</p>
+
 <div class="row">
 
         <div class="col50">  
             <h2>Action required</h2>
             <table>
                 <?php foreach ($erronous_subscriptions as $row): ?>
-                    <tr class="hover" onclick="window.location.href='subscriptions/view/<?php e($row['subscriptions']['id']);?>';">
-                        <td class="name"><span><a class="dot red" title="Add period">add</a><?php e($row['subscriptions']['name']); ?></span></td>
+                    <tr class="hover" onclick="window.location.href='subscriptions/view/<?php e($row['subscriptions']['id']);?>';" title="Add period">
+                        <td class="name"><span><a class="dot red">add</a><?php e($row['subscriptions']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['subscriptions']['fee']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
 
                 <?php foreach ($unsent_invoices as $row): ?>
-                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';">
-                        <td class="name"><span><a class="dot red" title="Send invoice">send</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
-                        <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
-                    </tr>
-                <?php endforeach; ?>
-
-                <?php foreach ($unsent_reminders as $row): ?>
-                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';">
-                        <td class="name"><span><a class="dot orange" title="Needs reminder">remind</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
+                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';" title="Send invoice">
+                        <td class="name"><span><a class="dot red">send</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
 
                 <?php foreach ($unsent_reminders2 as $row): ?>
-                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';">
-                        <td class="name"><span><a class="dot orange" title="Needs reminder">remind</a><span class="tag">remind</span> <?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
+                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';" title="Needs second reminder">
+                        <td class="name"><span><a class="dot orange">remind</a><span class="tag">remind</span> <?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
+                        <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php foreach ($unsent_reminders as $row): ?>
+                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';" title="Needs first reminder">
+                        <td class="name"><span><a class="dot orange">remind</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
 
                 <?php foreach ($uninvoiced_hours as $row): ?>
-                    <tr class="hover" onclick="window.location.href='hours/view/<?php e($row['hours']['id']);?>';">
-                        <td class="name"><span><a class="dot" title="Needs invoice">invoice</a><?php e($row['hours']['name']); ?></span></td>
+                    <tr class="hover" onclick="window.location.href='hours/view/<?php e($row['hours']['id']);?>';" title="Hours need invoice">
+                        <td class="name"><span><a class="dot">invoice</a><?php e($row['hours']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['hours']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
 
                 <?php foreach ($uninvoiced_subscriptions as $row): ?>
-                    <tr class="hover" onclick="window.location.href='subscriptions/view/<?php e($row['subscriptions']['id']);?>';">
-                        <td class="name"><span><a class="dot" title="Needs invoice">invoice</a><?php e($row['subscriptions']['name']); ?></span></td>
+                    <tr class="hover" onclick="window.location.href='subscriptions/view/<?php e($row['subscriptions']['id']);?>';" title="Subscription needs invoice">
+                        <td class="name"><span><a class="dot">invoice</a><?php e($row['subscriptions']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['subscriptions']['fee']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
 
                 <?php foreach ($uninvoiced_deliveries as $row): ?>
-                    <tr class="hover" onclick="window.location.href='deliveries/view/<?php e($row['deliveries']['id']);?>';">
-                        <td class="name"><span><a class="dot" title="Needs invoice">invoice</a><?php e($row['deliveries']['name']); ?></span></td>
+                    <tr class="hover" onclick="window.location.href='deliveries/view/<?php e($row['deliveries']['id']);?>';" title="Delivery needs invoice">
+                        <td class="name"><span><a class="dot">invoice</a><?php e($row['deliveries']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['deliveries']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
@@ -75,8 +77,8 @@
                     $title = 'Not reminded';
                 } ?>
 
-                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';">
-                        <td class="name"><span><span class="dot <?php e($status); ?>" title="<?php e($title); ?>"></span><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
+                    <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';" title="<?php e($title); ?>">
+                        <td class="name"><span><span class="dot <?php e($status); ?>"></span><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; ?>
@@ -88,6 +90,10 @@
     <?php if(!$unpaid_invoices && 
     !$erronous_subscriptions && 
     !$uninvoiced_deliveries &&
-    !$uninvoiced_subscriptions) {?>
+    !$uninvoiced_subscriptions &&
+    !$uninvoiced_hours &&
+    !$unsent_reminders2 &&
+    !$unsent_reminders &&
+    !$unsent_invoices) {?>
         <p class="lead">Well done! You have no items that require your attention.</p>
     <?php } ?>

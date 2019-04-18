@@ -17,3 +17,5 @@ $missing_period_ids = DB::selectValues('SELECT `subscriptions`.id, ceil(timestam
 if($missing_period_ids) $erronous_subscriptions = DB::select('SELECT * FROM subscriptions WHERE subscriptions.`tenant_id` = ? AND id IN ('.implode(',',$missing_period_ids).')', $_SESSION['user']['tenant_id']);
 
 $hours_no_invoices = DB::select('SELECT `hours`.* FROM `hours`, `invoicelines` WHERE `hours`.`tenant_id` = ? AND `hours`.`invoiceline_id` = `invoicelines`.`id` AND (`invoicelines`.`subtotal` IS NOT NULL and `invoicelines`.`subtotal`<>0) AND `invoicelines`.`invoice_id` IS NULL', $_SESSION['user']['tenant_id']);
+
+$incomeThisYear = DB::selectValue('SELECT sum(subtotal) FROM invoices WHERE `tenant_id` = ? AND `sent` and YEAR(`date`) = YEAR(NOW())', $_SESSION['user']['tenant_id']);
