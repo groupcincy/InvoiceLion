@@ -2,12 +2,23 @@
 <h3>Home</h3>
 <h1>Dashboard</h1>
 
-<p>Your <?php e(date('Y')); ?> invoice total is <?php e(round($incomeThisYear/1000,1)); ?>k euro.</p>
+<p>Your <?php e(date('Y')); ?> invoice total is <?php e(round($incomeThisYear/1000,1)); ?>k euro.<br />Why don't you look at your <a href="/statistics">statistics</a> or <a href="/invoices/add">add an invoice</a>?</p>
+
+<br />
 
 <div class="row">
 
         <div class="col50">  
             <h2>Action required</h2>
+            <?php if(!$erronous_subscriptions && 
+                !$uninvoiced_deliveries &&
+                !$uninvoiced_subscriptions &&
+                !$uninvoiced_hours &&
+                !$unsent_reminders2 &&
+                !$unsent_reminders &&
+                !$unsent_invoices) {?>
+                <p class="lead">Well done! You have no items that require an action.</p>
+            <?php }  else { ?>
             <table>
                 <?php if(isset($erronous_subscriptions)) {
                     foreach ($erronous_subscriptions as $row): ?>
@@ -73,11 +84,12 @@
                 } ?>
 
             </table>
+            <?php } ?>
         </div>
         <div class="col50">    
             <h2>Unpaid invoices</h2>
             <table>
-                <?php if(isset($unpaid_invoices)) {
+                <?php if(isset($unpaid_invoices[0])) {
                 foreach ($unpaid_invoices as $row): ?>
                 <?php if($row['invoices']['reminder2']) {
                     $status = 'red';
@@ -97,19 +109,11 @@
                         <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; 
-                } ?>
+                } else { ?>
+                    <p class="lead">Well done! You have no unpaid invoices.</p>
+                <?php } ?>
+
             </table>
         </div>
 
 </div>
-
-    <?php if(!$unpaid_invoices && 
-    !$erronous_subscriptions && 
-    !$uninvoiced_deliveries &&
-    !$uninvoiced_subscriptions &&
-    !$uninvoiced_hours &&
-    !$unsent_reminders2 &&
-    !$unsent_reminders &&
-    !$unsent_invoices) {?>
-        <p class="lead">Well done! You have no items that require your attention.</p>
-    <?php } ?>
