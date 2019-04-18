@@ -1,15 +1,16 @@
 @CHARSET "UTF-8";
 
-@import '/css/fonts.css';
+@import '/css/fonts2.css';
 
 * {padding: 0; margin: 0;}
 body, html {height: 100%;}
-body {overflow: auto; overflow-y: scroll; font-size: 18px; line-height: 1.5em; color: #000; font-family: 'Roboto', sans-serif; background: #fff;}
+body {overflow: auto; overflow-y: scroll; font-size: 18px; line-height: 1.66em; color: #545454; font-family: 'Nunito Sans', sans-serif; background: #fff;}
+h1, h2 {font-family: "Chivo", sans-serif;}
 img {display: block;}
 .main {min-height: 100%;}
-.main > div.content {padding: 70px 20px 70px; font-size: 14px; line-height: 1.5em;}
+.main > div.content {padding: 70px 20px 70px; font-size: 15px; line-height: 1.66em;}
 .main > div.content {padding: 70px 20px 110px;}
-.main > div a {color: #000;}
+.main > div a {color: #545454;}
 .main > div.content ul {margin-left: 20px;}
 a {background: transparent;}
 .icons, .header {position: fixed; top: 0; width: 100%; text-align: center; background: white; padding: 10px 0; z-index: 9; color: white;}
@@ -23,24 +24,33 @@ a {background: transparent;}
     bottom: 0; 
     left: 0;
 }
-.icons {display: none; bottom: 0; top: auto; box-shadow: 0px 0px 5px rgba(0,0,0,0.3);}
+.icons {display: none; bottom: 0; top: auto; box-shadow: 0px 0px 5px rgba(0,0,0,0.3); background: #121619;}
 .icons > div {display: flex; justify-content: space-around;}
-.icons > div a {display: block; position: relative; flex: 1; padding: 10px 0; margin: -10px 0;}
-.icons > div a.active {background: #18b663!important; color: white!important;}
+.icons > div a {display: block; position: relative; flex: 1; padding: 10px 0; margin: -10px 0; color: rgba(255,255,255,0.5)!important; font-weight: bold;}
+.icons > div a.active {background: #5b4f96!important; color: white!important;}
 .icons > div a#branding {display: none;}
-.icons > div a .img {height: 24px; opacity: 1; display: block; width: auto; margin: 0px auto 3px;  background-repeat: no-repeat; background-position: center center; background-size: contain;}
+.icons > div a .img {height: 24px; opacity: 0; display: block; width: auto; margin: 3px auto 3px;  background-repeat: no-repeat; background-position: center center; background-size: contain;}
 .icons > div a span {display: none;}
-.icons > div a:hover {background: #eee;}
-.icons > div a .img + .img {opacity: 0; position: absolute; top: 10px; width: 24px; width: 100%;}
+.icons > div a:hover {background: rgba(255,255,255,0.05);}
+.icons > div a .img + .img {opacity: 0.5; position: absolute; top: 10px; width: 24px; width: 100%;}
 .icons > div a.active .img {opacity: 0!important;}
 .icons > div a.active .img + .img {opacity: 1!important;}
+
 .icons {display: block;}
 a {cursor: pointer;}
-p, ul, ol, .form {margin-bottom: 1.5em;}
-h1 + p, p.lead {font-size: 132%; line-height: 1.5em; max-width: 700px; padding-top: 0;}
+p, ul, ol, .form {margin-bottom: 1.66em;}
+h1 + p, p.lead {
+    font-size: 26px;
+    line-height: 1.66em;
+    max-width: 700px;
+    padding-top: 0;
+    font-weight: 300;
+    color: #aaa;
+}
+h1 + p a, p.lead a {color: #aaa!important;}
 .bold {font-weight: bold;}
 .text-center {text-align: center;}
-h1 {font-size: 45px; margin-bottom: 20px; line-height: 1em; font-weight: 900;}
+h1 {font-size: 62px; margin-bottom: 20px; line-height: 1em; font-weight: 600; letter-spacing: -.05rem;}
 h1:first-letter {text-transform: uppercase;}
 h1::after {
     display: block;
@@ -50,37 +60,66 @@ h1::after {
     background: black;
     margin: 20px 0 10px;
 }
-h2 {font-size: 27px; margin-bottom: 30px; line-height: 1em; font-weight: 700; padding-top: 5px; color: #444;}
-h3 {font-size: 14px; margin-bottom: 5px; line-height: 1.2em; font-weight: 700;}
+h2 {font-size: 35px; margin-bottom: 25px; line-height: 1em; font-weight: 600; padding-top: 5px;}
+h3 {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 * + h3 {margin-top: 30px;}
 * + h2 {margin-top: 60px;}
-.btn-primary, .btn-danger, .btn-default {margin-right: 10px; display: inline-block; background: #18b663; color: white!important; padding: 10px 15px; font-weight: 700; font-size: 12px; line-height: 1.5em; border: 1px solid #18b663; text-transform: uppercase; border-radius: 3px; text-decoration: none; cursor: pointer; text-decoration: none!important;}
+.btn-primary, .btn-danger, .btn-default {
+    margin-right: 10px; 
+    display: inline-block; 
+    background: #5b4f96; 
+    color: white!important; 
+    padding: 16px 35px;
+    font-weight: 700; 
+    font-size: 12px; 
+    line-height: 1.66em;
+    border: 1px solid #5b4f96; 
+    text-transform: uppercase; 
+    border-radius: 6px; 
+    text-decoration: none; 
+    cursor: pointer; 
+    text-decoration: none!important; 
+    letter-spacing: 4px; 
+    font-family: 'Nunito Sans', sans-serif;
+}
 
 
-.btn-default, .btn-danger {background: white; color: #18b663!important;}
+.btn-default, .btn-danger {background: white; color: #5b4f96!important;}
 h3 a {text-decoration: none;}
 .pull-right {float: right;}
 h1 a.btn-primary, .pull-right .btn-primary, .pull-right .btn-danger, .pull-right .btn-default,
 .btn-primary.pull-right, .btn-danger.pull-right, .btn-default.pull-right {margin-right: 0px; margin-left: 10px;}
 
-.menu {background: #333; color: white; min-height: 100%;;}
+.menu {background: #121619; color: white; min-height: 100%;;}
 .menu > div {width: 200px; padding: 30px 0; margin: 0 auto;}
-.menu > div a {color: white; text-decoration: none; display: block; margin: 0px auto; padding: 10px 0 10px 55px;}
-.menu > div a .img {background-repeat: no-repeat; background-position: center center; position: absolute; width: 25px; height: 25px; margin-left: -45px;}
+.menu > div a {color: rgba(255,255,255,0.5); text-decoration: none; display: block; margin: 0px auto; padding: 10px 0 10px 55px;}
+.menu > div a .img {background-repeat: no-repeat; background-position: center center; position: absolute; width: 25px; height: 25px; margin-left: -45px; opacity: 0.5;}
 
 
 
-h1 .btn-primary {font-size: 12px; line-height: 1.5em; margin-top: 5px; float: right; }
+h1 .btn-primary {font-size: 12px; line-height: 1.66em; margin-top: 5px; float: right; }
 @media (max-width: 800px) {
     h1 .btn-primary {position: absolute; right: 20px; top: 15px;}
 }
 .inline-icon {height: 16px; display: inline-block;}
 pre {font-family: 'Roboto', sans-serif;}
 .alert {position: fixed; left: 0; width: 100%; background: #eee; font-weight: bold; z-index: 999;animation-name: slideOutTop; animation-duration: 3s; bottom: 100vh;}
-.alert.alert-success {background: #18b663; color: white;}
-.alert.alert-danger {background: #E53935; color: white!important;}
-.dot.orange {background: orange; border-color: orange;}
-.dot.red {background: #E53935; border-color: #E53935;}
+.alert.alert-success {background: #5b4f96; color: white;}
+.alert.alert-danger {background: #5b4f96; color: white!important;}
+.dot {border-radius: 100%; width: 0px; height: 0px; background: #ddd; display: inline-block; margin-right: 10px; position: relative; bottom: 1px; overflow: hidden; padding: 8px 0 0 8px; font-size: 11px;}
+.money span.dot:before {content: none;}
+.dot.warning {background: #5b4f96;}
+.dot.danger {background: black; animation: blinker 1s linear infinite;}
+@keyframes blinker {
+    50% {
+        background: #fff;
+    }
+  }
 .alert.alert-success button, .alert.alert-danger button {color: white;}
 .alert > div {margin: 13px auto 15px; padding: 0 20px;}
 .alert button {opacity: 0.5; cursor: pointer; font-weight: bold; position: absolute; padding: 10px 20px; background: none; border: 0; font-size: 130%; right: 0; top: 0; z-index: 50;}
@@ -111,7 +150,7 @@ body.default {background: #eee;}
 
 dl {margin-bottom: 15px;}
 dt {font-weight: 700;}
-dd {font-size: 18px; line-height: 1.5em;}
+dd {font-size: 18px; line-height: 1.66em;}
 div + p {padding-top: 15px;}
 
 
@@ -133,7 +172,6 @@ div + p {padding-top: 15px;}
 
 
 
-
 /* desktop navigation */
 .onlymobile {display: block!important;}
 .onlydesktop, .icons div.bottom {display: none!important;}
@@ -144,11 +182,13 @@ div + p {padding-top: 15px;}
     .icons > div a {display: block; margin: 0px auto; padding: 10px 35px;}
     .icons > div a .img {position: absolute; width: 25px; height: 25px;}
     .icons > div a .img + .img {width: 25px;}
-    .icons > div a span {font-size: 14px; display: inline-block; padding-left: 45px;}
-    .icons > div a#branding {display: block; background: #333; margin: 0 0 25px; padding: 0; border-bottom: 1px solid rgba(0,0,0,0.05);}
-    .icons > div a#branding > span {display: block; height: 140px; background: transparent url(/img/invoicelion_reversed.svg) 40px center / auto 63% no-repeat; opacity: 0.4;}
+    .icons > div a span {display: inline-block; padding-left: 45px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: normal;}
+    .icons > div a#branding {display: block; background: #333 url(/img/hero-bg.jpg) center center / auto 160%; margin: 0 0 25px; padding: 0;}
+    .icons > div a#branding > span {padding-left: 0px; display: block; height: 140px; background: #000;}
+    .icons > div a#branding > span > span {padding-left: 0px; display: block; height: 140px; background: rgba(7, 9, 10,0.4) url(/img/invoicelion_reversed.svg) 40px center / auto 63% no-repeat; opacity: 0.5;}
+    .icons > div a#branding:hover > span > span {opacity: 1;}
     .onlydesktop, .icons div.bottom {display: block!important;}
-    .icons div.bottom {position: absolute; bottom: 35px; width: 100%;}
+    .icons div.bottom {position: absolute; padding-bottom: 35px; padding-top: 25px; bottom: 0; width: 100%;}
     .onlymobile {display: none!important;}
 }
 @media (min-width: 800px) and (max-width: 1300px) {
@@ -156,8 +196,9 @@ div + p {padding-top: 15px;}
     .icons {width: 55px; overflow: hidden;}
     .icons > div a {padding: 10px 15px;}
     .icons > div a#branding {margin-bottom: 15px;}
-    .icons > div a#branding > span {background-position: center center; height: 75px; background-size: 70% auto;}
-    .icons div.bottom {bottom: 25px;}
+    .icons > div a#branding > span {height: 75px;}
+    .icons > div a#branding > span > span {height: 75px; background-position: center center; background-size: 70% auto;}
+    .icons div.bottom {padding-bottom: 25px; padding-top: 15px;}
 }
 
 
@@ -181,7 +222,7 @@ label a {float: right; font-weight: 300;}
 table + p {padding-top: 30px;}
 .form-group {margin-bottom: 15px;}
 select {padding: 0 10px; height: 42px; width: calc(100% - 2px);}
-textarea {height: 200px; line-height: 1.5em; padding-top: 9px; padding-bottom: 9px;}
+textarea {height: 200px; line-height: 1.66em; padding-top: 9px; padding-bottom: 9px;}
 input[type="checkbox"] {height: auto; width: auto; max-width: none;}
 th[order] {cursor: pointer;}
 .tag {text-decoration: none; margin-top: 5px; border: 1px solid #ccc; border-radius: 3px; display: inline-block; padding: 2px 7px; font-size: 85%; margin-right: 2px;}
@@ -251,9 +292,9 @@ thead tr:last-child {border-bottom: 1px solid rgba(0,0,0,0.05);}
 .text_long {width: 300px;}
 .precentage {width: 55px;}
 .status {width: 10px; text-align: right;}
-.dot {border-radius: 100%; width: 0px; height: 0px; background: #18b663; display: inline-block; margin-right: 10px; position: relative; bottom: 1px; overflow: hidden; padding: 8px 0 0 8px; font-size: 11px;}
-.money span.dot:before {content: none;}
-.main div p a {color: #18b663; text-decoration: underline;}
+
+
+.main div p a {text-decoration: underline;}
 
 
 
@@ -290,14 +331,15 @@ body.iOS .icons {
 
 
 /* set colors */
-body {color: #555;}
-.default .content::before {background: #333;}
-th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: normal; color: #999; font-weight: normal;}
-h1 {font-weight: normal; color: #444; font-weight: 700}
-input, select, textarea {color: #444;}
+body {color: #545454;}
+.default .content::before {background: #000000;}
+th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: normal; color: #aaa; font-weight: normal;}
+h1, h2 {color: #000000; font-weight: 600;}
+input, select, textarea {color: #000000;}
+.main > div h3 {color: #5b4f96;}
 h1:after {background: transparent;}
-.main > div a, .icons > div a , td span, dd {color: #555;}
+.main > div a, td span, dd {color: #545454;}
 .main > div a {text-decoration: none;}
-.icons > div a .img:first-child {opacity: 0.65;}
+.icons > div a .img:first-child {opacity: 0;}
 th.selected {font-style: italic;}
-label, label a {font-weight: normal; font-style: normal; color: #999!important;}
+label, label a {font-weight: normal; font-style: normal; color: #aaa!important;}

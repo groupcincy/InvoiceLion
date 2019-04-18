@@ -2,10 +2,9 @@
 <h3>Home</h3>
 <h1>Dashboard</h1>
 
-<p>Your <?php e(date('Y')); ?> invoice total is <?php e(round($incomeThisYear/1000,1)); ?>k euro.<br />For more information you can look at your <a href="/statistics">statistics</a>.</p>
+<p>Your <?php e(date('Y')); ?> invoice total is <?php e(round($incomeThisYear/1000,1)); ?>k euro. For more information you can look at your <a href="/statistics">statistics</a>. Happy invoicing!</p>
 
 <br />
-
 <div class="row">
 
         <div class="col50">  
@@ -23,7 +22,7 @@
                 <?php if(isset($erronous_subscriptions)) {
                     foreach ($erronous_subscriptions as $row): ?>
                     <tr class="hover" onclick="window.location.href='subscriptions/view/<?php e($row['subscriptions']['id']);?>';" title="Add period">
-                        <td class="name"><span><a class="dot red">add</a><?php e($row['subscriptions']['name']); ?></span></td>
+                        <td class="name"><span><a class="dot danger">add</a><?php e($row['subscriptions']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['subscriptions']['fee']); ?></span></td>
                     </tr>
                 <?php endforeach; 
@@ -32,7 +31,7 @@
                 <?php if(isset($unsent_invoices)) {
                     foreach ($unsent_invoices as $row): ?>
                     <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';" title="Send invoice">
-                        <td class="name"><span><a class="dot red">send</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
+                        <td class="name"><span><a class="dot danger">send</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach;
@@ -41,7 +40,7 @@
                 <?php if(isset($unsent_reminders2)) {
                     foreach ($unsent_reminders2 as $row): ?>
                     <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';" title="Needs second reminder">
-                        <td class="name"><span><a class="dot orange">remind</a><span class="tag">remind</span> <?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
+                        <td class="name"><span><a class="dot warning">remind</a><span class="tag">remind</span> <?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach; 
@@ -50,7 +49,7 @@
                 <?php if(isset($unsent_reminders)) {
                     foreach ($unsent_reminders as $row): ?>
                     <tr class="hover" onclick="window.location.href='invoices/view/<?php e($row['invoices']['id']);?>';" title="Needs first reminder">
-                        <td class="name"><span><a class="dot orange">remind</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
+                        <td class="name"><span><a class="dot warning">remind</a><?php e($row['invoices']['number']); ?> - <?php e($row['invoices']['name']); ?></span></td>
                         <td class="money"><span><?php e($row['invoices']['subtotal']); ?></span></td>
                     </tr>
                 <?php endforeach;
@@ -92,15 +91,15 @@
                 <?php if(isset($unpaid_invoices[0])) {
                 foreach ($unpaid_invoices as $row): ?>
                 <?php if($row['invoices']['reminder2']) {
-                    $status = 'red';
+                    $status = 'danger';
                     $title = 'Reminded twice';
                 }
                 else if ($row['invoices']['reminder1']) {
-                    $status = 'orange';
+                    $status = 'warning';
                     $title = 'Reminded once';
                 }
                 else {
-                    $status = 'green'; 
+                    $status = ''; 
                     $title = 'Not reminded';
                 } ?>
 
