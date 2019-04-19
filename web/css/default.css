@@ -113,7 +113,7 @@ pre {font-family: 'Roboto', sans-serif;}
 .alert.alert-danger {background: #F82C60; color: white!important;}
 .dot {border-radius: 100%; width: 0px; height: 0px; background: #ddd; display: inline-block; margin-right: 10px; position: relative; bottom: 1px; overflow: hidden; padding: 8px 0 0 8px; font-size: 11px;}
 .money span.dot:before {content: none;}
-.dot.warning {background: #27DCC8;}
+.dot.warning {background: #5b4f96;}
 .dot.danger {background: #27DCC8; }
 .alert.alert-success button, .alert.alert-danger button {color: white;}
 .alert > div {margin: 13px auto 15px; padding: 0 20px;}
