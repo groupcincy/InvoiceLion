@@ -4,11 +4,11 @@
 
 * {padding: 0; margin: 0;}
 body, html {height: 100%;}
-body {overflow: auto; overflow-y: scroll; font-size: 18px; line-height: 1.66em; color: #545454; font-family: 'Nunito Sans', sans-serif; background: #fff;}
+body {overflow: auto; overflow-y: scroll; font-size: 18px; line-height: 1.5em; color: #545454; font-family: 'Nunito Sans', sans-serif; background: #fff;}
 h1, h2 {font-family: "Chivo", sans-serif;}
 img {display: block;}
 .main {min-height: 100%;}
-.main > div.content {padding: 70px 20px 70px; font-size: 15px; line-height: 1.66em;}
+.main > div.content {padding: 70px 20px 70px; font-size: 15px; line-height: 1.5em;}
 .main > div.content {padding: 70px 20px 110px;}
 .main > div a {color: #545454;}
 .main > div.content ul {margin-left: 20px;}
@@ -38,10 +38,10 @@ a {background: transparent;}
 
 .icons {display: block;}
 a {cursor: pointer;}
-p, ul, ol, .form {margin-bottom: 1.66em;}
+p, ul, ol, .form {margin-bottom: 1.5em;}
 h1 + p, p.lead {
     font-size: 26px;
-    line-height: 1.66em;
+    line-height: 1.5em;
     max-width: 700px;
     padding-top: 0;
     font-weight: 300;
@@ -77,7 +77,7 @@ h3 {
     padding: 16px 35px;
     font-weight: 700; 
     font-size: 12px; 
-    line-height: 1.66em;
+    line-height: 1.5em;
     border: 1px solid #5b4f96; 
     text-transform: uppercase; 
     border-radius: 6px; 
@@ -102,7 +102,7 @@ h1 a.btn-primary, .pull-right .btn-primary, .pull-right .btn-danger, .pull-right
 
 
 
-h1 .btn-primary {font-size: 12px; line-height: 1.66em; margin-top: 5px; float: right; }
+h1 .btn-primary {font-size: 12px; line-height: 1.5em; margin-top: 5px; float: right; }
 @media (max-width: 800px) {
     h1 .btn-primary {position: absolute; right: 20px; top: 15px;}
 }
@@ -146,7 +146,7 @@ body.default {background: #eee;}
 
 dl {margin-bottom: 15px;}
 dt {font-weight: 700;}
-dd {font-size: 18px; line-height: 1.66em;}
+dd {font-size: 18px; line-height: 1.5em;}
 div + p {padding-top: 15px;}
 
 
@@ -217,7 +217,7 @@ label a {float: right; font-weight: 300;}
 table + p {padding-top: 30px;}
 .form-group {margin-bottom: 15px;}
 select {padding: 0 10px; height: 42px; width: calc(100% - 2px);}
-textarea {height: 200px; line-height: 1.66em; padding-top: 9px; padding-bottom: 9px;}
+textarea {height: 200px; line-height: 1.5em; padding-top: 9px; padding-bottom: 9px;}
 input[type="checkbox"] {height: auto; width: auto; max-width: none;}
 th[order] {cursor: pointer;}
 .tag {text-decoration: none; margin-top: 5px; border: 1px solid #ccc; border-radius: 3px; display: inline-block; padding: 2px 7px; font-size: 85%; margin-right: 2px;}
