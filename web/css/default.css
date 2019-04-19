@@ -60,7 +60,7 @@ h1::after {
     background: black;
     margin: 20px 0 10px;
 }
-h2 {font-size: 35px; margin-bottom: 25px; line-height: 1em; font-weight: 600; padding-top: 5px;}
+h2 {font-size: 35px; margin-bottom: 25px; line-height: 1em; font-weight: 600; padding-top: 5px; letter-spacing: -1px;}
 h3 {
     font-weight: 400;
     font-size: 12px;
