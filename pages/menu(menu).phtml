@@ -33,7 +33,7 @@
         <span>Settings</span>
     </a>
 
-
+<br /><br />
 
     <?php if ($_SESSION['user']['superadmin']) { ?>
         <a href="users/" <?php if(substr(Router::getRequest(),0,6)==='/users' && $_SESSION['user']['superadmin']) e('class=active'); ?> title="Users">

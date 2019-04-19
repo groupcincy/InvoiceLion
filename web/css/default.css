@@ -26,7 +26,7 @@ a {background: transparent;}
 }
 .icons {display: none; bottom: 0; top: auto; box-shadow: 0px 0px 5px rgba(0,0,0,0.3); background: #121619;}
 .icons > div {display: flex; justify-content: space-around;}
-.icons > div a {display: block; position: relative; flex: 1; padding: 10px 0; margin: -10px 0; color: rgba(255,255,255,0.5)!important; font-weight: bold;}
+.icons > div a {display: block; position: relative; flex: 1; padding: 10px 0; margin: -10px 0; color: rgba(255,255,255,0.5)!important;}
 .icons > div a.active {background: #5b4f96!important; color: white!important;}
 .icons > div a#branding {display: none;}
 .icons > div a .img {height: 24px; opacity: 0; display: block; width: auto; margin: 3px auto 3px;  background-repeat: no-repeat; background-position: center center; background-size: contain;}
@@ -97,7 +97,7 @@ h1 a.btn-primary, .pull-right .btn-primary, .pull-right .btn-danger, .pull-right
 
 .menu {background: #121619; color: white; min-height: 100%;;}
 .menu > div {width: 200px; padding: 30px 0; margin: 0 auto;}
-.menu > div a {color: rgba(255,255,255,0.5); text-decoration: none; display: block; margin: 0px auto; padding: 10px 0 10px 55px;}
+.menu > div a {color: rgba(255,255,255,0.5); text-decoration: none; display: block; margin: 0px auto; padding: 10px 0 10px 55px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: normal;}
 .menu > div a .img {background-repeat: no-repeat; background-position: center center; position: absolute; width: 25px; height: 25px; margin-left: -45px; opacity: 0.5;}
 
 
