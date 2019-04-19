@@ -50,7 +50,7 @@ h1 + p, p.lead {
 h1 + p a, p.lead a {color: #aaa!important;}
 .bold {font-weight: bold;}
 .text-center {text-align: center;}
-h1 {font-size: 62px; margin-bottom: 20px; line-height: 1em; font-weight: 600; letter-spacing: -.05rem;}
+h1 {font-size: 62px; margin-bottom: 20px; line-height: 1em; font-weight: 600; letter-spacing: -2px;}
 h1:first-letter {text-transform: uppercase;}
 h1::after {
     display: block;
@@ -142,7 +142,7 @@ pre {font-family: 'Roboto', sans-serif;}
 
 .default .content {padding-top: 5px!important; width:100%; max-width: 100%; left: 0;}
 .default .main > div.content {padding-left: 0; padding-right: 0;}
-.default .content::before {content: ""; position: absolute; z-index: 0; left: 0; width: 100%; top: 0; background: black; height: 200px;}
+.default .content::before {content: ""; position: absolute; z-index: 0; left: 0; width: 100%; top: 0; background: #121619;; height: 200px;}
 .default .content a#branding {color: white; position: relative; width: 80px; display: block; margin: 10px auto 20px; opacity: 0.4; text-align: center; text-decoration: none; font-weight: bold;}
 .default .content a#branding img {width: 100%;}
 body.default {background: #eee;}
@@ -185,8 +185,8 @@ div + p {padding-top: 15px;}
     .icons > div a .img + .img {width: 25px;}
     .icons > div a span {display: inline-block; padding-left: 45px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: normal;}
     .icons > div a#branding {display: block; margin: 0 0 25px; padding: 0; background: none;}
-    .icons > div a#branding > span {padding-left: 0px; display: block; height: 140px;}
-    .icons > div a#branding > span > span {padding-left: 0px; display: block; height: 140px; background: rgba(7, 9, 10,0) url(/img/invoicelion_reversed.svg) 40px center / auto 63% no-repeat; opacity: 0.5;}
+    .icons > div a#branding > span {padding-left: 0px; display: block; height: 160px; background: rgba(7, 9, 10,0) url(/img/invoicelionlogo.svg) 55px 125px / 55% auto no-repeat; opacity:0.5;}
+    .icons > div a#branding > span > span {padding-left: 0px; display: block; height: 160px; background: rgba(7, 9, 10,0) url(/img/invoicelion_reversed.svg) 45% 30px / auto 53% no-repeat; opacity:1;}
     .onlydesktop, .icons div.bottom {display: block!important;}
     .icons div.bottom {position: absolute; padding-bottom: 35px; padding-top: 25px; bottom: 0; width: 100%;}
     .onlymobile {display: none!important;}
@@ -332,7 +332,7 @@ body.iOS .icons {
 
 /* set colors */
 body {color: #545454;}
-.default .content::before {background: #000000;}
+.default .content::before {background: #121619;;}
 th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: normal; color: #aaa; font-weight: normal;}
 h1, h2 {color: #000000; font-weight: 600;}
 input, select, textarea {color: #000000;}
