@@ -331,7 +331,7 @@ body {color: #545454;}
 th, .main > div h3, .main > div h3 a, dt, .main > div dt a {font-style: normal; color: #aaa; font-weight: normal;}
 h1, h2 {color: #000000; font-weight: 600;}
 input, select, textarea {color: #000000;}
-.main > div h3 {color: #5b4f96;}
+.main > div h3, .main > div h3 a {color: #5b4f96;}
 h1:after {background: transparent;}
 .main > div a, td span, dd {color: #545454;}
 .main > div a {text-decoration: none;}
