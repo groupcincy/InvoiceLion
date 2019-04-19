@@ -109,12 +109,12 @@ h1 .btn-primary {font-size: 12px; line-height: 1.5em; margin-top: 5px; float: ri
 .inline-icon {height: 16px; display: inline-block;}
 pre {font-family: 'Roboto', sans-serif;}
 .alert {position: fixed; left: 0; width: 100%; background: #eee; font-weight: bold; z-index: 999;animation-name: slideOutTop; animation-duration: 3s; bottom: 100vh;}
-.alert.alert-success {background: #27DCC8; color: white;}
+.alert.alert-success {background: #26cab7; color: white;}
 .alert.alert-danger {background: #F82C60; color: white!important;}
 .dot {border-radius: 100%; width: 0px; height: 0px; background: #ddd; display: inline-block; margin-right: 10px; position: relative; bottom: 1px; overflow: hidden; padding: 8px 0 0 8px; font-size: 11px;}
 .money span.dot:before {content: none;}
 .dot.warning {background: #5b4f96;}
-.dot.danger {background: #27DCC8; }
+.dot.danger {background: #F82C60; }
 .alert.alert-success button, .alert.alert-danger button {color: white;}
 .alert > div {margin: 13px auto 15px; padding: 0 20px;}
 .alert button {opacity: 0.5; cursor: pointer; font-weight: bold; position: absolute; padding: 10px 20px; background: none; border: 0; font-size: 130%; right: 0; top: 0; z-index: 50;}
