@@ -9,13 +9,13 @@
 
         <div class="col50">  
             <h2>Action required</h2>
-            <?php if(!$erronous_subscriptions && 
-                !$uninvoiced_deliveries &&
-                !$uninvoiced_subscriptions &&
-                !$uninvoiced_hours &&
-                !$unsent_reminders2 &&
-                !$unsent_reminders &&
-                !$unsent_invoices) {?>
+            <?php if(!isset($erronous_subscriptions) && 
+                !isset($uninvoiced_deliveries) &&
+                !isset($uninvoiced_subscriptions) &&
+                !isset($uninvoiced_hours) &&
+                !isset($unsent_reminders2) &&
+                !isset($unsent_reminders) &&
+                !isset($unsent_invoices)) {?>
                 <p class="lead">Well done! You have no items that require an action.</p>
             <?php }  else { ?>
             <table>
