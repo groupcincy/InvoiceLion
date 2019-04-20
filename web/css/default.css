@@ -188,9 +188,7 @@ div + p {padding-top: 15px;}
     .content {width: calc(100% - 200px); left: 27px;}
     .icons {width: 55px; overflow: hidden;}
     .icons > div a {padding: 10px 15px;}
-    .icons > div a#branding {margin-bottom: 15px;}
-    .icons > div a#branding > span {height: 75px;}
-    .icons > div a#branding > span > span {height: 75px; background-position: center center; background-size: 70% auto;}
+    .icons > div a#branding {margin-bottom: 15px; height: 70px; background: transparent url(/img/invoicelionlogo_lion.svg) 8px 15px / 39px auto no-repeat;}
     .icons div.bottom {padding-bottom: 25px; padding-top: 15px;}
 }
 
