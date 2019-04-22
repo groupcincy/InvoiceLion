@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
 	// set error when no invoicelines are selected
 	if (!isset($errors)) {
-		$error = 'Invoice not saved';
+		$error = 'Invoice not added';
 		try {
 			$invoicelines = array_filter($invoicelines, function($key) use ($data){ return in_array($key,$data['invoicelines']); }, ARRAY_FILTER_USE_KEY);
 
@@ -91,13 +91,13 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			//commit();
 
 			if ($invoice_id) {
-				Flash::set('success','Invoice saved');
+				Flash::set('success','Invoice added');
 				Router::redirect('invoices/index');
 			}
-			$error = 'Invoice not saved';
+			$error = 'Invoice not added';
 		} catch (DBError $e) {
 			//rollback();
-			$error = 'Invoice not saved: '.$e->getMessage();
+			$error = 'Invoice not added: '.$e->getMessage();
 		}
 	}
 } else {

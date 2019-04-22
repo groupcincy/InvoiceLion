@@ -6,7 +6,7 @@
     <tr>
       <th class="text <?php if($order=='number') e('selected'); ?>" order="/invoices/number/desc">Number</th>
       <th class="name <?php if($order=='name') e('selected'); ?>" order="/invoices/name/asc">Name</th>
-      <th class="bool <?php if($order=='paid' || $order=='sent, paid') e('selected'); ?>" order="/invoices/paid/asc">Paid</th>
+      <th class="bool <?php if($order=='paid' || $order=='paid') e('selected'); ?>" order="/invoices/paid/asc">Paid</th>
       <th class="date <?php if($order=='date') e('selected'); ?>" order="/invoices/date/desc">Date</th>
       <th class="<?php if($order=='customer_id') e('selected'); ?>" order="/invoices/customer_id/asc">Customer</th>
       <th class="money">Subtotal</th>
