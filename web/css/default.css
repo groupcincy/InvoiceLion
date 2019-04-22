@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-@import '/css/fonts2.css';
+@import '/css/fonts.css';
 
 * {padding: 0; margin: 0;}
 body, html {height: 100%;}
@@ -113,8 +113,9 @@ pre {font-family: 'Roboto', sans-serif;}
 .alert.alert-danger {background: #F82C60; color: white!important;}
 .dot {border-radius: 100%; width: 0px; height: 0px; background: #ddd; display: inline-block; margin-right: 10px; position: relative; bottom: 1px; overflow: hidden; padding: 8px 0 0 8px; font-size: 11px;}
 .money span.dot:before {content: none;}
-.dot.warning {background: #5b4f96;}
-.dot.danger {background: #F82C60; }
+.dot.warning {background: #5b4f96; color: white;}
+.dot.danger {background: #F82C60; color: white;}
+.dot.text {height: auto; padding: 3px 0; border-radius: 3px; width: auto; vertical-align: middle; line-height: 1em; text-align: center; width: 48px;}
 .alert.alert-success button, .alert.alert-danger button {color: white;}
 .alert > div {margin: 13px auto 15px; padding: 0 20px;}
 .alert button {opacity: 0.5; cursor: pointer; font-weight: bold; position: absolute; padding: 10px 20px; background: none; border: 0; font-size: 130%; right: 0; top: 0; z-index: 50;}
