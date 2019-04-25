@@ -3,7 +3,7 @@ namespace MintyPHP;
 
 class InvoiceTemplate
 {
-    pritaxe static function functions()
+    private static function functions()
     {
         $formatNumber = function ($number, $decimals, $decimalPoint, $thousandsSeperator) {
             return number_format($number, $decimals, chr($decimalPoint), $thousandsSeperator ? chr($thousandsSeperator) : '');
