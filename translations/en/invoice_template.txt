@@ -53,17 +53,13 @@
     <tr><td>
         {{line.name|capitalize}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </td><td>
-        {{line.tax_percentage}} tax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </td><td>
-        € 
+        {{line.tax_percentage}}% tax&nbsp;&nbsp;&nbsp;€ 
     </td><td>
         {{line.subtotal|formatNumber(2,44,0)}}
     </td></tr>
 {{endfor}}
 {{if:invoice.multiLine}}
     <tr><td>
-        &nbsp;
-    </td><td>
         &nbsp;
     </td><td>
         Subtotal&nbsp;&nbsp;&nbsp;€ 
@@ -77,15 +73,11 @@
     </td><td>
         &nbsp;
     </td><td>
-        &nbsp;
-    </td><td>
         tax reverse charge
     </td></tr>
 {{endif}}
 {{if:customer.tax_reverse_charge|eq(0)}}
     <tr><td>
-        &nbsp;
-    </td><td>
         &nbsp;
     </td><td>
         tax&nbsp;&nbsp;&nbsp;€ 
@@ -94,8 +86,6 @@
     </td></tr>
 {{endif}}
 <tr><td>
-    &nbsp;
-</td><td>
     &nbsp;
 </td><td>
     Total&nbsp;&nbsp;&nbsp;€ 
