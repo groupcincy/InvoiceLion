@@ -80,7 +80,7 @@
     <tr><td>
         &nbsp;
     </td><td>
-        21% BTW&nbsp;&nbsp;&nbsp;€ 
+        21% VAT&nbsp;&nbsp;&nbsp;€ 
     </td><td>
         {{invoice.vat|formatNumber(2,44,0)}}
     </td></tr>
