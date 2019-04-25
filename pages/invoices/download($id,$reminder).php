@@ -6,7 +6,7 @@ $reminder += 0;
 $tenant = DB::selectOne('select * from `tenants` WHERE `tenants`.`id` = ?', $_SESSION['user']['tenant_id']);
 $invoice = DB::selectOne('select * from `invoices` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
 $customer = DB::selectOne('select * from `customers` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $invoice['invoices']['customer_id']);
-$template = DB::selectOne('select * from `templates` WHERE `tentant_id` = ? AND language_id = ?', $_SESSION['user']['tenant_id'], $customer['customers']['language_id']);
+$template = DB::selectOne('select * from `templates` WHERE `tenant_id` = ? AND language_id = ?', $_SESSION['user']['tenant_id'], $customer['customers']['language_id']);
 $invoicelines = DB::select('select * from `invoicelines` where `tenant_id` = ? AND `invoice_id` = ?', $_SESSION['user']['tenant_id'], $id);
 
 // calculate multiLine and set reminder
