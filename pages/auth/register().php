@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             foreach ($languages as $languageId => $languageCode) {
                 DB::insert('INSERT INTO `templates` (`tenant_id`, `language_id`) VALUES (?, ?)', $tenantId, $languageId);
                 foreach (array('invoice_styles', 'invoice_template', 'invoiceline_template', 'invoice_page_number') as $field) {
-                    DB::update('UPDATE `templates` SET `' . $field . '` = ? WHERE `tenant_id` = ?', file_get_contents("translations/$languageCode/$field.txt"), $tenantId);
+                    DB::update('UPDATE `templates` SET `' . $field . '` = ? WHERE `tenant_id` = ? and language_id = ?', file_get_contents("translations/$languageCode/$field.txt"), $tenantId, $languageId);
                 }
                 $defaultTaxPercentage = DB::selectValue('SELECT `default_tax_percentage` FROM `countries` WHERE `id` = ?', $countryId); // tenant_id not required
                 DB::update('UPDATE `tenants` SET `default_tax_percentage` = ? WHERE `id` = ?', $defaultTaxPercentage, $tenantId); // tenant_id not required
