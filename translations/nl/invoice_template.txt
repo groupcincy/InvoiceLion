@@ -16,7 +16,7 @@
     t.n.v. {{company.bank_account_name}}<br>
     BIC: {{company.bank_bic}}<br>
     Kvk: {{company.coc_number}}<br>
-    BTW: {{company.vat_number}}<br>                
+    BTW: {{company.tax_number}}<br>                
 </td></tr></table>
 <br>
 <br>
@@ -53,7 +53,7 @@
     <tr><td>
         {{line.name|capitalize}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </td><td>
-        {{line.vat_percentage}} BTW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{line.tax_percentage}} BTW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </td><td>
         € 
     </td><td>
@@ -71,7 +71,7 @@
         {{invoice.subtotal|formatNumber(2,44,0)}}
     </td></tr>
 {{endif}}
-{{if:customer.vat_reverse_charge}}
+{{if:customer.tax_reverse_charge}}
     <tr><td>
         &nbsp;
     </td><td>
@@ -82,7 +82,7 @@
         BTW VERLEGD
     </td></tr>
 {{endif}}
-{{if:customer.vat_reverse_charge|eq(0)}}
+{{if:customer.tax_reverse_charge|eq(0)}}
     <tr><td>
         &nbsp;
     </td><td>
@@ -90,7 +90,7 @@
     </td><td>
         BTW&nbsp;&nbsp;&nbsp;€ 
     </td><td>
-        {{invoice.vat|formatNumber(2,44,0)}}
+        {{invoice.tax|formatNumber(2,44,0)}}
     </td></tr>
 {{endif}}
 <tr><td>

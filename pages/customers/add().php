@@ -2,9 +2,9 @@
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$data = $_POST;
 	if (!isset($errors)) {
-		if(!$data['customers']['vat_reverse_charge']) $data['customers']['vat_reverse_charge'] = 0;
+		if(!$data['customers']['tax_reverse_charge']) $data['customers']['tax_reverse_charge'] = 0;
 		try {
-			$id = DB::insert('INSERT INTO `customers` (`tenant_id`, `name`, `email`, `contact`, `address`, `vat_reverse_charge`) VALUES (?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['customers']['name'], $data['customers']['email'], $data['customers']['contact'], $data['customers']['address'], $data['customers']['vat_reverse_charge']);
+			$id = DB::insert('INSERT INTO `customers` (`tenant_id`, `name`, `email`, `contact`, `address`, `tax_reverse_charge`) VALUES (?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['customers']['name'], $data['customers']['email'], $data['customers']['contact'], $data['customers']['address'], $data['customers']['tax_reverse_charge']);
 			if ($id) {
 				Flash::set('success','Customer saved');
 				Router::redirect('customers/index');
@@ -15,5 +15,5 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		}
 	}	
 } else {
-	$data = array('customers'=>array('name'=>NULL, 'email'=>NULL, 'contact'=>NULL, 'address'=>NULL, 'vat_reverse_charge'=>NULL));
+	$data = array('customers'=>array('name'=>NULL, 'email'=>NULL, 'contact'=>NULL, 'address'=>NULL, 'tax_reverse_charge'=>NULL));
 }

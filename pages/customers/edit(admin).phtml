@@ -29,10 +29,10 @@
 		<span class="help-block"><?php if (isset($errors['customers[address]'])) e($errors['customers[address]']); ?></span>
 	</div>
   
-	<div class="form-group <?php e(isset($errors['customers[vat_reverse_charge]'])?'has-error':''); ?>">
-		<label class="control-label" for="customers[vat_reverse_charge]">VAT Reverse Charge</label>
-		<input class="form-control" name="customers[vat_reverse_charge]" type="checkbox" <?php if($data['customers']['vat_reverse_charge']) e('checked'); ?> id="customers[vat_reverse_charge]" value="1" />
-		<span class="help-block"><?php if (isset($errors['customers[vat_reverse_charge]'])) e($errors['customers[vat_reverse_charge]']); ?></span>
+	<div class="form-group <?php e(isset($errors['customers[tax_reverse_charge]'])?'has-error':''); ?>">
+		<label class="control-label" for="customers[tax_reverse_charge]">tax Reverse Charge</label>
+		<input class="form-control" name="customers[tax_reverse_charge]" type="checkbox" <?php if($data['customers']['tax_reverse_charge']) e('checked'); ?> id="customers[tax_reverse_charge]" value="1" />
+		<span class="help-block"><?php if (isset($errors['customers[tax_reverse_charge]'])) e($errors['customers[tax_reverse_charge]']); ?></span>
 	</div>
 
 	<div class="form-group">

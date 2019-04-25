@@ -89,9 +89,9 @@
   		<dd><?php e($data['invoices']['subtotal']);?></dd>
    	</dl>
 	<dl>
-		<dt>VAT</dt>
-  		<dd><?php if ($data['invoices']['vat'] !== null) {
-    e($data['invoices']['vat']);
+		<dt>tax</dt>
+  		<dd><?php if ($data['invoices']['tax'] !== null) {
+    e($data['invoices']['tax']);
 } else {
     e('-');
 }

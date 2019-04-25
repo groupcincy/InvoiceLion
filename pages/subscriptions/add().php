@@ -11,22 +11,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$customers = DB::selectPairs('select `id`,`name` from `customers`  WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 	}
 
-	//set vat_percentage to NULL if the customer has vat_reverse_charge
-	$vat_reverse_charge = DB::selectValue('select `vat_reverse_charge` from `customers` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $data['subscriptions']['customer_id']);
-	if ($vat_reverse_charge) $data['subscriptions']['vat_percentage']=NULL;
+	//set tax_percentage to NULL if the customer has tax_reverse_charge
+	$tax_reverse_charge = DB::selectValue('select `tax_reverse_charge` from `customers` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $data['subscriptions']['customer_id']);
+	if ($tax_reverse_charge) $data['subscriptions']['tax_percentage']=NULL;
 
     if (!$data['subscriptions']['from']) $errors['subscriptions[from]'] = 'Date not set';
     if (!$data['subscriptions']['name']) $errors['subscriptions[name]'] = 'Name not set';
     if (!$data['subscriptions']['fee']) $errors['subscriptions[fee]'] = 'Fee not set';
     if (!$data['subscriptions']['months']) $errors['subscriptions[months]'] = 'Subscription period not set';
-    if (!$data['subscriptions']['vat_percentage'] && !$vat_reverse_charge) $errors['subscriptions[vat_percentage]']='VAT percentage not set';	
+    if (!$data['subscriptions']['tax_percentage'] && !$tax_reverse_charge) $errors['subscriptions[tax_percentage]']='tax percentage not set';	
 	if (!$data['subscriptions']['project_id']) $data['subscriptions']['project_id'] = null;
     if (!$data['subscriptions']['subscriptiontype_id']) $data['subscriptions']['subscriptiontype_id'] = null;
 	if (!$data['subscriptions']['customer_id']) $errors['hours[customer_id]']='Customer not set';	
 
     if (!isset($errors)) {
         try {
-            $subscription_id = DB::insert('INSERT INTO `subscriptions` (`tenant_id`, `fee`, `vat_percentage`, `months`, `name`, `from`, `comment`, `subscriptiontype_id`, `customer_id`, `project_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptions']['fee'], $data['subscriptions']['vat_percentage'], $data['subscriptions']['months'], $data['subscriptions']['name'], $data['subscriptions']['from'], $data['subscriptions']['comment'], $data['subscriptions']['subscriptiontype_id'], $data['subscriptions']['customer_id'], $data['subscriptions']['project_id']);
+            $subscription_id = DB::insert('INSERT INTO `subscriptions` (`tenant_id`, `fee`, `tax_percentage`, `months`, `name`, `from`, `comment`, `subscriptiontype_id`, `customer_id`, `project_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptions']['fee'], $data['subscriptions']['tax_percentage'], $data['subscriptions']['months'], $data['subscriptions']['name'], $data['subscriptions']['from'], $data['subscriptions']['comment'], $data['subscriptions']['subscriptiontype_id'], $data['subscriptions']['customer_id'], $data['subscriptions']['project_id']);
 
             //get the until date
             $until = date('Y-m-d', strtotime($data['subscriptions']['from'] . ' +'.$data['subscriptions']['months'].' months - 1 day'));
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     $data = array('subscriptions' => array(
         'fee' => null,
-        'vat_percentage' => $tenant['tenants']['default_vat_percentage'],
+        'tax_percentage' => $tenant['tenants']['default_tax_percentage'],
         'months' => null,
         'name' => null,
         'from' => null,

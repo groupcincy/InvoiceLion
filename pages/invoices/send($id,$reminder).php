@@ -22,7 +22,7 @@ $kl_name = $customer['customers']['name'];
 $kl_email = $customer['customers']['email'];
 $kl_contact = $customer['customers']['contact'];
 $kl_address = $customer['customers']['address'];
-$kl_vat_reverse_charge = $customer['customers']['vat_reverse_charge'];
+$kl_tax_reverse_charge = $customer['customers']['tax_reverse_charge'];
 
 $include = 1;
 include('pages/invoices/download(none).phtml');

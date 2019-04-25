@@ -71,10 +71,10 @@
 		<span class="help-block"><?php if (isset($errors['tenants[coc_number]'])) e($errors['tenants[coc_number]']); ?></span>
     </div>
 
-    <div class="form-group <?php e(isset($errors['tenants[vat_number]'])?'has-error':''); ?>">
-		<label class="control-label" for="tenants[vat_number]">VAT number</label>
-		<input class="form-control" name="tenants[vat_number]" type="text" id="tenants[vat_number]" value="<?php e($data['tenants']['vat_number']); ?>" />
-		<span class="help-block"><?php if (isset($errors['tenants[vat_number]'])) e($errors['tenants[vat_number]']); ?></span>
+    <div class="form-group <?php e(isset($errors['tenants[tax_number]'])?'has-error':''); ?>">
+		<label class="control-label" for="tenants[tax_number]">tax number</label>
+		<input class="form-control" name="tenants[tax_number]" type="text" id="tenants[tax_number]" value="<?php e($data['tenants']['tax_number']); ?>" />
+		<span class="help-block"><?php if (isset($errors['tenants[tax_number]'])) e($errors['tenants[tax_number]']); ?></span>
     </div>
 
     <div class="form-group">

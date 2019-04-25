@@ -43,10 +43,10 @@
 		<span class="help-block"><?php if (isset($errors['deliveries[subtotal]'])) e($errors['deliveries[subtotal]']); ?></span>
 	</div>
 
-	<div class="form-group <?php e(isset($errors['deliveries[vat_percentage]'])?'has-error':''); ?>">
-		<label class="control-label" for="deliveries[vat_percentage]">VAT percentage</label>
-		<input class="form-control" name="deliveries[vat_percentage]" type="number" step="0.01" value="<?php e($data['deliveries']['vat_percentage']); ?>" id="deliveries[vat_percentage]" />
-		<span class="help-block"><?php if (isset($errors['deliveries[vat_percentage]'])) e($errors['deliveries[vat_percentage]']); ?></span>
+	<div class="form-group <?php e(isset($errors['deliveries[tax_percentage]'])?'has-error':''); ?>">
+		<label class="control-label" for="deliveries[tax_percentage]">tax percentage</label>
+		<input class="form-control" name="deliveries[tax_percentage]" type="number" step="0.01" value="<?php e($data['deliveries']['tax_percentage']); ?>" id="deliveries[tax_percentage]" />
+		<span class="help-block"><?php if (isset($errors['deliveries[tax_percentage]'])) e($errors['deliveries[tax_percentage]']); ?></span>
 	</div>
 
 	<div class="form-group <?php e(isset($errors['deliveries[name]'])?'has-error':''); ?>">
