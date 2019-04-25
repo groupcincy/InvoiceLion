@@ -12,8 +12,8 @@
 	<div class="form-group <?php e(isset($errors['country_id'])?'has-error':''); ?>">
 		<label class="control-label" for="country_id">Country</label>
 		<select class="form-control" name="country_id" id="country_id">
-			<?php foreach ($countries as $country): ?>
-			<option value="<?php e($country['countries']['id']); ?>"><?php e($country['countries']['name']); ?></option>
+			<?php foreach ($countries as $countryId=>$countryName): ?>
+			<option value="<?php e($countryId); ?>"><?php e($countryName); ?></option>
 			<?php endforeach; ?>
 		</select>
 		<span class="help-block"><?php if (isset($errors['country_id'])) e($errors['country_id']); ?></span>
