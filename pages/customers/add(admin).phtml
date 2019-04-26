@@ -33,16 +33,6 @@
 	<div class="form-group <?php e(isset($errors['customers[language_id]'])?'has-error':''); ?>">
 		<label class="control-label" for="customers[language_id]">Invoice language</label>
 		<select class="form-control" name="customers[language_id]" id="customers[language_id]">
-		<?php foreach ($languages as $languageId=>$languageName): ?>
-			<option value="<?php e($languageId); ?>" <?php if($data['customers']['language_id'] == $languageId) e('selected'); ?>><?php e($languageName); ?></option>
-		<?php endforeach; ?>
-		</select>
-		<span class="help-block"><?php if (isset($errors['customers[language_id]'])) e($errors['customers[language_id]']); ?></span>
-	</div>
-  
-	<div class="form-group <?php e(isset($errors['customers[language_id]'])?'has-error':''); ?>">
-		<label class="control-label" for="customers[language_id]">Invoice language</label>
-		<select class="form-control" name="customers[language_id]" id="customers[language_id]">
 		<?php foreach ($languages as $language): ?>
 			<option value="<?php e($language['languages']['id']); ?>"<?php e($language['languages']['id']==$data['customers']['language_id']?' selected="selected"':''); ?>><?php e($language['languages']['name']); ?></option>
 		<?php endforeach; ?>
