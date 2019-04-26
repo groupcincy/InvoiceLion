@@ -12,11 +12,14 @@ CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `default_tax_percentage` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `language_id` (`language_id`),
+  CONSTRAINT `countries_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `countries` (`id`, `name`, `default_tax_percentage`) VALUES
-(1,	'Nederland',	21.00);
+INSERT INTO `countries` (`id`, `name`, `default_tax_percentage`, `language_id`) VALUES
+(1,	'Nederland',	21.00,	1);
 
 DROP TABLE IF EXISTS `currencies`;
 CREATE TABLE `currencies` (
@@ -349,4 +352,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-04-26 00:09:36
+-- 2019-04-26 00:23:11
