@@ -56,6 +56,6 @@ if (!$error || Debugger::$enabled)  {
 	if($reminder==1) DB::update('update invoices set reminder1=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
 	else if($reminder==2) DB::update('update invoices set reminder2=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
 	else DB::update('update invoices set sent=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
-	Flash::set('success','Factuur sent');
+	Flash::set('success','Invoice sent');
 	Router::redirect('invoices/index');
 }
