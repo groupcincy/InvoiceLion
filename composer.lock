@@ -74,16 +74,16 @@
         },
         {
             "name": "mintyphp/core",
-            "version": "v2.1.2",
+            "version": "v2.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mintyphp/core.git",
-                "reference": "a655736e8a6ab96e7005aba6aeb40a520530667c"
+                "reference": "03e1feeda8c6b79bc5518026540ec31e613b5ed2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mintyphp/core/zipball/a655736e8a6ab96e7005aba6aeb40a520530667c",
-                "reference": "a655736e8a6ab96e7005aba6aeb40a520530667c",
+                "url": "https://api.github.com/repos/mintyphp/core/zipball/03e1feeda8c6b79bc5518026540ec31e613b5ed2",
+                "reference": "03e1feeda8c6b79bc5518026540ec31e613b5ed2",
                 "shasum": ""
             },
             "require": {
@@ -103,7 +103,7 @@
                     "homepage": "https://www.tqdev.com"
                 }
             ],
-            "time": "2019-04-24T21:46:40+00:00"
+            "time": "2019-04-26T18:28:34+00:00"
         },
         {
             "name": "phenx/php-font-lib",
