@@ -92,6 +92,7 @@ class SignUpTest extends TestCase
         $crawler = $client->submit($crawler->selectButton('Save')->form(), array('customers[name]' => 'test customer 4'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
+        return array($client, $crawler);
     }
 
     /**
