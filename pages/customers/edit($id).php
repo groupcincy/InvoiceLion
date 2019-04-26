@@ -15,4 +15,5 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	}	
 } else {
 	$data = DB::selectOne('SELECT * from `customers` WHERE `tenant_id` = ? AND `id` = ?', $_SESSION['user']['tenant_id'], $id);
+	$languages = DB::selectPairs('SELECT `id`,`name` FROM `languages`'); // tenant_id not required
 }
