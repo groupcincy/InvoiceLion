@@ -95,7 +95,7 @@ class SignUpTest extends TestCase
     }
 
     /**
-     * @depends testLogin
+     * @depends testAddCustomer
      */
     public function testEditCustomer($context)
     {
