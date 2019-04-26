@@ -11,7 +11,7 @@ class SignUpTest extends TestCase
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler = $client->click($crawler->selectLink('Register')->link());
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
-        $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com', 'country_id' => 1));
+        $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com'));
         $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
         $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
         $crawler = $client->submit($crawler->selectButton('Submit')->form(), array('username' => 'test@invoicelion.com', 'password' => 'test@invoicelion.com', 'password2' => 'test@invoicelion.com'));

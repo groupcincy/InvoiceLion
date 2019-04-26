@@ -163,6 +163,9 @@ CREATE TABLE `languages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `languages` (`id`, `name`, `code`) VALUES
+(1,	'Nederlands',	'nl'),
+(2,	'English',	'en');
 
 DROP TABLE IF EXISTS `offers`;
 CREATE TABLE `offers` (
@@ -352,4 +355,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-04-26 00:23:11
+-- 2019-04-26 00:25:33
