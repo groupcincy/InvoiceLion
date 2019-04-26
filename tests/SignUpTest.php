@@ -79,4 +79,31 @@ class SignUpTest extends TestCase
         $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
     }
 
+    /**
+     * @depends testLogin
+     */
+    public function testAddCustomer($context)
+    {
+        list($client, $crawler) = $context;
+        $crawler = $client->click($crawler->selectLink('Customers')->link());
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler = $client->click($crawler->selectLink('Add customer')->link());
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('customers[name]' => 'test customer 4'));
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
+    }
+
+    /**
+     * @depends testLogin
+     */
+    public function testEditCustomer($context)
+    {
+        list($client, $crawler) = $context;
+        $crawler = $client->request('GET', '/customers/view/4');
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler = $client->submit($crawler->selectButton('Save')->form(), array('customers[name]' => 'test customer 4 (edited)'));
+        $this->assertEquals(200, $client->getResponse()->getStatus(), 'Server side error occurred');
+        $crawler->filter('.alert-danger .message, .has-error .help-block')->each(function ($node) {$this->fail($node->text());});
+    }
 }
