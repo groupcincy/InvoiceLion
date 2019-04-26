@@ -10,9 +10,9 @@
     <li><a href="/settings/general/view">General Settings</a></li>
     <li><a href="/settings/company/view">Company Settings</a></li>
     <li><a href="/settings/invoice/view">Invoice Settings</a></li>
-    <ul>
+    <li>Language Settings<ul>
 		<?php foreach ($languages as $language): ?>
-            <li><a href="/settings/languages/view/<?php e($language['languages']['id']);?>">Language Settings (<?php e(strtoupper($language['languages']['code']));?>)</a></li>
+            <li><a href="/settings/languages/view/<?php e($language['languages']['id']);?>"><?php e($language['languages']['name']);?> (<?php e(strtoupper($language['languages']['code']));?>)</a></li>
 		<?php endforeach;?>
-    </ul>
+    </ul></li>
 </ul>
