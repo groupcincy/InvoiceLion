@@ -1,7 +1,4 @@
 <table id="address"><tr><td>
-    <br>
-    <br>
-    <br>
     {{customer.name}}<br>
     t.a.v. {{customer.contact}}<br>
     {{customer.address|convertLines}}<br>
