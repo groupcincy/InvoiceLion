@@ -2,11 +2,12 @@
 $subscriptiontypes = DB::selectPairs('select `id`,`name` from `subscriptiontypes` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 $projects = DB::select('select `id`,`name`,`customer_id` from `projects` WHERE `tenant_id` = ? and `active` ORDER BY name', $_SESSION['user']['tenant_id']);
 $customers = DB::selectPairs('select `id`,`name` from `customers` WHERE `tenant_id` = ? ORDER BY `name`', $_SESSION['user']['tenant_id']);
+$languageId = DB::selectValue('select `language_id` from `tenants`, `countries` WHERE `tenants`.`id` = ? AND `tenants`.`country_id` = `countries`.`id`', $_SESSION['user']['tenant_id']);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = $_POST;
 
     if ($data['subscriptions']['add_customer']) {
-		$data['subscriptions']['customer_id'] = DB::insert('INSERT INTO `customers` (`tenant_id`, `name`) VALUES (?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptions']['add_customer']);
+		$data['subscriptions']['customer_id'] = DB::insert('INSERT INTO `customers` (`tenant_id`, `name`, `language_id`) VALUES (?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptions']['add_customer']);
 		$data['subscriptions']['add_customer'] = null;
 		$customers = DB::selectPairs('select `id`,`name` from `customers`  WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 	}
