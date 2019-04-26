@@ -16,4 +16,5 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	}	
 } else {
 	$data = array('customers'=>array('name'=>NULL, 'email'=>NULL, 'contact'=>NULL, 'address'=>NULL, 'tax_reverse_charge'=>NULL));
+	$languages = DB::selectPairs('SELECT `id`,`name` FROM `languages`'); // tenant_id not required
 }
