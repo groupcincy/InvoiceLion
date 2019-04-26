@@ -16,7 +16,7 @@
     att. {{company.bank_account_name}}<br>
     BIC: {{company.bank_bic}}<br>
     CoC: {{company.coc_number}}<br>
-    tax: {{company.tax_number}}<br>                
+    VAT: {{company.tax_number}}<br>                
 </td></tr></table>
 <br>
 <br>
@@ -53,7 +53,7 @@
     <tr><td>
         {{line.name|capitalize}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </td><td>
-        {{line.tax_percentage}}% tax&nbsp;&nbsp;&nbsp;€ 
+        {{line.tax_percentage}}% VAT&nbsp;&nbsp;&nbsp;€ 
     </td><td>
         {{line.subtotal|formatNumber(2,44,0)}}
     </td></tr>
@@ -73,14 +73,14 @@
     </td><td>
         &nbsp;
     </td><td>
-        tax reverse charge
+        VAT reverse charge
     </td></tr>
 {{endif}}
 {{if:customer.tax_reverse_charge|eq(0)}}
     <tr><td>
         &nbsp;
     </td><td>
-        tax&nbsp;&nbsp;&nbsp;€ 
+        VAT&nbsp;&nbsp;&nbsp;€ 
     </td><td>
         {{invoice.tax|formatNumber(2,44,0)}}
     </td></tr>
