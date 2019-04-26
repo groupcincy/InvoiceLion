@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = $_POST;
 
     if ($data['subscriptions']['add_customer']) {
-		$data['subscriptions']['customer_id'] = DB::insert('INSERT INTO `customers` (`tenant_id`, `name`, `language_id`) VALUES (?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptions']['add_customer']);
+		$data['subscriptions']['customer_id'] = DB::insert('INSERT INTO `customers` (`tenant_id`, `name`, `language_id`) VALUES (?, ?, ?)', $_SESSION['user']['tenant_id'], $data['subscriptions']['add_customer'], $languageId);
 		$data['subscriptions']['add_customer'] = null;
 		$customers = DB::selectPairs('select `id`,`name` from `customers`  WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 	}
