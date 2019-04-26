@@ -1,9 +1,28 @@
--- Adminer 4.7.1 MySQL dump
+-- Adminer 4.7.0 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+SET NAMES utf8mb4;
+
+DROP TABLE IF EXISTS `countries`;
+CREATE TABLE `countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `default_tax_percentage` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+DROP TABLE IF EXISTS `currencies`;
+CREATE TABLE `currencies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
@@ -14,13 +33,14 @@ CREATE TABLE `customers` (
   `contact` varchar(255) DEFAULT NULL,
   `address` text,
   `tax_reverse_charge` tinyint(1) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tenant_id` (`tenant_id`),
-  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`)
+  KEY `language_id` (`language_id`),
+  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`),
+  CONSTRAINT `customers_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `deliveries`;
 CREATE TABLE `deliveries` (
@@ -122,11 +142,20 @@ CREATE TABLE `invoices` (
   `tax` decimal(10,2) DEFAULT NULL,
   `total` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tenant_id_number` (`tenant_id`, `number`),
+  UNIQUE KEY `tenant_id_number` (`tenant_id`,`number`),
   KEY `customer_id` (`customer_id`),
   KEY `tenant_id` (`tenant_id`),
   CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
   CONSTRAINT `invoices_ibfk_2` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+DROP TABLE IF EXISTS `languages`;
+CREATE TABLE `languages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -249,6 +278,24 @@ CREATE TABLE `subscriptiontypes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+DROP TABLE IF EXISTS `templates`;
+CREATE TABLE `templates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `language_id` int(11) NOT NULL,
+  `tenant_id` int(11) NOT NULL,
+  `invoice_styles` text,
+  `invoice_template` text,
+  `invoiceline_template` text,
+  `invoice_page_number` text,
+  PRIMARY KEY (`id`),
+  KEY `tenant_id` (`tenant_id`),
+  KEY `language_id` (`language_id`),
+  CONSTRAINT `templates_ibfk_1` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`),
+  CONSTRAINT `templates_ibfk_2` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`),
+  CONSTRAINT `templates_ibfk_3` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 DROP TABLE IF EXISTS `tenants`;
 CREATE TABLE `tenants` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -277,8 +324,10 @@ CREATE TABLE `tenants` (
   `invoice_page_number` varchar(255) DEFAULT NULL,
   `hours_active` tinyint(1) NOT NULL DEFAULT '1',
   `subscriptions_active` tinyint(1) NOT NULL DEFAULT '1',
-  `country` varchar(2) NOT NULL,
-  PRIMARY KEY (`id`)
+  `country_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `country_id` (`country_id`),
+  CONSTRAINT `tenants_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -298,4 +347,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
--- 2019-02-04 22:16:01
+-- 2019-04-26 00:09:36
