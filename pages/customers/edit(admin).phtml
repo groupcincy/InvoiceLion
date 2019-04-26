@@ -30,9 +30,15 @@
 	</div>
   
 	<div class="form-group <?php e(isset($errors['customers[tax_reverse_charge]'])?'has-error':''); ?>">
-		<label class="control-label" for="customers[tax_reverse_charge]">tax Reverse Charge</label>
+		<label class="control-label" for="customers[tax_reverse_charge]">Tax Reverse Charge</label>
 		<input class="form-control" name="customers[tax_reverse_charge]" type="checkbox" <?php if($data['customers']['tax_reverse_charge']) e('checked'); ?> id="customers[tax_reverse_charge]" value="1" />
 		<span class="help-block"><?php if (isset($errors['customers[tax_reverse_charge]'])) e($errors['customers[tax_reverse_charge]']); ?></span>
+	</div>
+
+	<div class="form-group <?php e(isset($errors['customers[language_id]'])?'has-error':''); ?>">
+		<label class="control-label" for="customers[language_id]">Language</label>
+		<input class="form-control" name="customers[language_id]" type="text" value="<?php e($data['customers']['language_id']); ?>" id="customers[language_id]" />
+		<span class="help-block"><?php if (isset($errors['customers[language_id]'])) e($errors['customers[language_id]']); ?></span>
 	</div>
 
 	<div class="form-group">
