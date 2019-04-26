@@ -24,22 +24,7 @@
         <dt>Signature (<a href="settings/invoice/change/signature_image/5.5">change</a>)</dt>
         <dd><div style="height: 3.5em; width: 50%; background: url('data:image/png;base64,<?php e(base64_encode($data['tenants']['signature_image']));?>') left center / contain no-repeat;"></div></dd>
     </dl>
-    <dl>
-        <dt>Invoice styles</dt>
-        <dd><?php e(substr($data['tenants']['invoice_styles'] ?: '-', 0, 100));?>...</dd>
-    </dl>
-    <dl>
-        <dt>Invoice template</dt>
-        <dd><?php e(substr($data['tenants']['invoice_template'] ?: '-', 0, 100));?>...</dd>
-    </dl>
-    <dl>
-        <dt>Invoice line template</dt>
-        <dd><?php e(substr($data['tenants']['invoiceline_template'] ?: '-', 0, 100));?>...</dd>
-    </dl>
-    <dl>
-        <dt>Invoice page number</dt>
-        <dd><?php e(substr($data['tenants']['invoice_page_number'] ?: '-', 0, 100));?>...</dd>
-    </dl>
+
 
 </div>
 
