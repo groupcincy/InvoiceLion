@@ -15,6 +15,8 @@ CREATE TABLE `countries` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `countries` (`id`, `name`, `default_tax_percentage`) VALUES
+(1,	'Nederland',	21.00);
 
 DROP TABLE IF EXISTS `currencies`;
 CREATE TABLE `currencies` (
