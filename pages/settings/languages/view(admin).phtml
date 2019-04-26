@@ -1,0 +1,30 @@
+<?php Buffer::set('title', 'Settings');?>
+<h3>Home / <a href="/settings/">Settings</a></h3>
+<h1>Language settings (<?php e(strtoupper($language['languages']['code']));?>)</h1>
+
+<div>
+
+    <dl>
+        <dt>Invoice styles</dt>
+        <dd><?php e(substr($data['templates']['invoice_styles'] ?: '-', 0, 100));?>...</dd>
+    </dl>
+    <dl>
+        <dt>Invoice template</dt>
+        <dd><?php e(substr($data['templates']['invoice_template'] ?: '-', 0, 100));?>...</dd>
+    </dl>
+    <dl>
+        <dt>Invoice line template</dt>
+        <dd><?php e(substr($data['templates']['invoiceline_template'] ?: '-', 0, 100));?>...</dd>
+    </dl>
+    <dl>
+        <dt>Invoice page number</dt>
+        <dd><?php e(substr($data['templates']['invoice_page_number'] ?: '-', 0, 100));?>...</dd>
+    </dl>
+
+</div>
+
+<br />
+
+<p>
+	<a class="btn btn-primary" href="settings/languages/edit/<?php e($language['languages']['id']);?>">Edit</a>
+</p>

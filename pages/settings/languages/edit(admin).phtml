@@ -1,0 +1,36 @@
+<?php Buffer::set('title','Settings'); ?>
+<h3><a href="/">Home</a></h3>
+<h1>Edit settings</h1>
+
+<?php if (isset($error)): ?><div class="alert alert-danger"><button type="button" class="close">x</button><div class="message"><?php e($error); ?></div></div><?php endif; ?>
+<form method="post">
+   
+		<div class="form-group <?php e(isset($errors['templates[invoice_styles]'])?'has-error':''); ?>">
+		<label class="control-label" for="templates[invoice_styles]">Invoice styles</label>
+		<textarea class="form-control" name="templates[invoice_styles]" type="text" id="templates[invoice_styles]"><?php e($data['templates']['invoice_styles']); ?></textarea>
+		<span class="help-block"><?php if (isset($errors['templates[invoice_styles]'])) e($errors['templates[invoice_styles]']); ?></span>
+		</div>
+
+		<div class="form-group <?php e(isset($errors['templates[invoice_template]'])?'has-error':''); ?>">
+		<label class="control-label" for="templates[invoice_template]">Invoice template</label>
+		<textarea class="form-control" name="templates[invoice_template]" type="text" id="templates[invoice_template]"><?php e($data['templates']['invoice_template']); ?></textarea>
+		<span class="help-block"><?php if (isset($errors['templates[invoice_template]'])) e($errors['templates[invoice_template]']); ?></span>
+		</div>
+
+		<div class="form-group <?php e(isset($errors['templates[invoiceline_template]'])?'has-error':''); ?>">
+		<label class="control-label" for="templates[invoiceline_template]">Invoice line template</label>
+		<textarea class="form-control" name="templates[invoiceline_template]" type="text" id="templates[invoiceline_template]"><?php e($data['templates']['invoiceline_template']); ?></textarea>
+		<span class="help-block"><?php if (isset($errors['templates[invoiceline_template]'])) e($errors['templates[invoiceline_template]']); ?></span>
+		</div>
+
+		<div class="form-group <?php e(isset($errors['templates[invoice_page_number]'])?'has-error':''); ?>">
+		<label class="control-label" for="templates[invoice_page_number]">Invoice page number</label>
+		<textarea class="form-control" name="templates[invoice_page_number]" type="text" id="templates[invoice_page_number]"><?php e($data['templates']['invoice_page_number']); ?></textarea>
+		<span class="help-block"><?php if (isset($errors['templates[invoice_page_number]'])) e($errors['templates[invoice_page_number]']); ?></span>
+		</div>
+
+    <div class="form-group">
+		<button class="btn btn-primary" type="submit">Save</button>
+	</div>
+	<?php Session::getCsrfInput(); ?>
+</form>
