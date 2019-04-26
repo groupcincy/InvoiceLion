@@ -30,7 +30,7 @@
 	</div>
   
 	<div class="form-group <?php e(isset($errors['customers[language_id]'])?'has-error':''); ?>">
-		<label class="control-label" for="customers[language_id]">Language</label>
+		<label class="control-label" for="customers[language_id]">Invoice language</label>
 		<select class="form-control" name="customers[language_id]" id="customers[language_id]">
 		<?php foreach ($languages as $languageId=>$languageName): ?>
 			<option value="<?php e($languageId); ?>"><?php e($languageName); ?></option>
