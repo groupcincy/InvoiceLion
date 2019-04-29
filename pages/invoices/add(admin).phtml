@@ -24,7 +24,7 @@
 			<?php foreach ($invoicelines as $key=>$invoiceline): ?>
 			<tr>
 				<td class="name"><span><input name="invoicelines[]" type="checkbox" value="<?php e($key);?>" checked /> &nbsp; <?php e($invoiceline['name']);?></span></td>
-				<td class="money"><span><?php e($invoiceline['subtotal']);?></span></td>
+				<td class="money"><span><?php e(number_format($invoiceline['subtotal'], 2, '.', ''));?></span></td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>

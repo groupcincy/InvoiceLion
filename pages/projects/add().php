@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	}
 
 	if (!isset($customers[$customer_id])) $errors['projects[customer_id]']='Customer not found';
-	if (!isset($data['projects']['active']) || !$data['projects']['active']) $data['projects']['active'] = NULL;
+	if (!isset($data['projects']['active']) || !$data['projects']['active']) $data['projects']['active'] = 0;
 
 	if (!isset($errors)) {
 		try {
-			$id = DB::insert('INSERT INTO `projects` (`tenant_id`, `name`, `customer_id`, `active`) VALUES (?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['projects']['name'], $customer_id, $data['projects']['active']);
+			$id = DB::insert('INSERT INTO `projects` (`tenant_id`, `name`, `customer_id`, `default_hourly_fee`, `active`) VALUES (?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['projects']['name'], $customer_id, $data['projects']['default_hourly_fee'], $data['projects']['active']);
 			if ($id) {
 				Flash::set('success','Project saved');
 				Router::redirect('projects/index');
@@ -26,5 +26,5 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		}
 	}
 } else {
-	$data = array('projects'=>array('name'=>NULL, 'customer_id'=>NULL, 'add_customer'=>NULL, 'active'=>NULL));
+	$data = array('projects'=>array('name'=>NULL, 'customer_id'=>NULL, 'add_customer'=>NULL, 'default_hourly_fee'=>NULL, 'active'=>1));
 }

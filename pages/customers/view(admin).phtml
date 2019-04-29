@@ -20,9 +20,12 @@
  
   	</dl>
 	<dl>
-		<dt>VAT</dt>
-  		<dd><?php if($data['customers']['vat_reverse_charge']) e('no'); else e('yes'); ?></dd>
- 
+		<dt>Invoice language</dt>
+  		<dd><?php e($languages[$data['customers']['language_id']]); ?></dd>
+  	</dl>
+	<dl>
+		<dt>Tax</dt>
+  		<dd><?php if($data['customers']['tax_reverse_charge']) e('no'); else e('yes'); ?></dd>
   	</dl>
 </div>
 

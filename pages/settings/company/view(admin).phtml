@@ -2,6 +2,8 @@
 <h3>Home / <a href="/settings/">Settings</a></h3>
 <h1>Company settings</h1>
 
+<?php include('pages/settings/settingstabs.php'); ?>
+
 <div>
     <dl>
         <dt>Company name</dt>
@@ -48,8 +50,8 @@
         <dd><?php e($data['tenants']['coc_number']?:'-');?></dd>
     </dl>
     <dl>
-        <dt>VAT number</dt>
-        <dd><?php e($data['tenants']['vat_number']?:'-');?></dd>
+        <dt>tax number</dt>
+        <dd><?php e($data['tenants']['tax_number']?:'-');?></dd>
     </dl>
 </div>
 

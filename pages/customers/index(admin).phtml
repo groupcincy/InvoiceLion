@@ -7,7 +7,7 @@
       <th class="name <?php if($order=='name') e('selected'); ?>" order="/customers/name/asc">Name</th>
       <th class="<?php if($order=='email') e('selected'); ?>" order="/customers/email/asc">Email address</th>
       <th class="<?php if($order=='contact') e('selected'); ?>" order="/customers/contact/asc">Contact</th>
-      <th class="bool <?php if($order=='vat_reverse_charge') e('selected'); ?>" order="/customers/vat_reverse_charge/asc">VAT</th>
+      <th class="bool <?php if($order=='tax_reverse_charge') e('selected'); ?>" order="/customers/tax_reverse_charge/asc">Tax</th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +16,7 @@
       <td class="name"><span><?php e($row['customers']['name']);?></span></td>
       <td><span><?php e($row['customers']['email']);?></span></td>
       <td><span><?php e($row['customers']['contact']);?></span></td>
-      <td class="bool"><span><?php if($row['customers']['vat_reverse_charge']) e('no'); else e('yes'); ?></span></td>
+      <td class="bool"><span><?php if($row['customers']['tax_reverse_charge']) e('no'); else e('yes'); ?></span></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

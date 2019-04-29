@@ -7,20 +7,22 @@
 	<dl>
 		<dt>Username</dt>
   		<dd><?php e($data['users']['username']);?></dd>
- 
   	</dl>
 	<dl>
-		<dt>Password</dt>
-  		<dd><?php e($data['users']['password']);?></dd>
- 
+		<dt>Name</dt>
+  		<dd><?php e($data['users']['name']?:'-');?></dd>
   	</dl>
 	<dl>
 		<dt>Created</dt>
   		<dd><?php e($data['users']['created']);?></dd>
- 
   	</dl>
 </div>
 <p>
-	<a class="btn btn-danger pull-right" href="users/delete/<?php e($id); ?>">Delete</a>
-	<a class="btn btn-primary" href="users/edit/<?php e($id); ?>">Edit</a>
+	<?php if($_SESSION['user']['id'] == $id): ?>
+		<a class="btn btn-danger pull-right" href="users/delete/<?php e($id); ?>">Delete</a>
+		<a class="btn btn-primary" href="users/edit/<?php e($id); ?>">Edit</a>
+	<?php endif; ?>
+	<?php if($_SESSION['user']['superadmin'] && $_SESSION['user']['id'] != $id): ?>
+		<a class="btn btn-default" href="users/impersonate/<?php e($id); ?>">Impersonate</a>
+	<?php endif; ?>
 </p>

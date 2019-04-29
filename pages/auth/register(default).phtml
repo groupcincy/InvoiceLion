@@ -8,6 +8,18 @@
 		<input class="form-control" name="username" type="email" value="<?php e($data['username']); ?>" id="username" />
 		<span class="help-block"><?php if (isset($errors['username'])) e($errors['username']); ?></span>
 	</div>
+
+	<div class="form-group <?php e(isset($errors['country_id'])?'has-error':''); ?>">
+		<label class="control-label" for="country_id">Country</label>
+		<select class="form-control" name="country_id" id="country_id">
+			<?php foreach ($countries as $countryId=>$countryName): ?>
+			<option value="<?php e($countryId); ?>"><?php e($countryName); ?></option>
+			<?php endforeach; ?>
+		</select>
+		<span class="help-block"><?php if (isset($errors['country_id'])) e($errors['country_id']); ?></span>
+        <div style="padding-top: 5px;"><a href="https://github.com/Usecue/InvoiceLion/wiki/Country-support">Why is my country not listed?</a></div>
+	</div>
+
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>

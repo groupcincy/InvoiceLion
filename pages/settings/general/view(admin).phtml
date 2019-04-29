@@ -1,6 +1,8 @@
 <?php Buffer::set('title','Settings'); ?>
-<h3>Home / <a href="/settings/">Settings</a></h3>
+<h3><a href="/">Home</a> / Settings</h3>
 <h1>General settings</h1>
+
+<?php include('pages/settings/settingstabs.php'); ?>
 
 <div>
         <dl>
@@ -13,6 +15,18 @@
             <dt>Subscriptions</dt>
             <dd>        
                 <?php if($data['tenants']['subscriptions_active']) e('yes'); else e('no'); ?>
+            </dd>
+        </dl>
+        <dl>
+            <dt>Default tax percentage</dt>
+            <dd>        
+                <?php e($data['tenants']['default_tax_percentage']); ?>
+            </dd>
+        </dl>
+        <dl>
+            <dt>Default hourly fee</dt>
+            <dd>        
+                <?php e($data['tenants']['default_hourly_fee']); ?>
             </dd>
         </dl>
         <dl>

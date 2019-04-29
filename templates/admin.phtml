@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="img/icon-196x196.png">
     <link rel="shortcut icon" sizes="196x196" href="img/icon-196x196.png">
-    <link rel="apple-touch-icon" href="img/homescreenicon.png">
+    <link rel="apple-touch-icon" href="img/icon-196x196.png">
 
     <link href="css/default.css" rel="stylesheet" type="text/css">
   </head>
@@ -30,55 +30,63 @@
 
       <div class="icons">
         <div>
-          <a href="/" id="branding" title="InvoiceLion"><span></span></a>
-          <a href="/" title="Dashboard">
+          <a href="/" id="branding" title="InvoiceLion"></a>
+          <a href="/" <?php if(strlen(Router::getRequest())<3) e('class=active'); ?> title="Dashboard">
             <div class="img" style="background-image: url(/img/icon.svg);"></div>
             <div class="img" style="background-image: url(/img/icon-white.svg);"></div>
             <span>Dashboard</span>
           </a>
           <?php if($tenant['tenants']['hours_active']) {?>
-          <a href="hours" <?php if(Buffer::get('title') == 'Hours') e('class="active"'); ?> title="Hours">
+          <a href="hours" <?php if(substr(Router::getRequest(),0,6)==='/hours') e('class=active'); ?> title="Hours">
             <div class="img" style="background-image: url(/img/clock.svg);"></div>
             <div class="img" style="background-image: url(/img/clock-white.svg);"></div>
             <span>Hours</span>
           </a>
           <?php }?>
-          <a href="deliveries" title="Deliveries">
+          <a href="deliveries" <?php if(substr(Router::getRequest(),0,11)==='/deliveries') e('class=active'); ?> title="Deliveries">
             <div class="img" style="background-image: url(/img/box-alt.svg);"></div>
             <div class="img" style="background-image: url(/img/box-alt-white.svg);"></div>
             <span>Deliveries</span>
           </a>
           <?php if($tenant['tenants']['subscriptions_active']) {?>
-          <a href="subscriptions" title="Subscriptions">
+          <a href="subscriptions" <?php if(substr(Router::getRequest(),0,14)==='/subscriptions') e('class=active'); ?> title="Subscriptions">
             <div class="img" style="background-image: url(/img/repeat.svg);"></div>
             <div class="img" style="background-image: url(/img/repeat-white.svg);"></div>
             <span>Subscriptions</span>
           </a>
           <?php } ?>
-          <a href="invoices" title="Invoices">
+          <a href="invoices" <?php if(substr(Router::getRequest(),0,9)==='/invoices') e('class=active'); ?> title="Invoices">
             <div class="img" style="background-image: url(/img/file-invoice-dollar.svg);"></div>
             <div class="img" style="background-image: url(/img/file-invoice-dollar-white.svg);"></div>
             <span>Invoices</span>
           </a>
-          <a href="customers" title="Customers">
+          <a href="customers" <?php if(substr(Router::getRequest(),0,10)==='/customers') e('class=active'); ?> title="Customers">
             <div class="img" style="background-image: url(/img/address-book.svg);"></div>
             <div class="img" style="background-image: url(/img/address-book-white.svg);"></div>
             <span>Customers</span>
           </a>
-          <a href="settings/" class="onlydesktop" title="Settings">
+          <a href="settings" <?php if(substr(Router::getRequest(),0,9)==='/settings') e('class=active'); ?> class="onlydesktop" title="Settings">
             <div class="img" style="background-image: url(/img/cog.svg);"></div>
             <div class="img" style="background-image: url(/img/cog-white.svg);"></div>
             <span>Settings</span>
           </a>
-          <a href="menu/" class="onlymobile" title="More">
+          <a href="menu" class="onlymobile" title="More">
             <div class="img" style="background-image: url(/img/ellipsis-h.svg);"></div>
             <div class="img" style="background-image: url(/img/ellipsis-h-white.svg);"></div>
             <span>Menu</span>
           </a>
 
           <div class="bottom">
+
+            <?php if ($_SESSION['user']['superadmin']) { ?>
+              <a href="users/" <?php if(substr(Router::getRequest(),0,6)==='/users' && $_SESSION['user']['superadmin']) e('class=active'); ?> title="Users">
+                <div class="img" style="background-image: url(/img/user-friends.svg);"></div>
+                <div class="img" style="background-image: url(/img/user-friends-white.svg);"></div>
+                <span>Users</span>
+              </a> 
+            <?php } ?>
             <?php $username = isset($_SESSION['user']) ? $_SESSION['user']['username'] : false?>
-            <a href="users/view/<?php e($_SESSION['user']['id']); ?>" title="User">
+            <a href="users/view/<?php e($_SESSION['user']['id']); ?>" <?php if(substr(Router::getRequest(),0,6)==='/users' && !$_SESSION['user']['superadmin']) e('class=active'); ?> title="User">
               <div class="img" style="background-image: url(/img/user.svg);"></div>
               <div class="img" style="background-image: url(/img/user-white.svg);"></div>
               <span><?php e(substr($username,0,12)."...");?></span>

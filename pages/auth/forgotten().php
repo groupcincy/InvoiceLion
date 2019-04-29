@@ -9,6 +9,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     if ($token) {
       mail($username,'Login to '.Router::getBaseUrl(),'Click here: '.Router::getBaseUrl()."auth/reset/$token");
     }
-    Router::redirect("auth/sent");
-  }
+} else {
+    $data = array('username' => '');
 }

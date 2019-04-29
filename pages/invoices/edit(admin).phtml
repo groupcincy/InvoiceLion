@@ -12,12 +12,30 @@
 		<span class="help-block"><?php if (isset($errors['invoices[number]'])) e($errors['invoices[number]']); ?></span>
 	</div>
 
+	<div class="form-group <?php e(isset($errors['invoices[date]'])?'has-error':''); ?>">
+		<label class="control-label" for="invoices[date]">Date</label>
+		<input class="form-control" name="invoices[date]" type="date" value="<?php e($data['invoices']['date']); ?>" id="invoices[date]" />
+		<span class="help-block"><?php if (isset($errors['invoices[date]'])) e($errors['invoices[date]']); ?></span>
+	</div>
+
+	<div class="form-group <?php e(isset($errors['invoices[name]'])?'has-error':''); ?>">
+		<label class="control-label" for="invoices[name]">Name</label>
+		<input class="form-control" name="invoices[name]" type="text" value="<?php e($data['invoices']['name']); ?>" id="invoices[name]" />
+		<span class="help-block"><?php if (isset($errors['invoices[name]'])) e($errors['invoices[name]']); ?></span>
+	</div>
+
+	<div class="form-group <?php e(isset($errors['invoices[sent]'])?'has-error':''); ?>">
+		<label class="control-label" for="invoices[sent]">Sent</label>
+		<input class="form-control" name="invoices[sent]" type="date" value="<?php e($data['invoices']['sent']); ?>" id="invoices[sent]" />
+		<span class="help-block"><?php if (isset($errors['invoices[sent]'])) e($errors['invoices[sent]']); ?></span>
+	</div>
+
 	<div class="form-group <?php e(isset($errors['invoices[paid]'])?'has-error':''); ?>">
         <label class="control-label" for="invoices[paid]">Paid</label>
         <input class="form-control" name="invoices[paid]" type="date" value="<?php e($data['invoices']['paid']); ?>" id="invoices[paid]" />
         <span class="help-block"><?php if (isset($errors['invoices[paid]'])) e($errors['invoices[paid]']); ?></span>
     </div>
-	
+
 	<br/>
   
 	<div class="form-group">

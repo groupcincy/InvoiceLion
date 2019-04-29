@@ -1,17 +1,15 @@
 <?php Buffer::set('title','Statistics'); ?>
 <h3>Home</h3>
-<h1>Statistics</h1>
+<h1>Statistics of <?php e($year); ?> <a href="statistics/<?php e($year-1); ?>" class="down"></a><a href="statistics/<?php if($year < date('Y')) e($year+1); else e($year); ?>" class="up <?php if(($year+1) > date('Y')) e('inactive'); ?>"></a></h1>
 
-<p>You currently receive &euro; <?php e(round($subscriptionIncome)); ?> per month from subscriptions.<br />In total you have received &euro; <?php e(round($incomeThisYear)); ?> this year. You are expected to receive an additional &euro; <?php e(round($incomeThisYearAddon)); ?>.<p>
+<p class="lead">You receive(d) &euro; <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>.<br />The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k euro<?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k euro of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k euro<?php } ?>.<p>
 
-<p>Last year you received &euro; <?php e(round($incomeLastYear)); ?>. Note that all these amounts are without VAT.</p>
-<br />
 <div>
 <?php if($sumhourspertype_thisyear) { ?>
 <div class="col50">
 <table>
     <tr>
-        <th class="name" colspan="3">Hours this year (<?php e(round($totalhours_thisyear)); ?>)</th>
+        <th class="name" colspan="3">Hours per type (<?php e(round($totalhours_thisyear)); ?>)</th>
     </tr>
     <?php foreach ($sumhourspertype_thisyear as $name=>$sum): ?>
         <tr>
@@ -24,20 +22,22 @@
 </div>
 <?php } ?>
 
-<?php if($sumhourspertype_lastyear) { ?>
+
+<?php if($sumsubscriptionspertype_thisyear) { ?>
 <div class="col50">
 <table>
     <tr>
-        <th class="name" colspan="3">Hours last year (<?php e(round($totalhours_lastyear)); ?>)</th>
+        <th class="name" colspan="3">Subscriptions per type (&euro; <?php e(round($subscriptionIncome)); ?>)</th>
     </tr>
-    <?php foreach ($sumhourspertype_lastyear as $name=>$sum): ?>
+    <?php foreach ($sumsubscriptionspertype_thisyear as $sumsubscriptiontype): ?>
         <tr>
-            <td class="precentage"><span><?php e(round($sum/$totalhours_lastyear*100)); ?>%</span></td>
-            <td><span><?php if($name) e($name); else e('Other'); ?></span></td>
-            <td><span><?php e(round($sum)); ?> hours</span></td>
+            <td class="precentage"><span><?php e($sumsubscriptiontype['subscriptiontypes']['times']); ?>x</span></td>    
+            <td><span><?php e($sumsubscriptiontype['subscriptiontypes']['name']); ?></span></td>
+            <td class="money"><span><?php e(number_format($sumsubscriptiontype['subscriptiontypes']['sum'],2)); ?></span></td>
         </tr>
     <?php endforeach; ?>
 </table>
 </div>
 <?php } ?>
+
 </div>

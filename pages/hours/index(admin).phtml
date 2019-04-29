@@ -1,6 +1,8 @@
 <?php Buffer::set('title','Hours'); ?>
 <h3><a href="/">Home</a></h3>
 <h1>Hours <a href="hours/add" class="btn-primary">Add hours</a></h1>
+
+<p>Enter your hours in the table below. We will automagically create invoicelines for them. Happy invoicing!</p>
 <table class="table responsive-minimal" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
@@ -8,7 +10,7 @@
       <th class="date <?php if($order=='date') e('selected'); ?>" order="/hours/date/desc">Date</th>
       <th class="number <?php if($order=='hours_worked') e('selected'); ?>" order="/hours/hours_worked/desc">Hours</th>
       <th class="name <?php if($order=='name') e('selected'); ?>" order="/hours/name/asc">Name</th>
-      <th class="text <?php if($order=='customer_id') e('selected'); ?>" order="/hours/customer_id/asc">Customer</th>
+      <th class="text <?php if($order=='customer') e('selected'); ?>" order="/hours/customer/asc">Customer</th>
       <th class="money <?php if($order=='subtotal') e('selected'); ?>" order="/hours/subtotal/desc">Subtotal</th>
     </tr>
   </thead>

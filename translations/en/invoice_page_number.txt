@@ -1,0 +1,1 @@
+473,785,Page {PAGE_NUM} of {PAGE_COUNT}

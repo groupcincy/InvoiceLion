@@ -22,7 +22,7 @@ $kl_name = $customer['customers']['name'];
 $kl_email = $customer['customers']['email'];
 $kl_contact = $customer['customers']['contact'];
 $kl_address = $customer['customers']['address'];
-$kl_vat_reverse_charge = $customer['customers']['vat_reverse_charge'];
+$kl_tax_reverse_charge = $customer['customers']['tax_reverse_charge'];
 
 $include = 1;
 include('pages/invoices/download(none).phtml');
@@ -38,9 +38,7 @@ if($reminder==1) $content .= 'Hierbij sturen we u een herinnering aan onderstaan
 else if($reminder==2) $content .= 'Hierbij sturen we u een tweede herinnering aan onderstaande digitale factuur:';
 else $content .= 'Bijgaand vindt u de digitale factuur met de volgende kenmerken:';
 
-$content .= '<br /><br />Factuurdatum: '.$date.'<br />Factuurnummer: '.$number.'<br />Totaalbedrag : € ';
-if($kl_vat_reverse_charge==1) $content .= number_format((1*$totaal), 2, ',', '');
-else $content .= number_format((1.21*$totaal), 2, ',', '');
+$content .= '<br /><br />Factuurdatum: '.$date.'<br />Factuurnummer: '.$number.'<br />Totaalbedrag : € '.number_format($totaal, 2, ',', '');
 $content .= '<br /><br />Wilt u deze factuur op een ander e-mailadres ontvangen, stuur ons dan een reply-mail.<br /><br />';
 $content .= 'Wij hopen u hiermee voldoende geïnformeerd te hebben.<br /><br />Met vriendelijke groet,<br /><br />';
 $content .= $tenant['tenants']['contact'].'<br />'.nl2br($tenant['tenants']['address']).'<br />M: '.$tenant['tenants']['phone'].'<br />E: '.$tenant['tenants']['email'];
@@ -54,10 +52,10 @@ if (Debugger::$enabled) {
 	$error = Email::send($kl_email,$kl_name,$from,$fromName,$subject,$content,$attachmentcontent,$attachmentfilename);
 }
 
-if (!$error) {
+if (!$error || Debugger::$enabled)  {
 	if($reminder==1) DB::update('update invoices set reminder1=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
 	else if($reminder==2) DB::update('update invoices set reminder2=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
-	else DB::update('update invoices set sent=1 WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
-	Flash::set('success','Factuur sent');
+	else DB::update('update invoices set sent=now() WHERE `tenant_id` = ? AND id=?', $_SESSION['user']['tenant_id'],$id);
+	Flash::set('success','Invoice sent');
 	Router::redirect('invoices/index');
 }
