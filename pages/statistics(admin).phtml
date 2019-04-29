@@ -26,11 +26,8 @@
 <?php if($sumsubscriptionspertype_thisyear) { ?>
 <div class="col50">
 <table>
-    <?php foreach ($sumsubscriptionspertype_thisyear as $sumsubscriptiontype):
-        $totalsubscriptions_thisyear = $totalsubscriptions_thisyear + $sumsubscriptiontype['subscriptiontypes']['sum'];
-    endforeach; ?>
     <tr>
-        <th class="name" colspan="3">Subscriptions per type (&euro; <?php e(round($totalsubscriptions_thisyear)); ?>)</th>
+        <th class="name" colspan="3">Subscriptions per type (&euro; <?php e(round($subscriptionIncome)); ?>)</th>
     </tr>
     <?php foreach ($sumsubscriptionspertype_thisyear as $sumsubscriptiontype): ?>
         <tr>
