@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	if (!isset($customers[$data['projects']['customer_id']])) $errors['projects[customer_id]']='Customer not found';
 	if (!isset($errors)) {
 		try {
-			$rowsAffected = DB::update('UPDATE `projects` SET `name`=?, `customer_id`=?, `active`=? WHERE `tenant_id` = ? AND `id` = ?', $data['projects']['name'], $data['projects']['customer_id'], $data['projects']['active'], $_SESSION['user']['tenant_id'], $id);
+			$rowsAffected = DB::update('UPDATE `projects` SET `name`=?, `customer_id`=?, `default_hourly_fee`=?, `active`=? WHERE `tenant_id` = ? AND `id` = ?', $data['projects']['name'], $data['projects']['customer_id'], $data['projects']['default_hourly_fee'], $data['projects']['active'], $_SESSION['user']['tenant_id'], $id);
 			if ($rowsAffected!==false) {
 				Flash::set('success','Project saved');
 				Router::redirect('projects/view/'.$id);
