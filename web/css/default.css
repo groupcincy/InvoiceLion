@@ -345,7 +345,7 @@ h1 .up {margin-top: 2px;
     border-right: 15px solid transparent;
     border-bottom: 25px solid black;
 }
-h1 .up.inactive {opacity: 0.25;}
+h1 .up.inactive {cursor: default;}
 
 
 /* set colors */
