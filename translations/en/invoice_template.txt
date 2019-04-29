@@ -29,7 +29,7 @@
 {{if:invoice.reminder|eq(1)}}
     <b>Datum:</b> {{now|formatDate("F j, Y")|translateMonth(en)}}<br>
     <br>
-    <table id="warning"><tr><td><b>HERINNERING</b></td></tr></table>
+    <table id="warning"><tr><td><b>REMINDER</b></td></tr></table>
     <br>
     <b>Invoice date:</b> {{invoice.date|formatDate("F j, Y")|translateMonth(en)}}<br>
     <b>Invoice number:</b> {{invoice.number}}<br>
@@ -38,7 +38,7 @@
 {{if:invoice.reminder|eq(2)}}
     <b>Datum:</b> {{now|formatDate("F j, Y")|translateMonth(en)}}<br>
     <br>
-    <table id="warning"><tr><td><b>TWEEDE EN LAATSTE HERINNERING</b></td></tr></table>
+    <table id="warning"><tr><td><b>SECOND AND LAST REMINDER</b></td></tr></table>
     <br>
     <b>Invoice date:</b> {{invoice.date|formatDate("F j, Y")|translateMonth(en)}}<br>
     <b>Invoice number:</b> {{invoice.number}}<br>
