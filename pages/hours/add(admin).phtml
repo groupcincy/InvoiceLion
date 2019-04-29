@@ -8,7 +8,7 @@
 	<?php if(count($projects)>0): ?>
 		<div class="form-group <?php e(isset($errors['hours[project_id]'])?'has-error':''); ?>">
 			<label class="control-label" for="hours[project_id]">Project</label>
-			<select class="form-control" name="hours[project_id]" id="hours[project_id]" onchange="document.getElementById('hours[customer_id]').value = this.options[this.selectedIndex].getAttribute('customer-value'); if(getAttribute('hourly_fee')) document.getElementById('hours[hourly_fee]').value = this.options[this.selectedIndex].getAttribute('hourly_fee');">
+			<select class="form-control" name="hours[project_id]" id="hours[project_id]" onchange="document.getElementById('hours[customer_id]').value = this.options[this.selectedIndex].getAttribute('customer-value'); if(getAttribute('hourly_fee')!='0.00') document.getElementById('hours[hourly_fee]').value = this.options[this.selectedIndex].getAttribute('hourly_fee');">
 				<option value=""<?php e(''==$data['hours']['project_id']?' selected="selected"':''); ?>></option>
 				<?php foreach ($projects as $project): ?>
 				<option value="<?php e($project['projects']['id']); ?>" customer-value="<?php e($project['projects']['customer_id']); ?>" hourly-fee="<?php e($project['projects']['default_hourly_fee']); ?>" <?php e($project['projects']['id']==$data['hours']['project_id']?' selected="selected"':''); ?>><?php e($project['projects']['name']); ?></option>
