@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 	if (!isset($errors)) {
 		try {
-			$id = DB::insert('INSERT INTO `projects` (`tenant_id`, `name`, `customer_id`, `active`) VALUES (?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['projects']['name'], $customer_id, $data['projects']['active']);
+			$id = DB::insert('INSERT INTO `projects` (`tenant_id`, `name`, `customer_id`, `default_hourly_fee`, `active`) VALUES (?, ?, ?, ?, ?)', $_SESSION['user']['tenant_id'], $data['projects']['name'], $customer_id, $data['projects']['default_hourly_fee'], $data['projects']['active']);
 			if ($id) {
 				Flash::set('success','Project saved');
 				Router::redirect('projects/index');
@@ -26,5 +26,5 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		}
 	}
 } else {
-	$data = array('projects'=>array('name'=>NULL, 'customer_id'=>NULL, 'add_customer'=>NULL, 'active'=>1));
+	$data = array('projects'=>array('name'=>NULL, 'customer_id'=>NULL, 'add_customer'=>NULL, 'default_hourly_fee'=>NULL, 'active'=>1));
 }

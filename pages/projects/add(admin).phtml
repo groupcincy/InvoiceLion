@@ -27,6 +27,12 @@
 		<input class="form-control" name="projects[add_customer]" type="text" value="<?php e($data['projects']['add_customer']); ?>" id="projects[add_customer]" />
 		<span class="help-block"><?php if (isset($errors['projects[add_customer]'])) e($errors['projects[add_customer]']); ?></span>
 	</div>
+
+	<div class="form-group <?php e(isset($errors['projects[default_hourly_fee]'])?'has-error':''); ?>">
+		<label class="control-label" for="projects[default_hourly_fee]">Default hourly fee</label>
+		<input class="form-control" name="projects[default_hourly_fee]" type="number" step="0.01" value="<?php e($data['projects']['default_hourly_fee']); ?>" id="projects[default_hourly_fee]" />
+		<span class="help-block"><?php if (isset($errors['projects[default_hourly_fee]'])) e($errors['projects[default_hourly_fee]']); ?></span>
+	</div>
   
 	<div class="form-group <?php e(isset($errors['projects[active]'])?'has-error':''); ?>">
 		<label class="control-label" for="projects[active]">Active</label>
