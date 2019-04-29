@@ -14,3 +14,6 @@ if(!isset($year) || $year == date("Y")) {
 $sumhourspertype_thisyear = DB::selectPairs('SELECT `hourtypes`.name,SUM(hours_worked) as `hourtypes.sum` FROM `hours` LEFT JOIN `hourtypes` ON `hours`.`type` = `hourtypes`.id WHERE `hours`.`tenant_id` = ? AND year(hours.date) = ? GROUP BY `type`', $_SESSION['user']['tenant_id'],$year);
 arsort($sumhourspertype_thisyear);
 $totalhours_thisyear = array_sum($sumhourspertype_thisyear);
+
+
+$sumsubscriptionspertype_thisyear = DB::select('SELECT `subscriptiontypes`.name, count(subscriptions.id) as `subscriptiontypes.times`, SUM(fee/subscriptions.months) as `subscriptiontypes.sum` FROM `subscriptions` LEFT JOIN `subscriptiontypes` ON `subscriptions`.`subscriptiontype_id` = `subscriptiontypes`.id WHERE `subscriptions`.`tenant_id` = ? AND (subscriptions.canceled IS NULL OR subscriptions.canceled > ?) AND subscriptions.from <= ? GROUP BY `subscriptiontype_id`', $_SESSION['user']['tenant_id'],$year.'-12-31',$year.'-12-31');
