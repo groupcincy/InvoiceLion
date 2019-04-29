@@ -4,7 +4,6 @@
 
 <p class="lead">You receive(d) &euro; <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>.<br />The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k euro<?php if($incomeThisYearAddon) {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k euro of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k euro<?php } ?>.<p>
 
-<br />
 <div>
 <?php if($sumhourspertype_thisyear) { ?>
 <div class="col50">
