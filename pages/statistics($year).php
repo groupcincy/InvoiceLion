@@ -1,5 +1,5 @@
 <?php 
-if(!isset($year)) $year == date("Y");
+if(!isset($year)) $year = date("Y");
 
 $subscriptionIncome = DB::selectValue('SELECT SUM((fee*(12/months))/12) FROM subscriptions WHERE `tenant_id` = ? AND canceled IS NULL', $_SESSION['user']['tenant_id']);
 
