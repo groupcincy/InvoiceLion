@@ -1,5 +1,5 @@
 <?php 
-$projects = DB::select('select `id`,`name`,`customer_id` from `projects` WHERE `tenant_id` = ? and `active` ORDER BY name', $_SESSION['user']['tenant_id']);
+$projects = DB::select('select `id`,`name`,`customer_id`,`default_hourly_fee` from `projects` WHERE `tenant_id` = ? and `active` ORDER BY name', $_SESSION['user']['tenant_id']);
 $customers = DB::selectPairs('select `id`,`name` from `customers` WHERE `tenant_id` = ? ORDER BY name', $_SESSION['user']['tenant_id']);
 $hourtypes = DB::selectPairs('select `id`,`name` from `hourtypes` WHERE `tenant_id` = ?', $_SESSION['user']['tenant_id']);
 $languageId = DB::selectValue('select `language_id` from `tenants`, `countries` WHERE `tenants`.`id` = ? AND `tenants`.`country_id` = `countries`.`id`', $_SESSION['user']['tenant_id']);
