@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
   if (!Cache::get('AuthForgotten_mailto_'.$username)) {
     Cache::set('AuthForgotten_mailto_'.$username,'1',NoPassAuth::$tokenValidity);
     if ($token) {
-      mail($username,'Login to '.Router::getBaseUrl(),'Click here: '.Router::getBaseUrl()."auth/reset/$token");
+      mail($username,'Login to '.Router::getBaseUrl(),'Click here (this link is valid for 5 minutes): '.Router::getBaseUrl()."auth/reset/$token");
     }
     Router::redirect("auth/sent");
   }
