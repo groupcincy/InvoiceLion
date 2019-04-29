@@ -9,6 +9,11 @@
   		<dd><a href="/customers/view/<?php e($data['projects']['customer_id']); ?>"><?php e($customers[$data['projects']['customer_id']]);?></a></dd>
  
   	</dl>
+	<?php if($data['projects']['default_hourly_fee']) {?><dl>
+		<dt>Default hourly fee</dt>
+  		<dd><?php e($data['projects']['default_hourly_fee']); ?></dd>
+ 
+	</dl><?php } ?>
 	<dl>
 		<dt>Active</dt>
   		<dd><?php $data['projects']['active'] ? e('yes') : e('no');?></dd>
