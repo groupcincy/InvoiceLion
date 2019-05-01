@@ -94,6 +94,7 @@ h3 {
         letter-spacing: 2px; 
         margin-right: 5px;
         margin-bottom: 9px;
+        border-radius: 3px; 
     }
     h1 {font-size: 48px;}
     h2 {font-size: 28px;}
