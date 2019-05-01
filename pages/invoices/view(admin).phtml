@@ -110,18 +110,21 @@
 		<a class="btn btn-primary pull-right" href="invoices/send/<?php e($id);?>">Send</a>
 		<a class="btn btn-default pull-right" href="invoices/delete/<?php e($id);?>">Delete</a>
 	<?php } ?>
-	<a class="btn btn-<?php $data['invoices']['sent'] ? e('primary') : e('default');?>" href="invoices/download/<?php e($id);?>">Download</a>
 	<a class="btn btn-default <?php if ($data['invoices']['sent']) {?>pull-right<?php } ?>" href="invoices/edit/<?php e($id);?>">Edit</a>
+
+	<a class="btn btn-<?php $data['invoices']['sent'] ? e('primary') : e('default');?>" href="invoices/download/<?php e($id);?>">Download</a>
+	
 	<?php if ($data['invoices']['sent'] && (!$data['invoices']['paid'] || $data['invoices']['reminder1'] || $data['invoices']['reminder2'])) {?>
-		<a class="btn btn-default" href="invoices/download/<?php e($id);?>/1">Download 1st Reminder</a>
-		<?php if (!$data['invoices']['reminder1']) {?>
-			<a class="btn btn-default" href="invoices/send/<?php e($id);?>/1">Send 1st Reminder</a>
-		<?php }?>
+		<a class="btn btn-default" href="invoices/download/<?php e($id);?>/1">1st</a>
 		<?php if ($data['invoices']['reminder1']) {?>
-			<a class="btn btn-default" href="invoices/download/<?php e($id);?>/2">Download 2nd Reminder</a>
+			<a class="btn btn-default" href="invoices/download/<?php e($id);?>/2">2nd</a>
 			<?php if (!$data['invoices']['reminder2']) {?>
 				<a class="btn btn-default" href="invoices/send/<?php e($id);?>/2">Send 2nd Reminder</a>
 			<?php }?>
 		<?php }?>
+		<?php if (!$data['invoices']['reminder1']) {?>
+			<a class="btn btn-default" href="invoices/send/<?php e($id);?>/1">Send 1st Reminder</a>
+		<?php }?>
+	
 	<?php }?>
 </p>

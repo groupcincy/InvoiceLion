@@ -32,7 +32,7 @@
     <?php foreach ($sumsubscriptionspertype_thisyear as $sumsubscriptiontype): ?>
         <tr>
             <td class="precentage"><span><?php e($sumsubscriptiontype['subscriptiontypes']['times']); ?>x</span></td>    
-            <td><span><?php e($sumsubscriptiontype['subscriptiontypes']['name']); ?></span></td>
+            <td><span><a href="subscriptiontypes/view/<?php e($sumsubscriptiontype['subscriptiontypes']['id']); ?>"><?php e($sumsubscriptiontype['subscriptiontypes']['name']); ?></a></span></td>
             <td class="money"><span><?php e(number_format($sumsubscriptiontype['subscriptiontypes']['sum'],2)); ?></span></td>
         </tr>
     <?php endforeach; ?>
