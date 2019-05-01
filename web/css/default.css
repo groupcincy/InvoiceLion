@@ -360,6 +360,20 @@ h1 .up {margin-top: 2px;
 }
 h1 .up.inactive {cursor: default;}
 
+@media (max-width: 800px) {
+    h1 .up {
+        margin-top: 3px;
+        border-left: 11px solid transparent;
+        border-right: 11px solid transparent;
+        border-bottom: 18px solid black;
+    }
+    h1 .down {
+        margin-top: 25px;
+        border-left: 11px solid transparent;
+        border-right: 11px solid transparent;
+        border-top: 18px solid black;
+    }
+}
 
 /* set colors */
 body {color: #545454;}
