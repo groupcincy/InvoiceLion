@@ -83,9 +83,18 @@ h3 {
     border-radius: 6px; 
     text-decoration: none; 
     cursor: pointer; 
-    text-decoration: none!important; 
+    text-decoration: none!important;
     letter-spacing: 4px; 
     font-family: 'Nunito Sans', sans-serif;
+    margin-bottom: 15px;
+}
+@media (max-width: 800px) {
+    .btn-primary, .btn-danger, .btn-default {
+        padding: 10px 19px;
+        letter-spacing: 2px; 
+        margin-right: 5px;
+        margin-bottom: 9px;
+    }
 }
 
 
