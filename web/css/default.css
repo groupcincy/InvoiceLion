@@ -47,6 +47,9 @@ h1 + p, p.lead {
     font-weight: 300;
     color: #aaa;
 }
+@media (max-width: 800px) {
+    h1 + p, p.lead {font-size: 22px;
+}
 h1 + p a, p.lead a {color: #aaa!important;}
 .bold {font-weight: bold;}
 .text-center {text-align: center;}
