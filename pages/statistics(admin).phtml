@@ -1,9 +1,10 @@
 <?php Buffer::set('title','Statistics'); ?>
 <h3>Home</h3>
-<h1>Statistics of <?php e($year); ?> <a href="statistics/<?php e($year-1); ?>" class="down"></a><a href="statistics/<?php if($year < date('Y')) e($year+1); else e($year); ?>" class="up <?php if(($year+1) > date('Y')) e('inactive'); ?>"></a></h1>
+<h1 style="padding-right: 20px;">Statistics of <?php e($year); ?> <a href="statistics/<?php e($year-1); ?>" class="down"></a><a href="statistics/<?php if($year < date('Y')) e($year+1); else e($year); ?>" class="up <?php if(($year+1) > date('Y')) e('inactive'); ?>"></a></h1>
 
 <p class="lead">You receive(d) &euro; <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>.<br />The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k euro<?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k euro of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k euro<?php } ?>.</p>
 
+<div><?php e($maxyearincome/1000); ?>k</div>
 <?php 
 $graph_width = 300;
 $graph_height = 100;
@@ -19,9 +20,9 @@ $graph_height = 100;
     $invoiced = 0;
     foreach ($totalincome_graph as $datapoint):
         $invoiced = $invoiced + $datapoint['']['invoiced'];
-        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/1000))." ");
+        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     endforeach; 
-    e(($relativeday*$graph_width).",".($graph_height-($invoiced/1000))." ");
+    e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     e(($relativeday*$graph_width).",".$graph_height);
     $totalinvoiced = $invoiced;
     ?>
@@ -36,9 +37,9 @@ $graph_height = 100;
     $invoiced = 0;
     foreach ($subscriptionincome_graph as $datapoint):
         $invoiced = $invoiced + $datapoint['']['invoiced'];
-        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/1000))." ");
+        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     endforeach; 
-    e(($relativeday*$graph_width).",".($graph_height-($invoiced/1000))." ");
+    e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     e(($relativeday*$graph_width).",".$graph_height);
     $totalsubscriptions = $invoiced;
     ?>
@@ -53,13 +54,14 @@ $graph_height = 100;
     $invoiced = 0;
     foreach ($totalpaid_graph as $datapoint):
         $invoiced = $invoiced + $datapoint['']['invoiced'];
-        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/1000))." ");
+        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     endforeach; 
-    e(($relativeday*$graph_width).",".($graph_height-($invoiced/1000)));
+    e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height));
     $totalpaid = $invoiced;
     ?>
        "/>
 </svg>
+<div><span style="float: right;">dec <?php e($year); ?></span></div>
 <ul class="legend">
     <li><div class="square purple"></div> invoiced <span>(<?php e(round($totalinvoiced/1000,1)); ?>k)</span></li>
     <li><div class="square lightpurple"></div> subscriptions <span>(<?php e(round($totalsubscriptions/1000,1)); ?>k)</span></li>
