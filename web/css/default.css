@@ -48,7 +48,10 @@ h1 + p, p.lead {
     color: #aaa;
 }
 @media (max-width: 800px) {
-    h1 + p, p.lead {font-size: 22px;}
+    h1 + p, p.lead {
+        font-size: 22px;
+        margin-bottom: 1.8em;
+    }
 }
 h1 + p a, p.lead a {color: #aaa!important;}
 .bold {font-weight: bold;}
