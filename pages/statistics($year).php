@@ -49,7 +49,7 @@ $totalpaid_graph = DB::select('SELECT SUM(`subtotal`) as invoiced, `paid`,  DAYO
     ORDER BY `paid`',$year."-12-31",$_SESSION['user']['tenant_id'],$year);
 
 
-$maxyearincome = DB::selectValue('SELECT SUM(`subtotal`) AS invoiced, YEAR(`date`) as year_number FROM invoices GROUP BY year_number ORDER BY invoiced DESC LIMIT 1');
+$maxyearincome = DB::selectValue('SELECT SUM(`subtotal`) AS invoiced, YEAR(`date`) as year_number FROM invoices WHERE tenant_id = ? GROUP BY year_number ORDER BY invoiced DESC LIMIT 1',$_SESSION['user']['tenant_id']);
 $maxyearincome = ceil($maxyearincome/10000) * 10000;
 
 
