@@ -344,6 +344,9 @@ ul.tabs li.active a {border: 1px solid #ccc; border-bottom: 1px solid white;}
 }
 
 
+
+/* statistics */
+
 h1 .down, h1 .up {position: absolute; margin-left: 10px;}
 h1 .down {margin-top: 32px;
     width: 0; 
@@ -375,6 +378,17 @@ h1 .up.inactive {cursor: default;}
         border-top: 18px solid black;
     }
 }
+
+ul.legend {overflow: auto; margin: 0 0 50px!important; padding: 0!important;}
+ul.legend li {float: left; list-style: none; margin-right: 30px;}
+ul.legend li span {color: #aaa;}
+ul.legend li .square {display: inline-block; margin-right: 5px; width: 15px; height: 15px; position: relative; top: 2px;}
+ul.legend li .square.red {background: #F82C60;}
+ul.legend li .square.green {background: #26cab7;}
+ul.legend li .square.purple {background: #5b4f96;}
+ul.legend li .square.lightpurple {background: #928AB9;}
+
+
 
 /* set colors */
 body {color: #545454;}

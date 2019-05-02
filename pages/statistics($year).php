@@ -17,3 +17,45 @@ $totalhours_thisyear = array_sum($sumhourspertype_thisyear);
 
 
 $sumsubscriptionspertype_thisyear = DB::select('SELECT `subscriptiontypes`.id, `subscriptiontypes`.name, count(subscriptions.id) as `subscriptiontypes.times`, SUM(fee/subscriptions.months) as `subscriptiontypes.sum` FROM `subscriptions` LEFT JOIN `subscriptiontypes` ON `subscriptions`.`subscriptiontype_id` = `subscriptiontypes`.id WHERE `subscriptions`.`tenant_id` = ? AND (subscriptions.canceled IS NULL OR subscriptions.canceled > ?) AND subscriptions.from <= ? GROUP BY `subscriptiontype_id`', $_SESSION['user']['tenant_id'],$year.'-12-31',$year.'-12-31');
+
+$subscriptionincome_graph = DB::select('SELECT SUM(invoicelines.`subtotal`) as invoiced, invoices.`date`,  DAYOFYEAR(invoices.`date`)/DAYOFYEAR(?) AS day_number
+    FROM invoices, invoicelines
+    WHERE invoicelines.tenant_id = ? 
+    AND YEAR(invoices.`date`) = ? 
+    AND invoicelines.invoice_id = invoices.id 
+    AND invoicelines.id IN (SELECT invoiceline_id from subscriptionperiods)
+    GROUP BY invoices.`date`
+    ORDER BY invoices.`date`',$year."-12-31",$_SESSION['user']['tenant_id'],$year);
+
+$othersincome_graph = DB::select('SELECT SUM(invoicelines.`subtotal`) as invoiced, invoices.`date`,  DAYOFYEAR(invoices.`date`)/DAYOFYEAR(?) AS day_number
+    FROM invoices, invoicelines
+    WHERE invoicelines.tenant_id = ? 
+    AND YEAR(invoices.`date`) = ? 
+    AND invoicelines.invoice_id = invoices.id 
+    AND (invoicelines.id IN (SELECT invoiceline_id from hours) OR invoicelines.id IN (SELECT invoiceline_id from deliveries))
+    GROUP BY invoices.`date`
+    ORDER BY invoices.`date`',$year."-12-31",$_SESSION['user']['tenant_id'],$year);
+
+$totalincome_graph = DB::select('SELECT SUM(`subtotal`) as invoiced, `date`,  DAYOFYEAR(`date`)/DAYOFYEAR(?) AS day_number
+    FROM invoices
+    WHERE tenant_id = ? AND YEAR(`date`) = ?
+    GROUP BY `date`
+    ORDER BY `date`',$year."-12-31",$_SESSION['user']['tenant_id'],$year);
+
+$totalpaid_graph = DB::select('SELECT SUM(`subtotal`) as invoiced, `paid`,  DAYOFYEAR(`paid`)/DAYOFYEAR(?) AS day_number
+    FROM invoices
+    WHERE tenant_id = ? AND YEAR(`paid`) = ?
+    GROUP BY `paid`
+    ORDER BY `paid`',$year."-12-31",$_SESSION['user']['tenant_id'],$year);
+
+function is_leap_year($year) {
+	return ((($year % 4) == 0) && ((($year % 100) != 0) || (($year % 400) == 0)));
+}
+
+$currentday = date('z') + 1;
+if($year == date('Y')) {
+    if(is_leap_year($year)) $relativeday = $currentday/366;
+    else $relativeday = $currentday/365;
+} else {
+    $relativeday = 1;
+}

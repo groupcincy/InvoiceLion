@@ -2,7 +2,69 @@
 <h3>Home</h3>
 <h1>Statistics of <?php e($year); ?> <a href="statistics/<?php e($year-1); ?>" class="down"></a><a href="statistics/<?php if($year < date('Y')) e($year+1); else e($year); ?>" class="up <?php if(($year+1) > date('Y')) e('inactive'); ?>"></a></h1>
 
-<p class="lead">You receive(d) &euro; <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>.<br />The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k euro<?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k euro of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k euro<?php } ?>.<p>
+<p class="lead">You receive(d) &euro; <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>.<br />The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k euro<?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k euro of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k euro<?php } ?>.</p>
+
+<?php 
+$graph_width = 300;
+$graph_height = 100;
+?>
+<svg viewBox="0 0 <?php e($graph_width);?> <?php e($graph_height);?>" class="chart" style="border-left: 1px solid black; border-bottom: 1px solid black;">
+  <polyline
+     id="totalincome_graph"
+     fill="#5b4f96"
+     stroke="#5b4f96"
+     stroke-width="0.5"
+     points="0,<?php e($graph_height);?>
+    <?php 
+    $invoiced = 0;
+    foreach ($totalincome_graph as $datapoint):
+        $invoiced = $invoiced + $datapoint['']['invoiced'];
+        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/1000))." ");
+    endforeach; 
+    e(($relativeday*$graph_width).",".($graph_height-($invoiced/1000))." ");
+    e(($relativeday*$graph_width).",".$graph_height);
+    $totalinvoiced = $invoiced;
+    ?>
+       "/>
+  <polyline
+     id="subscriptionincome_graph"
+     fill="#928AB9"
+     stroke="#928AB9"
+     stroke-width="0.5"
+     points="0,<?php e($graph_height);?>
+    <?php 
+    $invoiced = 0;
+    foreach ($subscriptionincome_graph as $datapoint):
+        $invoiced = $invoiced + $datapoint['']['invoiced'];
+        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/1000))." ");
+    endforeach; 
+    e(($relativeday*$graph_width).",".($graph_height-($invoiced/1000))." ");
+    e(($relativeday*$graph_width).",".$graph_height);
+    $totalsubscriptions = $invoiced;
+    ?>
+       "/>
+  <polyline
+     id="totalpaid_graph"
+     fill="none"
+     stroke="#26cab7"
+     stroke-width="0.5"
+     points="0,<?php e($graph_height);?>
+    <?php 
+    $invoiced = 0;
+    foreach ($totalpaid_graph as $datapoint):
+        $invoiced = $invoiced + $datapoint['']['invoiced'];
+        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/1000))." ");
+    endforeach; 
+    e(($relativeday*$graph_width).",".($graph_height-($invoiced/1000)));
+    $totalpaid = $invoiced;
+    ?>
+       "/>
+</svg>
+<ul class="legend">
+    <li><div class="square purple"></div> invoiced <span>(<?php e(round($totalinvoiced/1000,1)); ?>k)</span></li>
+    <li><div class="square lightpurple"></div> subscriptions <span>(<?php e(round($totalsubscriptions/1000,1)); ?>k)</span></li>
+    <li><div class="square green"></div> paid <span>(<?php e(round($totalpaid/1000,1)); ?>k)</span></li>
+</ul>
 
 <div>
 <?php if($sumhourspertype_thisyear) { ?>
