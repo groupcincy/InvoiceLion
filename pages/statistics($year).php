@@ -48,6 +48,33 @@ $totalpaid_graph = DB::select('SELECT SUM(`subtotal`) as invoiced, `paid`,  DAYO
     GROUP BY `paid`
     ORDER BY `paid`',$year."-12-31",$_SESSION['user']['tenant_id'],$year);
 
+$totalwork_graph = DB::select('SELECT SUM(`worked`) as worked, `date`,  DAYOFYEAR(`date`)/DAYOFYEAR(?) AS day_number FROM (
+    SELECT SUM(`subtotal`) as worked, `date`,  DAYOFYEAR(`date`)/DAYOFYEAR(?) AS day_number
+    FROM `hours`
+    WHERE tenant_id = ? AND YEAR(`date`) = ?
+    GROUP BY `date`
+    
+    UNION
+
+    SELECT SUM(`subtotal`) as worked, `date`,  DAYOFYEAR(`date`)/DAYOFYEAR(?) AS day_number
+    FROM `deliveries`
+    WHERE tenant_id = ? AND YEAR(`date`) = ?
+    GROUP BY `date`
+
+    UNION
+
+    SELECT SUM(`fee`) as worked, subscriptionperiods.`from` as `date`,  DAYOFYEAR(subscriptionperiods.`from`)/DAYOFYEAR(?) AS day_number
+    FROM `subscriptionperiods`,`subscriptions`
+    WHERE subscriptions.tenant_id = ? AND YEAR(subscriptionperiods.`from`) = ? AND subscriptionperiods.subscription_id = subscriptions.id
+    GROUP BY subscriptionperiods.`from`
+    
+    ) as a
+    GROUP BY `date`
+    ORDER BY `date`    
+    ',$year."-12-31",$year."-12-31",$_SESSION['user']['tenant_id'],$year,$year."-12-31",$_SESSION['user']['tenant_id'],$year,$year."-12-31",$_SESSION['user']['tenant_id'],$year);
+    d($totalwork_graph[57]);
+    d($totalwork_graph[58]);
+
 
 $maxyearincome = DB::selectValue('SELECT SUM(`subtotal`) AS invoiced, YEAR(`date`) as year_number FROM invoices WHERE tenant_id = ? GROUP BY year_number ORDER BY invoiced DESC LIMIT 1',$_SESSION['user']['tenant_id']);
 $maxyearincome = ceil($maxyearincome/10000) * 10000;

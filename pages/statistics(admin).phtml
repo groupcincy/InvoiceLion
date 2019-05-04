@@ -20,7 +20,7 @@ $graph_height = 100;
     $invoiced = 0;
     foreach ($totalincome_graph as $datapoint):
         $invoiced = $invoiced + $datapoint['']['invoiced'];
-        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     endforeach; 
     e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     e(($relativeday*$graph_width).",".$graph_height);
@@ -37,7 +37,7 @@ $graph_height = 100;
     $invoiced = 0;
     foreach ($subscriptionincome_graph as $datapoint):
         $invoiced = $invoiced + $datapoint['']['invoiced'];
-        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     endforeach; 
     e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     e(($relativeday*$graph_width).",".$graph_height);
@@ -54,7 +54,23 @@ $graph_height = 100;
     $invoiced = 0;
     foreach ($totalpaid_graph as $datapoint):
         $invoiced = $invoiced + $datapoint['']['invoiced'];
-        e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+    endforeach; 
+    e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height));
+    $totalpaid = $invoiced;
+    ?>
+       "/>
+  <polyline
+     id="totalwork_graph"
+     fill="none"
+     stroke="#00000022"
+     stroke-width="0.5"
+     points="0,<?php e($graph_height);?>
+    <?php 
+    $invoiced = 0;
+    foreach ($totalwork_graph as $datapoint):
+        $invoiced = $invoiced + $datapoint['']['worked'];
+        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     endforeach; 
     e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height));
     $totalpaid = $invoiced;
@@ -63,6 +79,7 @@ $graph_height = 100;
 </svg>
 <div><span style="float: right;">dec <?php e($year); ?></span></div>
 <ul class="legend">
+    <li><div class="square lightgray"></div> all <span>(<?php e(round($totalworked/1000,1)); ?>k)</span></li>
     <li><div class="square purple"></div> invoiced <span>(<?php e(round($totalinvoiced/1000,1)); ?>k)</span></li>
     <li><div class="square lightpurple"></div> subscriptions <span>(<?php e(round($totalsubscriptions/1000,1)); ?>k)</span></li>
     <li><div class="square green"></div> paid <span>(<?php e(round($totalpaid/1000,1)); ?>k)</span></li>
