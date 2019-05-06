@@ -7,8 +7,9 @@ $incomeThisYear = DB::selectValue('SELECT sum(subtotal) FROM invoices WHERE `ten
 
 if(!isset($year) || $year == date("Y")) {
     $hoursAddon = DB::selectValue('SELECT sum(subtotal) FROM `hours` WHERE `tenant_id` = ? AND `invoiceline_id` IS NULL', $_SESSION['user']['tenant_id']);
+    $subscriptionsAddon = DB::selectValue('SELECT SUM(`fee`) FROM `subscriptionperiods`,`subscriptions` WHERE subscriptions.tenant_id = ? AND subscriptionperiods.subscription_id = subscriptions.id AND `invoiceline_id` IS NULL', $_SESSION['user']['tenant_id']);
     $deliveryAddon = DB::selectValue('SELECT sum(subtotal) FROM `deliveries` WHERE `tenant_id` = ? AND `invoiceline_id` IS NULL', $_SESSION['user']['tenant_id']);
-    $incomeThisYearAddon = $hoursAddon + $deliveryAddon;
+    $incomeThisYearAddon = $hoursAddon + $subscriptionsAddon + $deliveryAddon;
 }
 
 $sumhourspertype_thisyear = DB::selectPairs('SELECT `hourtypes`.name,SUM(hours_worked) as `hourtypes.sum` FROM `hours` LEFT JOIN `hourtypes` ON `hours`.`type` = `hourtypes`.id WHERE `hours`.`tenant_id` = ? AND year(hours.date) = ? GROUP BY `type`', $_SESSION['user']['tenant_id'],$year);
