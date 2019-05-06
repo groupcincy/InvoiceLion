@@ -72,8 +72,6 @@ $totalwork_graph = DB::select('SELECT SUM(`worked`) as worked, `date`,  DAYOFYEA
     GROUP BY `date`
     ORDER BY `date`    
     ',$year."-12-31",$year."-12-31",$_SESSION['user']['tenant_id'],$year,$year."-12-31",$_SESSION['user']['tenant_id'],$year,$year."-12-31",$_SESSION['user']['tenant_id'],$year);
-    d($totalwork_graph[57]);
-    d($totalwork_graph[58]);
 
 
 $maxyearincome = DB::selectValue('SELECT SUM(`subtotal`) AS invoiced, YEAR(`date`) as year_number FROM invoices WHERE tenant_id = ? GROUP BY year_number ORDER BY invoiced DESC LIMIT 1',$_SESSION['user']['tenant_id']);
