@@ -30,12 +30,12 @@
   </dl>
 
 	<dl>
-		<dt>Subtotal (euro)</dt>
+		<dt>Subtotal (<?php e($currency['currencies']['name']); ?>)</dt>
   	<dd><?php $data['deliveries']['subtotal'] ? e($data['deliveries']['subtotal']) : e('-'); ?></dd>
   </dl>
 
 	<dl>
-		<dt>tax percentage</dt>
+		<dt>Tax percentage</dt>
   	<dd><?php $data['deliveries']['tax_percentage'] ? e($data['deliveries']['tax_percentage']) : e('-'); ?></dd>
   </dl>
 	
