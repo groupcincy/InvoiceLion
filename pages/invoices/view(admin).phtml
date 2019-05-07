@@ -73,7 +73,7 @@
 	</thead>
 	<tbody>
 		<?php foreach ($invoicelines as $row): ?>
-		<tr class="hover" onclick="window.location.href='invoicelines/view/<?php e($row['invoicelines']['id']);?>';">
+		<tr>
 			<td class="name"><span><?php e($row['invoicelines']['name']);?></span></td>
 			<td class="money"><span><?php e($row['invoicelines']['subtotal']);?></span></td>
 		</tr>
