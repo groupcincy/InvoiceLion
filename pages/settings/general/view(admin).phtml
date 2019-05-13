@@ -6,6 +6,12 @@
 
 <div>
         <dl>
+            <dt>Currency</dt>
+            <dd>        
+                <?php e($currency['currencies']['name']); ?>
+            </dd>
+        </dl>
+        <dl>
             <dt>Time tracking</dt>
             <dd>        
                 <?php if($data['tenants']['hours_active']) e('yes'); else e('no'); ?>

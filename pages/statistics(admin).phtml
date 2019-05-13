@@ -2,7 +2,7 @@
 <h3>Home</h3>
 <h1 style="padding-right: 20px;">Statistics of <?php e($year); ?> <a href="statistics/<?php e($year-1); ?>" class="down"></a><a href="statistics/<?php if($year < date('Y')) e($year+1); else e($year); ?>" class="up <?php if(($year+1) > date('Y')) e('inactive'); ?>"></a></h1>
 
-<p class="lead">You receive(d) &euro; <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>. The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k euro<?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k euro of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k euro<?php } ?>.</p>
+<p class="lead">You receive(d) <?php e($currency['currencies']['character']); ?> <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>. The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k <?php e($currency['currencies']['abbreviation']); ?><?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k <?php e($currency['currencies']['abbreviation']); ?> of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k <?php e($currency['currencies']['abbreviation']); ?><?php } ?>.</p>
 
 <div><?php e($maxyearincome/1000); ?>k</div>
 <?php 
@@ -19,8 +19,11 @@ $graph_height = 100;
     <?php 
     $invoiced = 0;
     foreach ($totalincome_graph as $datapoint):
-        $invoiced = $invoiced + $datapoint['']['invoiced'];
-        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        if($datapoint['']['day_number'] < $relativeday) {
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+            $invoiced = $invoiced + $datapoint['']['invoiced'];
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        }
     endforeach; 
     e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     e(($relativeday*$graph_width).",".$graph_height);
@@ -36,8 +39,11 @@ $graph_height = 100;
     <?php 
     $invoiced = 0;
     foreach ($subscriptionincome_graph as $datapoint):
-        $invoiced = $invoiced + $datapoint['']['invoiced'];
-        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        if($datapoint['']['day_number'] < $relativeday) {
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+            $invoiced = $invoiced + $datapoint['']['invoiced'];
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        }
     endforeach; 
     e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
     e(($relativeday*$graph_width).",".$graph_height);
@@ -53,8 +59,11 @@ $graph_height = 100;
     <?php 
     $invoiced = 0;
     foreach ($totalpaid_graph as $datapoint):
-        $invoiced = $invoiced + $datapoint['']['invoiced'];
-        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        if($datapoint['']['day_number'] < $relativeday) {
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+            $invoiced = $invoiced + $datapoint['']['invoiced'];
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        }
     endforeach; 
     e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height));
     $totalpaid = $invoiced;
@@ -69,11 +78,14 @@ $graph_height = 100;
     <?php 
     $invoiced = 0;
     foreach ($totalwork_graph as $datapoint):
-        $invoiced = $invoiced + $datapoint['']['worked'];
-        if($datapoint['']['day_number'] < $relativeday) e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        if($datapoint['']['day_number'] < $relativeday) {
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+            $invoiced = $invoiced + $datapoint['']['worked'];
+            e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
+        }
     endforeach; 
     e(($relativeday*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height));
-    $totalpaid = $invoiced;
+    $totalworked = $invoiced;
     ?>
        "/>
 </svg>
@@ -108,7 +120,7 @@ $graph_height = 100;
 <div class="col50">
 <table>
     <tr>
-        <th class="name" colspan="3">Subscriptions per type (&euro; <?php e(round($subscriptionIncome)); ?>)</th>
+        <th class="name" colspan="3">Subscriptions per type (<?php e($currency['currencies']['character']); ?> <?php e(round($subscriptionIncome)); ?>)</th>
     </tr>
     <?php foreach ($sumsubscriptionspertype_thisyear as $sumsubscriptiontype): ?>
         <tr>

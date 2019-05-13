@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="form-group <?php e(isset($errors['subscriptions[fee]'])?'has-error':''); ?>">
-		<label class="control-label" for="subscriptions[fee]">Fee (euro)</label>
+		<label class="control-label" for="subscriptions[fee]">Fee (<?php e($currency['currencies']['name']); ?>)</label>
 		<input class="form-control" name="subscriptions[fee]" type="number" step="0.01" value="<?php e($data['subscriptions']['fee']); ?>" id="subscriptions[fee]" />
 		<span class="help-block"><?php if (isset($errors['subscriptions[fee]'])) e($errors['subscriptions[fee]']); ?></span>
 	</div>
