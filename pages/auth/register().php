@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 $defaultTaxPercentage = DB::selectValue('SELECT `default_tax_percentage` FROM `countries` WHERE `id` = ?', $countryId); // tenant_id not required
                 DB::update('UPDATE `tenants` SET `default_tax_percentage` = ? WHERE `id` = ?', $defaultTaxPercentage, $tenantId); // tenant_id not required
+                $defaultCurrency = DB::selectValue('SELECT `currency_id` FROM `countries` WHERE `id` = ?', $countryId); // tenant_id not required
+                DB::update('UPDATE `tenants` SET `currency_id` = ? WHERE `id` = ?', $defaultCurrency, $tenantId); // tenant_id not required
             }
             if ($tenantId) {
                 $rowsAffected = DB::update('UPDATE `users` SET `tenant_id`=? WHERE `id` = ?', $tenantId, $userId);
