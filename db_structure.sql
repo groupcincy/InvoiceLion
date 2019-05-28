@@ -343,7 +343,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tenant_id` int(11) DEFAULT NULL,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8 NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `created` datetime NOT NULL,
   `superadmin` tinyint(1) NOT NULL DEFAULT '0',
