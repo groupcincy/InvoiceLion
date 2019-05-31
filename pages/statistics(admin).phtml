@@ -2,7 +2,7 @@
 <h3>Home</h3>
 <h1 style="padding-right: 20px;">Statistics of <?php e($year); ?> <a href="statistics/<?php e($year-1); ?>" class="down"></a><a href="statistics/<?php if($year < date('Y')) e($year+1); else e($year); ?>" class="up <?php if(($year+1) > date('Y')) e('inactive'); ?>"></a></h1>
 
-<p class="lead">You receive(d) <?php e($currency['currencies']['character']); ?> <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>. The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k&nbsp;<?php e($currency['currencies']['abbreviation']); ?><?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k&nbsp;<?php e($currency['currencies']['abbreviation']); ?> of uninvoiced work.<?php } ?></p>
+<p class="lead">You receive(d) <?php e($currency['currencies']['character']); ?> <?php e(round($subscriptionIncome)); ?> per month from <a href="/subscriptions">subscriptions</a>. The <?php e($year); ?> total of <a href="/invoices">invoices</a> is <?php e(round($incomeThisYear/1000,1)); ?>k <?php e($currency['currencies']['abbreviation']); ?><?php if(isset($incomeThisYearAddon) && $incomeThisYearAddon)  {?> and you have <?php e(round($incomeThisYearAddon/1000,1)); ?>k <?php e($currency['currencies']['abbreviation']); ?> of uninvoiced work. This creates a total of <?php e(round(($incomeThisYear + $incomeThisYearAddon)/1000,1)); ?>k <?php e($currency['currencies']['abbreviation']); ?><?php } ?>.</p>
 
 <div><?php e($maxyearincome/1000); ?>k</div>
 <?php 
@@ -91,7 +91,7 @@ $graph_height = 100;
 </svg>
 <div><span style="float: right;">dec <?php e($year); ?></span></div>
 <ul class="legend">
-    <li><div class="square lightgray"></div> all <span>(<?php e(round($totalworked/1000,1)); ?>k)</span></li>
+    <li><div class="square lightgray"></div> registered <span>(<?php e(round($totalworked/1000,1)); ?>k)</span></li>
     <li><div class="square purple"></div> invoiced <span>(<?php e(round($totalinvoiced/1000,1)); ?>k)</span></li>
     <li><div class="square lightpurple"></div> subscriptions <span>(<?php e(round($totalsubscriptions/1000,1)); ?>k)</span></li>
     <li><div class="square green"></div> paid <span>(<?php e(round($totalpaid/1000,1)); ?>k)</span></li>
