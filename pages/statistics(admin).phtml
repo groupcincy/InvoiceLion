@@ -19,7 +19,7 @@ $graph_height = 100;
     <?php 
     $invoiced = 0;
     foreach ($totalincome_graph as $datapoint):
-        if($datapoint['']['day_number'] < $relativeday) {
+        if($datapoint['']['day_number'] <= $relativeday) {
             e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
             $invoiced = $invoiced + $datapoint['']['invoiced'];
             e(($datapoint['']['day_number']*$graph_width).",".($graph_height-($invoiced/$maxyearincome)*$graph_height)." ");
