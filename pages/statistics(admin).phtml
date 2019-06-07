@@ -92,7 +92,7 @@ $graph_height = 100;
 <div><span style="float: right;">dec <?php e($year); ?></span></div>
 <ul class="legend">
     <li><div class="square lightgray"></div> registered <span>(<?php e(round($totalworked/1000,1)); ?>k)</span></li>
-    <li><div class="square purple"></div> invoiced <span>(<?php e(round($totalinvoiced/1000,1)); ?>k)</span></li>
+    <li><div class="square purple"></div> invoiced <span>(<?php //e(round($totalinvoiced/1000,1)); ?><?php e(round($incomeThisYear/1000,1)); ?>k)</span></li>
     <li><div class="square lightpurple"></div> subscriptions <span>(<?php e(round($totalsubscriptions/1000,1)); ?>k)</span></li>
     <li><div class="square green"></div> paid <span>(<?php e(round($totalpaid/1000,1)); ?>k)</span></li>
 </ul>
